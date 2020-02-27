@@ -1,0 +1,734 @@
+
+/* -------------------------------------
+ * Bar container
+ * ------------------------------------- */
+.radial-bar {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-bottom: 20px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 80px;
+  height: 80px;
+  font-size: 18px;
+}
+.radial-bar:after,
+.radial-bar > img {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 500;
+  color: #455a64;
+}
+.radial-bar:after {
+  content: attr(data-label);
+  background-color: #fff;
+  z-index: 55;
+}
+.radial-bar > img {
+  z-index: 102;
+}
+.radial-bar:after,
+.radial-bar > img {
+  width: 56px;
+  height: 56px;
+  margin-left: 12px;
+  margin-top: 12px;
+  line-height: 56px;
+}
+
+.radial-bar.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-50 {
+  background-image: linear-gradient(270deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-55 {
+  background-image: linear-gradient(288deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-60 {
+  background-image: linear-gradient(306deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-65 {
+  background-image: linear-gradient(324deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-70 {
+  background-image: linear-gradient(342deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-75 {
+  background-image: linear-gradient(360deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-80 {
+  background-image: linear-gradient(378deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-85 {
+  background-image: linear-gradient(396deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-90 {
+  background-image: linear-gradient(414deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-95 {
+  background-image: linear-gradient(432deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar.radial-bar-100 {
+  background-image: linear-gradient(450deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-50 {
+  background-image: linear-gradient(270deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-55 {
+  background-image: linear-gradient(288deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-60 {
+  background-image: linear-gradient(306deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-65 {
+  background-image: linear-gradient(324deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-70 {
+  background-image: linear-gradient(342deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-75 {
+  background-image: linear-gradient(360deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-80 {
+  background-image: linear-gradient(378deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-85 {
+  background-image: linear-gradient(396deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-90 {
+  background-image: linear-gradient(414deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-95 {
+  background-image: linear-gradient(432deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-primary.radial-bar-100 {
+  background-image: linear-gradient(450deg, #448aff 50%, transparent 50%, transparent), linear-gradient(270deg, #448aff 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-50 {
+  background-image: linear-gradient(270deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-55 {
+  background-image: linear-gradient(288deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-60 {
+  background-image: linear-gradient(306deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-65 {
+  background-image: linear-gradient(324deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-70 {
+  background-image: linear-gradient(342deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-75 {
+  background-image: linear-gradient(360deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-80 {
+  background-image: linear-gradient(378deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-85 {
+  background-image: linear-gradient(396deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-90 {
+  background-image: linear-gradient(414deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-95 {
+  background-image: linear-gradient(432deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-success.radial-bar-100 {
+  background-image: linear-gradient(450deg, #11c15b 50%, transparent 50%, transparent), linear-gradient(270deg, #11c15b 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-50 {
+  background-image: linear-gradient(270deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-55 {
+  background-image: linear-gradient(288deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-60 {
+  background-image: linear-gradient(306deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-65 {
+  background-image: linear-gradient(324deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-70 {
+  background-image: linear-gradient(342deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-75 {
+  background-image: linear-gradient(360deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-80 {
+  background-image: linear-gradient(378deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-85 {
+  background-image: linear-gradient(396deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-90 {
+  background-image: linear-gradient(414deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-95 {
+  background-image: linear-gradient(432deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-info.radial-bar-100 {
+  background-image: linear-gradient(450deg, #00bcd4 50%, transparent 50%, transparent), linear-gradient(270deg, #00bcd4 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-50 {
+  background-image: linear-gradient(270deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-55 {
+  background-image: linear-gradient(288deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-60 {
+  background-image: linear-gradient(306deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-65 {
+  background-image: linear-gradient(324deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-70 {
+  background-image: linear-gradient(342deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-75 {
+  background-image: linear-gradient(360deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-80 {
+  background-image: linear-gradient(378deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-85 {
+  background-image: linear-gradient(396deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-90 {
+  background-image: linear-gradient(414deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-95 {
+  background-image: linear-gradient(432deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-warning.radial-bar-100 {
+  background-image: linear-gradient(450deg, #ffe100 50%, transparent 50%, transparent), linear-gradient(270deg, #ffe100 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-50 {
+  background-image: linear-gradient(270deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-55 {
+  background-image: linear-gradient(288deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-60 {
+  background-image: linear-gradient(306deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-65 {
+  background-image: linear-gradient(324deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-70 {
+  background-image: linear-gradient(342deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-75 {
+  background-image: linear-gradient(360deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-80 {
+  background-image: linear-gradient(378deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-85 {
+  background-image: linear-gradient(396deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-90 {
+  background-image: linear-gradient(414deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-95 {
+  background-image: linear-gradient(432deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-danger.radial-bar-100 {
+  background-image: linear-gradient(450deg, #e53935 50%, transparent 50%, transparent), linear-gradient(270deg, #e53935 50%, #d6d6d6 50%, #d6d6d6);
+}
+
+
+/* -- Radial Default -- */
+.radial-bar-default.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-50 {
+  background-image: linear-gradient(270deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-55 {
+  background-image: linear-gradient(288deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-60 {
+  background-image: linear-gradient(306deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-65 {
+  background-image: linear-gradient(324deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-70 {
+  background-image: linear-gradient(342deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-75 {
+  background-image: linear-gradient(360deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-80 {
+  background-image: linear-gradient(378deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-85 {
+  background-image: linear-gradient(396deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-90 {
+  background-image: linear-gradient(414deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-95 {
+  background-image: linear-gradient(432deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-default.radial-bar-100 {
+  background-image: linear-gradient(450deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #FE8A7D 50%, #d6d6d6 50%, #d6d6d6);
+}
+
+
+
+/* -- Radial Pink -- */
+.radial-bar-pink.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-50 {
+  background-image: linear-gradient(270deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-55 {
+  background-image: linear-gradient(288deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-60 {
+  background-image: linear-gradient(306deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-65 {
+  background-image: linear-gradient(324deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-70 {
+  background-image: linear-gradient(342deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-75 {
+  background-image: linear-gradient(360deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-80 {
+  background-image: linear-gradient(378deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-85 {
+  background-image: linear-gradient(396deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-90 {
+  background-image: linear-gradient(414deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-95 {
+  background-image: linear-gradient(432deg, #fb6d9d 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-pink.radial-bar-100 {
+  background-image: linear-gradient(450deg, #FE8A7D 50%, transparent 50%, transparent), linear-gradient(270deg, #fb6d9d 50%, #d6d6d6 50%, #d6d6d6);
+}
+
+
+
+/* -- Radial Purple -- */
+.radial-bar-purple.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-50 {
+  background-image: linear-gradient(270deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-55 {
+  background-image: linear-gradient(288deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-60 {
+  background-image: linear-gradient(306deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-65 {
+  background-image: linear-gradient(324deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-70 {
+  background-image: linear-gradient(342deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-75 {
+  background-image: linear-gradient(360deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-80 {
+  background-image: linear-gradient(378deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-85 {
+  background-image: linear-gradient(396deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-90 {
+  background-image: linear-gradient(414deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-95 {
+  background-image: linear-gradient(432deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-purple.radial-bar-100 {
+  background-image: linear-gradient(450deg, #536dfe 50%, transparent 50%, transparent), linear-gradient(270deg, #536dfe 50%, #d6d6d6 50%, #d6d6d6);
+}
+
+
+
+/* -- Radial Inverse -- */
+.radial-bar-inverse.radial-bar-0 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(90deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-5 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(108deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-10 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(126deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-15 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(144deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-20 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(162deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-25 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(180deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-30 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(198deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-35 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(216deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-40 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(234deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-45 {
+  background-image: linear-gradient(90deg, #d6d6d6 50%, transparent 50%, transparent), linear-gradient(252deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-50 {
+  background-image: linear-gradient(270deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-55 {
+  background-image: linear-gradient(288deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-60 {
+  background-image: linear-gradient(306deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-65 {
+  background-image: linear-gradient(324deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-70 {
+  background-image: linear-gradient(342deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-75 {
+  background-image: linear-gradient(360deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-80 {
+  background-image: linear-gradient(378deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-85 {
+  background-image: linear-gradient(396deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-90 {
+  background-image: linear-gradient(414deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-95 {
+  background-image: linear-gradient(432deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+.radial-bar-inverse.radial-bar-100 {
+  background-image: linear-gradient(450deg, #4c5667 50%, transparent 50%, transparent), linear-gradient(270deg, #4c5667 50%, #d6d6d6 50%, #d6d6d6);
+}
+
+.radial-bar-lg {
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
+}
+.radial-bar-lg:after,
+.radial-bar-lg > img {
+  width: 70px;
+  height: 70px;
+  margin-left: 15px;
+  margin-top: 15px;
+  line-height: 70px;
+}
+.radial-bar-sm {
+  width: 50px;
+  height: 50px;
+  font-size: 12px;
+}
+.radial-bar-sm:after,
+.radial-bar-sm > img {
+  width: 35px;
+  height: 35px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+  line-height: 35px;
+}
+.radial-bar-xs {
+  width: 30px;
+  height: 30px;
+  font-size: 8px;
+}
+.radial-bar-xs:after,
+.radial-bar-xs > img {
+  width: 20px;
+  height: 20px;
+  margin-left: 5.5px;
+  margin-top: 4.5px;
+  line-height: 21px;
+}
+
+.radial-bar {
+  background-clip: content-box;
+}
