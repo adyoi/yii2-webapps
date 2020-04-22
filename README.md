@@ -2,16 +2,17 @@
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
-current directory C:\xampp\htdocs\backup\webapps
 
-$ cd C:\xampp\htdocs\backup\webapps<br>
+$ mkdir webapps<br>
+$ cd webapps<br>
+$ composer require adyoi/yii2-webapps "@dev"<br>
 $ init<br>
 $ yii migrate<br>
 $ composer update
 
-Frontend : http://localhost/backup/webapps/
+Frontend : http://localhost/webapps/
 
-Backend : http://localhost/backup/webapps/backend
+Backend : http://localhost/webapps/backend
 
 Version 2.0
 
