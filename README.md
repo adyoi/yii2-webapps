@@ -1,19 +1,21 @@
-# yii2-webapps
-
-current directory C:\xampp\htdocs\backup\webapps
-
-Frontend : http://localhost/backup/webapps/
+# Yii2 Web Application
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
+current directory C:\xampp\htdocs\backup\webapps
+
+$ cd C:\xampp\htdocs\backup\webapps<br>
+$ init<br>
+$ yii migrate<br>
+$ composer update
+
+Frontend : http://localhost/backup/webapps/
+
 Backend : http://localhost/backup/webapps/backend
-
-Use migrate $ yii migrate
-
 
 Version 2.0
 
-Menu Level :
+User Menu Level :
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/14.png)
 
