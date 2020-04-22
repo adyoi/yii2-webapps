@@ -100,10 +100,6 @@ JS;
 
 $css = <<< CSS
 
-.custom-control-label {
-    padding-left: 20px;
-}
-
 CSS;
 
 $this->registerJs($js);

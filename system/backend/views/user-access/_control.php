@@ -17,8 +17,8 @@ $this->registerJsFile('@web/js/jquery.dataTables.min.js', ['depends' => [\yii\we
 $this->registerJsFile('@web/js/uniform.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('@web/js/popper.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
-$id_level  = Yii::$app->user->identity->level;
-$id_module = 'app-backend-webapps';
+$id_level  = Yii::$app->request->get('level') ?: Yii::$app->user->identity->level;
+$id_module = Yii::$app->request->get('module') ?: 'app-backend-webapps';
 
 $level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, $defaultValue) {
         return md5($model['code']);
@@ -40,7 +40,7 @@ $level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, 
 		        'disabled' => $model->isNewRecord ? false : true,
 		        'options' => [
 		            'placeholder' => 'Pilih Level',
-		            'value' => Yii::$app->request->get('level') ? Yii::$app->request->get('level') : $id_level,
+		            'value' => $id_level,
 		        ],
 		        'pluginOptions' => [
 		            'allowClear' => false
@@ -56,7 +56,7 @@ $level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, 
 		        			'app-frontend-webapps' => 'app-frontend-webapps'],
 		        'options' => [
 		            'placeholder' => 'Pilih Module',
-		            'value' => Yii::$app->request->get('module') ? Yii::$app->request->get('module') : $id_module,
+		            'value' => $id_module,
 		        ],
 		        'pluginOptions' => [
 		            'allowClear' => false

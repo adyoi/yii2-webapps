@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\UserLevel */
+/* @var $model backend\models\UserMenu */
 
-$this->title = 'Update User Level: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'User Levels', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->code]];
+$this->title = 'Update User Menu: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'User Menus', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="card table-card">
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <div class="card-block">
         <div class="card-body">
             <div class="card-text">
-				<div class="user-level-update">
+				<div class="user-menu-update">
 
 				    <?= $this->render('_form', [
 				        'model' => $model,

@@ -78,7 +78,7 @@ AppAsset::register($this);
                                         <span class="input-group-prepend search-close">
                                             <i class="feather icon-x input-group-text"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="Enter Keyword" style="width: 0px;">
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
                                         <span class="input-group-append search-btn">
                                             <i class="feather icon-search input-group-text"></i>
                                         </span>
@@ -139,65 +139,271 @@ AppAsset::register($this);
 
                     <?php
 
-                        $level = Yii::$app->user->identity->level;
+                        $user    = Yii::$app->user->identity->id;
+                        $level   = Yii::$app->user->identity->level;
+                        $items   = array();
+                        $items[] = ['label' => '<div class="pcoded-navigation-label">Main Menu</div>'];
+                        $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-monitor"></i></span><span class="pcoded-mtext">Dashboard</span>', 'url' => ['site/index']];         
 
-                        switch ($level)
+                        /* ------------------------------------------ MENU LEVEL 1 ------------------------------------------ */
+
+                        $user_menu = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+
+                        if (count($user_menu) > 0) // Check if Array Exists
                         {
-                            case md5('ADM'):
+                            foreach ($user_menu as $key => $value) 
+                            {
+                                $label_menu = '';
 
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-monitor"></i></span>
-                                            <span class="pcoded-mtext">Dashboard</span>', 'url' => ['site/index']];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-user"></i></span>
-                                    <span class="pcoded-mtext">User</span>',
-                                    'url' => 'javascript:void(0)',
-                                    'options'=>['class'=>'pcoded-hasmenu'],
-                                    'items' => [
-                                        ['label' => '<span class="pcoded-mtext">User</span>', 'url' => ['user/index']],
-                                        ['label' => '<span class="pcoded-mtext">Level</span>', 'url' => ['user-level/index']],
-                                        ['label' => '<span class="pcoded-mtext">Access</span>', 'url' => ['user-access/control']],
-                                    ],
-                                    'itemOptions' => ['class'=>'pcoded-submenu'],
-                                ];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-                                    <span class="pcoded-mtext">System</span>',
-                                    'url' => 'javascript:void(0)',
-                                    'options'=>['class'=>'pcoded-hasmenu'],
-                                    'items' => [
-                                        ['label' => '<span class="pcoded-mtext">System Info</span>', 'url' => ['system/info']],
-                                        ['label' => '<span class="pcoded-mtext">Application Log</span>', 'url' => ['app-log/index']],
-                                        ['label' => '<span class="pcoded-mtext">Application Log Database</span>', 'url' => ['app-logd/index']],
-                                    ],
-                                    'itemOptions' => ['class'=>'pcoded-submenu'],
-                                ];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                            <span class="pcoded-mtext">Logout</span>', 'url' => ['site/logout']];
+                                if (Url::current() == Url::toRoute('user-menu/create') || 
+                                    Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                                    Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                                    Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                                {
+                                    $label_menu =  ' (' . $value['seq'] . ')';
+                                }
 
-                            break;
+                                if ($value['id_sub'] == 0)
+                                {
+                                    $url       = sprintf('%s/%s', $value['url_controller'], $value['url_view']);
+                                    $url_      = array();
+                                    $url_array = array($url);
 
-                            case md5('USR'):
+                                    if (strpos($value['url_parameter'], ',')) {
 
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-monitor"></i></span>
-                                            <span class="pcoded-mtext">Dashboard</span>', 'url' => ['site/index']];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-                                    <span class="pcoded-mtext">System</span>',
-                                    'url' => 'javascript:void(0)',
-                                    'options'=>['class'=>'pcoded-hasmenu'],
-                                    'items' => [
-                                        ['label' => '<span class="pcoded-mtext">Info</span>', 'url' => ['system/info']],
-                                    ],
-                                    'itemOptions' => ['class'=>'pcoded-submenu'],
-                                ];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                            <span class="pcoded-mtext">Logout</span>', 'url' => ['site/logout']];
+                                        $url_parameter = explode(',', $value['url_parameter']);
 
-                            break;
+                                        $url_param_array = [];
 
-                            default:
+                                        foreach ($url_parameter as $key2 => $value2) {
 
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-monitor"></i></span>
-                                            <span class="pcoded-mtext">Dashboard</span>', 'url' => ['site/index']];
-                                $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
-                                            <span class="pcoded-mtext">Logout</span>', 'url' => ['site/logout']];
+                                            if (strpos($value2, '=')) {
+
+                                                $param = explode('=', $value2);
+
+                                                $url_param_array[trim($param[0])] = trim($param[1]);
+                                            }
+                                            
+                                        }
+
+                                        $url_ = array_merge($url_array, $url_param_array);
+
+                                    } else {
+
+                                        $url_param_array = [];
+
+                                        if (strpos($value['url_parameter'], '=')) {
+
+                                            $param = explode('=', $value['url_parameter']);
+
+                                            $url_param_array[trim($param[0])] = trim($param[1]);
+
+                                        }
+
+                                        $url_ = array_merge($url_array, $url_param_array);
+
+                                    }
+
+                                    switch ($value['class']) 
+                                    {
+                                        case 'H':
+                                            $items[] = ['label' => '<div class="pcoded-navigation-label">'.$value['name'].$label_menu.'</div>'];
+                                            break;
+                                        case 'D':
+                                            $items[] = ['label' => '<span class="pcoded-divider"></span>'];
+                                            break;
+                                        case 'L':
+                                            $items[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value['icon'].'"></i></span><span class="pcoded-mtext">'.$value['name'].$label_menu.'</span>', 'url' => $url_];
+                                            break;
+                                        case 'S':
+
+                                            /* ------------------------------------------ MENU LEVEL 2 ------------------------------------------ */
+                                            
+                                            $user_menu2 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+                                            
+                                            $items2 = array();
+
+                                            if (count($user_menu2) > 0) // Check if Array Exists
+                                            {
+                                                foreach ($user_menu2 as $key2 => $value2) 
+                                                {
+                                                    $label_menu2 = '';
+
+                                                    if (Url::current() == Url::toRoute('user-menu/create') || 
+                                                        Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                                                        Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                                                        Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                                                    {
+                                                        $label_menu2 =  ' (' . $value2['seq'] . ')';
+                                                    }
+
+                                                    if ($value2['id_sub2'] == 0)
+                                                    {
+                                                        $url2       = sprintf('%s/%s', $value2['url_controller'], $value2['url_view']);
+                                                        $url2_      = array();
+                                                        $url2_array = array($url2);
+
+                                                        if (strpos($value2['url_parameter'], ',')) {
+
+                                                            $url2_parameter = explode(',', $value2['url_parameter']);
+
+                                                            $url2_param_array = [];
+
+                                                            foreach ($url2_parameter as $key2 => $value2) {
+
+                                                                if (strpos($value2, '=')) {
+
+                                                                    $param = explode('=', $value2);
+
+                                                                    $url2_param_array[trim($param[0])] = trim($param[1]);
+                                                                }
+                                                                
+                                                            }
+
+                                                            $url2_ = array_merge($url2_array, $url2_param_array);
+
+                                                        } else {
+
+                                                            $url2_param_array = [];
+
+                                                            if (strpos($value2['url_parameter'], '=')) {
+
+                                                                $param = explode('=', $value2['url_parameter']);
+
+                                                                $url2_param_array[trim($param[0])] = trim($param[1]);
+
+                                                            }
+
+                                                            $url2_ = array_merge($url2_array, $url2_param_array);
+
+                                                        }
+
+                                                        switch ($value2['class']) {
+                                                            case 'H':
+                                                                $items2[] = ['label' => '<div class="pcoded-navigation-label">'.$value2['name'].$label_menu2.'</div>'];
+                                                                break;
+                                                            case 'D':
+                                                                $items2[] = ['label' => '<span class="pcoded-divider"></span>'];
+                                                                break;
+                                                            case 'L':
+                                                                $items2[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value2['icon'].'"></i></span><span class="pcoded-mtext">'.$value2['name'].$label_menu2.'</span>', 'url' => $url2_];
+                                                                break;
+                                                            case 'S':
+
+                                                                /* ------------------------------------------ MENU LEVEL 3 ------------------------------------------ */
+                                            
+                                                                $user_menu3 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id'], 'id_sub2' => $value2['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+
+                                                                $items3 = array();
+
+                                                                if (count($user_menu3) > 0) // Check if Array Exists
+                                                                {
+                                                                    foreach ($user_menu3 as $key3 => $value3) 
+                                                                    {
+                                                                        $label_menu3 = '';
+
+                                                                        if (Url::current() == Url::toRoute('user-menu/create') || 
+                                                                            Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                                                                            Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                                                                            Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                                                                        {
+                                                                            $label_menu3 =  ' (' . $value3['seq'] . ')';
+                                                                        }
+
+                                                                        if ($value3['id_sub2'] == $value2['id']) 
+                                                                        {
+                                                                            $url3       = sprintf('%s/%s', $value3['url_controller'], $value3['url_view']);
+                                                                            $url3_      = array();
+                                                                            $url3_array = array($url3);
+
+                                                                            if (strpos($value['url_parameter'], ',')) {
+
+                                                                                $url3_parameter = explode(',', $value3['url_parameter']);
+
+                                                                                $url3_param_array = [];
+
+                                                                                foreach ($url3_parameter as $key2 => $value2) {
+
+                                                                                    if (strpos($value2, '=')) {
+
+                                                                                        $param = explode('=', $value2);
+
+                                                                                        $url3_param_array[trim($param[0])] = trim($param[1]);
+                                                                                    }
+                                                                                    
+                                                                                }
+
+                                                                                $url3_ = array_merge($url3_array, $url3_param_array);
+
+                                                                            } else {
+
+                                                                                $url3_param_array = [];
+
+                                                                                if (strpos($value3['url_parameter'], '=')) {
+
+                                                                                    $param = explode('=', $value3['url_parameter']);
+
+                                                                                    $url3_param_array[trim($param[0])] = trim($param[1]);
+
+                                                                                }
+
+                                                                                $url3_ = array_merge($url3_array, $url3_param_array);
+
+                                                                            }
+
+                                                                            switch ($value3['class']) {
+                                                                                case 'H':
+                                                                                    $items3[] = ['label' => '<div class="pcoded-navigation-label">'.$value3['name'].$label_menu3.'</div>'];
+                                                                                    break;
+                                                                                case 'D':
+                                                                                    $items3[] = ['label' => '<span class="pcoded-divider"></span>'];
+                                                                                    break;
+                                                                                case 'L':
+                                                                                    $items3[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value3['icon'].'"></i></span><span class="pcoded-mtext">'.$value3['name'].$label_menu3.'</span>', 'url' => $url3_];
+                                                                                    break;
+                                                                                case 'S':
+                                                                                    /* MENU LEVEL 4 */
+                                                                                break;
+
+                                                                                default:
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                                $items2[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value2['icon'].'"></i></span><span class="pcoded-mtext">'.$value2['name'].$label_menu2.'</span>',
+                                                                                'url' => 'javascript:void(0)',
+                                                                                'options'=>['class'=>'pcoded-hasmenu'],
+                                                                                'itemOptions' => ['class'=>'pcoded-submenu'],
+                                                                                'items' => $items3,
+                                                                            ];
+
+                                                                //['label' => '<i class="feather '.$value2['icon'].'"></i> <span>'.$value2['name'].'</span>'.$label_menu2, 'url' => $url2_, 'items' => $items3];
+                                                                break;
+                                
+                                                            default:
+                                                                break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            $items[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value['icon'].'"></i></span><span class="pcoded-mtext">'.$value['name'].$label_menu.'</span>',
+                                                            'url' => 'javascript:void(0)',
+                                                            'options'=>['class'=>'pcoded-hasmenu'],
+                                                            'itemOptions' => ['class'=>'pcoded-submenu'],
+                                                            'items' => $items2,
+                                                        ];
+                                            
+                                            //['label' => '<i class="feather '.$value['icon'].'"></i> <span>'.$value['name'].'</span>'.$label_menu, 'url' => $url_, 'items' => $items2];
+                                            break;
+            
+                                        default:
+                                            break;
+                                    }
+                                }
+                            }
                         }
 
                     ?>
@@ -205,7 +411,6 @@ AppAsset::register($this);
                     <?= '<nav class="pcoded-navbar">' ?>
                         <?= '<div class="nav-list">' ?>
                             <?= '<div class="pcoded-inner-navbar main-menu">'?>
-                                <?= '<div class="pcoded-navigation-label">Dashboard</div>' ?>
                                 <?=  Menu::widget([
                                     'items' => $items,
                                     'encodeLabels' => false,
