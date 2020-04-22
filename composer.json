@@ -9,5 +9,6 @@
             "name": "adyoi",
             "email": "adyoix@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "stable"
 }
