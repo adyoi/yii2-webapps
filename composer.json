@@ -10,6 +10,5 @@
             "email": "adyoix@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
