@@ -6,6 +6,7 @@
 $ mkdir webapps<br>
 $ cd webapps<br>
 $ composer require adyoi/yii2-webapps "@dev"<br>
+$ cd system<br>
 $ init<br>
 $ yii migrate<br>
 $ composer update
