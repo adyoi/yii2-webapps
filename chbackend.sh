@@ -1,5 +1,5 @@
 #!/bin/sh
-# yii2-webapps - Change Backend Directory
+# yii2-webapps | Change Backend Directory
 # by adyoi
 
 while true; do
@@ -10,7 +10,7 @@ echo "Change Backend Directory"
 echo "------------------------"
 read -p "change from  : " source
 read -p "change to    : " destination
-echo "--------------"
+echo "------------------------"
 if mv $source $destination
 then echo "[success] /"$destination "moved !"
 else echo "[failure] /"$source "not found !"
