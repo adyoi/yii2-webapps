@@ -2,7 +2,7 @@
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
-# Instalation 1
+# Installation 1
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
@@ -10,7 +10,7 @@ $ cd system<br>
 $ init<br>
 $ composer update
 
-# Instalation 2
+# Installation 2
 
 $ mkdir webapps<br>
 $ cd webapps<br>
