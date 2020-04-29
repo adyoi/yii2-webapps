@@ -7,7 +7,8 @@
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
 $ cd system<br>
-$ init<br>
+$ chmod +x ./init<br>
+$ ./init<br>
 $ composer update
 
 # Installation 2
@@ -16,7 +17,8 @@ $ mkdir webapps<br>
 $ cd webapps<br>
 $ composer require adyoi/yii2-webapps "@dev"<br>
 $ cd system<br>
-$ init<br>
+$ chmod +x ./init<br>
+$ ./init<br>
 $ composer update
 
 Frontend : http://localhost/webapps/
