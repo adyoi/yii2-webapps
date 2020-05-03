@@ -94,9 +94,11 @@ username : user
 password : user
 ```
 
+* Browser
+```php
 Frontend : http://localhost/webapps/
-
-Backend : http://localhost/webapps/backend
+Backend  : http://localhost/webapps/backend
+```
 
 ### Version 2.0
 ---
