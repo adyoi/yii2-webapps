@@ -2,7 +2,7 @@
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
-# Installation 1
+## Installation 1
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
@@ -11,7 +11,7 @@ $ chmod +x ./init<br>
 $ ./init<br>
 $ composer update
 
-# Installation 2
+## Installation 2
 
 $ mkdir webapps<br>
 $ cd webapps<br>
@@ -21,11 +21,85 @@ $ chmod +x ./init<br>
 $ ./init<br>
 $ composer update
 
+## Configuration
+
+* import webapps.sql
+
+* /system/common/config/main-local.php
+```php
+<?php
+return [
+    'components' => [
+        'application' => [
+            'class' => 'common\components\Application',
+        ],
+        
+        ...
+        ...
+        
+    ],
+];
+```
+
+* /system/common/config/param-local.php
+```php
+<?php
+return [
+    'bsVersion' => '4.x',
+    'bsDependencyEnabled' => false,
+    'upload' => '/images/upload/',
+];
+```
+
+* /system/common/config/main.php
+```php
+<?php
+return [
+    // Language
+    'language' => 'id_ID',
+    // Timezone
+    'timeZone' => 'Asia/Jakarta',
+
+    ...
+    ...
+    
+];
+```
+
+* /backend/.htaccess
+```php
+RewriteEngine on
+# link generate to http://localhost/webapps/backend
+RewriteBase /webapps/backend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php
+```
+
+* Default Account 
+```php
+// User Access
+username : root
+password : root
+
+// Demo Menu
+username : menu
+password : menu
+
+// User 
+username : admin
+password : admin
+
+username : user
+password : user
+```
+
 Frontend : http://localhost/webapps/
 
 Backend : http://localhost/webapps/backend
 
-Version 2.0
+### Version 2.0
+---
 
 User Menu Level :
 
@@ -41,7 +115,8 @@ API Support :
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/17.png)
 
 
-Version 1.0
+### Version 1.0
+---
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/1.png)
 
