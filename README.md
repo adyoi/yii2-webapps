@@ -2,20 +2,10 @@
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
-## Installation 1
+## Installation
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
-$ cd system<br>
-$ chmod +x ./init<br>
-$ ./init<br>
-$ composer update
-
-## Installation 2
-
-$ mkdir webapps<br>
-$ cd webapps<br>
-$ composer require adyoi/yii2-webapps "@dev"<br>
 $ cd system<br>
 $ chmod +x ./init<br>
 $ ./init<br>
