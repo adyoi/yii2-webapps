@@ -2,6 +2,16 @@
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/13.png)
 
+Yii2 Web Application is a Starter Project dedicated to the yii2 developer community which is equipped with features for fast application creation needs with extra security.
+
+This project was built with:
+
+Template: AdminLTE 3.0 https://adminlte.io/docs/3.0/
+
+Become an Open Source Collective contributor:
+
+https://opencollective.com/yiisoft
+
 ## Installation
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
