@@ -12,81 +12,103 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    
-    <div class="row">
 
-        <div class="col-sm-12">
+    <div class="login-box">
+        
+        <div class="login-logo">
+            <a href="<?=Url::base()?>"><b>Admin</b>LTE</a>
+        </div>
 
-            <?php $form = ActiveForm::begin(['id' => 'login-form', 'options' => ['class' => 'md-float-material form-material']]); ?>
+        <div class="card">
 
-                    <div class="text-center">
-                        <img src="<?=Url::base()?>/images/logo.png" alt="logo.png">
+            <div class="card-body login-card-body">
+
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <?php $form = ActiveForm::begin(['id' => 'login-form', 'options' => ['class' => 'md-float-material form-material']]); ?>
+
+                <?= $form->field($model, 'username', [
+                    'options' => ['class' => 'form-group'],
+                    'inputOptions' => [ 'class' => 'form-control', 'placeholder' => 'Username'],
+                    'labelOptions' => [ 'class' => ''],
+                    'template' => '
+                    <div class="input-group mb-3">
+                    {input}
+                    <div class="input-group-append">
+                    <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
                     </div>
-                    
-                    <div class="auth-box card">
+                    </div>
+                    {error}{hint}
+                    </div>'
+                    ])->textInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
 
-                        <div class="card-block">
+                <?= $form->field($model, 'password', [
+                    'options' => ['class' => 'form-group'],
+                    'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Password'],
+                    'labelOptions' => [ 'class' => ''],
+                    'template' => '
+                    <div class="input-group mb-3">
+                    {input}
+                    <div class="input-group-append">
+                    <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                    </div>
+                    </div>
+                    {error}{hint}
+                    </div>'
+                    ])->passwordInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
 
-                            <div class="row m-b-20">
-                                <div class="col-md-12">
-                                    <h3 class="text-center txt-primary"><?= Html::encode($this->title) ?></h3>
-                                </div>
-                            </div>
+                <div class="row">
 
-                            <p class="text-muted text-center p-b-5">Please fill out the following fields to login:</p>
+                    <div class="col-8">
 
-                            <?= $form->field($model, 'username', [
-                                'options' => ['class' => 'form-group form-primary'],
-                                'inputOptions' => [ 'class' => 'form-control fill'],
-                                'labelOptions' => [ 'class' => 'float-label'],
-                                'template' => '{input}<span class="form-bar"></span>{label}{error}{hint}'
-                                ])->textInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
+                        <?= $form->field($model, 'rememberMe', [
+                        'options' => ['class' => ''],
+                        'inputOptions' => [ 'class' => 'icheck-primary'],
+                        'labelOptions' => [ 'class' => ''],
+                        'template' => '',
+                        ])->checkbox([],false) ?>
 
-                            <?= $form->field($model, 'password', [
-                                'options' => ['class' => 'form-group form-primary'],
-                                'inputOptions' => ['class' => 'form-control fill'],
-                                'labelOptions' => [ 'class' => 'float-label'],
-                                'template' => '{input}<span class="form-bar"></span>{label}{error}{hint}'
-                                ])->passwordInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
+                    </div>
 
-                            <div class="row m-t-25 text-left">
-                                
-                                <div class="col-12">
+                    <div class="col-4">
 
-                                    <?= $form->field($model, 'rememberMe', [
-                                        'template' => '
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                {input}
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                <span class="text-inverse">Remember me</span>
-                                            </label>
-                                        </div>
-                                        {error}',
-                                    ])->checkbox([],false) ?>
-
-                                    <div class="forgot-phone text-right float-right">
-                                        <a href="#" class="text-right f-w-600 d-none"> Forgot Password?</a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="row m-t-30">
-                                <div class="col-md-12">
-                                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-md btn-block waves-effect text-center m-b-20', 'name' => 'login-button']) ?>
-                                </div>
-                            </div>                            
-
-                        </div>
+                        <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>    
+                    </div>
 
                 </div>
 
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
+
+                <div class="social-auth-links text-center mb-3">
+
+                <p>- OR -</p>
+
+                <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+
+                <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+                </p>
+
+                <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
+                </p>
+
+            </div>
+            <!-- /.login-card-body -->
 
         </div>
-        <!-- end of col-sm-12 -->
+        <!-- /.login-box -->
 
     </div>
 

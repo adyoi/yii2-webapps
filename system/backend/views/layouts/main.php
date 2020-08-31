@@ -10,6 +10,7 @@ use yii\widgets\Menu;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
+use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -31,463 +32,521 @@ AppAsset::register($this);
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url('<?=Url::base()?>/images/loading/loader-icons-set-1-32x64x128/loader-64x/Preloader_3.gif') center no-repeat #fff;
+            background: url('<?=Url::base()?>/images/loader/loader-icons-set-1-32x64x128/loader-64x/Preloader_3.gif') center no-repeat #fff;
+        }
+        .nav-divider {
+            border-bottom: 1px solid #4f5962;
         }
     </style>
 </head>
-<body themebg-pattern="theme1">
+<body class="hold-transition <?= Yii::$app->user->isGuest ? 'login-page' : 'sidebar-mini layout-fixed' ?>">
 <?php $this->beginBody() ?>
 
 <div class="loadingin"></div>
 
 <?php if (Yii::$app->user->isGuest): ?>
 
-    <section class="login-block">
-        <!-- Container-fluid starts -->
-        <div class="container-fluid">
-            <?= $content ?>
-        </div>
-        <!-- end of container-fluid -->
-    </section>
+    <?= $content ?>
     
 <?php else: ?>
 
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
-            
-            <!-- [ Header ] start -->
-            <nav class="navbar header-navbar pcoded-header">
-                <div class="navbar-wrapper">
-                    <div class="navbar-logo">
-                        <a href="<?=Url::base()?>">
-                            <img class="img-fluid" src="<?=Url::base()?>/images/logo.png" alt="Theme-Logo" />
-                        </a>
-                        <a class="mobile-menu" id="mobile-collapse" href="javascript:void(0)">
-                            <i class="feather icon-menu icon-toggle-right"></i>
-                        </a>
-                        <a class="mobile-options waves-effect waves-light">
-                            <i class="feather icon-more-horizontal"></i>
-                        </a>
-                    </div>
-                    <div class="navbar-container container-fluid">
-                        <ul class="nav-left">
-                            <!-- <li class="header-search">
-                                <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close">
-                                            <i class="feather icon-x input-group-text"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn">
-                                            <i class="feather icon-search input-group-text"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </li> -->
-                            <li>
-                                <a href="javascript:void(0)" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                                    <i class="full-screen feather icon-maximize"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav-right">
-                            <li class="header-notification">
-                               <i class="feather icon-calendar"></i> <span id="dater"></span> - <i class="feather icon-clock"></i> <span id="timer" style="width: 50px;display: inline-block;"></span>
-                            </li>
-                           <li class="user-profile header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <?php
-                                        $image = Yii::$app->user->identity->image && 
-                                                 is_file(Yii::getAlias('@webroot') . 
-                                                 Yii::$app->user->identity->image) ? 
-                                                 Yii::$app->user->identity->image : 
-                                                 '/images/no_photo.jpg';
-                                        ?>
-                                        <img src="<?=Url::base().$image?>" class="img-radius" alt="User-Profile-Image">
-                                        <span><?= Yii::$app->user->identity->name ?></span>
-                                        <i class="feather icon-chevron-down"></i>
-                                    </div>
-                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        <li>
-                                            <a href="<?=Url::base()?>/system/setting">
-                                            <i class="feather icon-settings"></i> Settings
-                                        </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?=Url::base()?>/user/profile">
-                                            <i class="feather icon-user"></i> Profile
-                                        </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?=Url::base()?>/logout">
-                                            <i class="feather icon-log-out"></i> Logout
-                                        </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+    <!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
 
-            <div class="pcoded-main-container">
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
-                <div class="pcoded-wrapper">
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="<?=Url::base()?>/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="<?=Url::base()?>/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="<?=Url::base()?>/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
 
-                    <?php
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+      <img src="<?=Url::base()?>/dist/img/AdminLTELogo.png"
+           alt="AdminLTE Logo"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
 
-                        $user    = Yii::$app->user->identity->id;
-                        $level   = Yii::$app->user->identity->level;
-                        $items   = array();
-                        $items[] = ['label' => '<div class="pcoded-navigation-label">Main Menu</div>'];
-                        $items[] = ['label' => '<span class="pcoded-micon"><i class="feather icon-monitor"></i></span><span class="pcoded-mtext">Dashboard</span>', 'url' => ['site/index']];         
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="<?=Url::base()?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Alexander Pierce</a>
+        </div>
+      </div>
 
-                        /* ------------------------------------------ MENU LEVEL 1 ------------------------------------------ */
+      <?php
 
-                        $user_menu = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+            $user    = Yii::$app->user->identity->id;
+            $level   = Yii::$app->user->identity->level;
+            $items   = array();
+            $items[] = ['label' => '<div class="nav-header">Main Menu</div>'];
+            $items[] = ['label' => '<i class="nav-icon fa fa-file"></i><p>Dashboard</p>', 'url' => ['site/index']];
 
-                        if (count($user_menu) > 0) // Check if Array Exists
-                        {
-                            foreach ($user_menu as $key => $value) 
-                            {
-                                $label_menu = '';
+            /* ------------------------------------------ MENU LEVEL 1 ------------------------------------------ */
 
-                                if (Url::current() == Url::toRoute('user-menu/create') || 
-                                    Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
-                                    Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
-                                    Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
-                                {
-                                    $label_menu =  ' (' . $value['seq'] . ')';
+            $user_menu = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+
+            if (count($user_menu) > 0) // Check if Array Exists
+            {
+                foreach ($user_menu as $key => $value) 
+                {
+                    $label_menu = '';
+
+                    if (Url::current() == Url::toRoute('user-menu/create') || 
+                        Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                        Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                        Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                    {
+                        $label_menu =  ' (' . $value['seq'] . ')';
+                    }
+
+                    if ($value['id_sub'] == 0)
+                    {
+                        $url       = sprintf('%s/%s', $value['url_controller'], $value['url_view']);
+                        $url_      = array();
+                        $url_array = array($url);
+
+                        if (strpos($value['url_parameter'], ',')) {
+
+                            $url_parameter = explode(',', $value['url_parameter']);
+
+                            $url_param_array = [];
+
+                            foreach ($url_parameter as $key2 => $value2) {
+
+                                if (strpos($value2, '=')) {
+
+                                    $param = explode('=', $value2);
+
+                                    $url_param_array[trim($param[0])] = trim($param[1]);
                                 }
-
-                                if ($value['id_sub'] == 0)
-                                {
-                                    $url       = sprintf('%s/%s', $value['url_controller'], $value['url_view']);
-                                    $url_      = array();
-                                    $url_array = array($url);
-
-                                    if (strpos($value['url_parameter'], ',')) {
-
-                                        $url_parameter = explode(',', $value['url_parameter']);
-
-                                        $url_param_array = [];
-
-                                        foreach ($url_parameter as $key2 => $value2) {
-
-                                            if (strpos($value2, '=')) {
-
-                                                $param = explode('=', $value2);
-
-                                                $url_param_array[trim($param[0])] = trim($param[1]);
-                                            }
-                                            
-                                        }
-
-                                        $url_ = array_merge($url_array, $url_param_array);
-
-                                    } else {
-
-                                        $url_param_array = [];
-
-                                        if (strpos($value['url_parameter'], '=')) {
-
-                                            $param = explode('=', $value['url_parameter']);
-
-                                            $url_param_array[trim($param[0])] = trim($param[1]);
-
-                                        }
-
-                                        $url_ = array_merge($url_array, $url_param_array);
-
-                                    }
-
-                                    switch ($value['class']) 
-                                    {
-                                        case 'H':
-                                            $items[] = ['label' => '<div class="pcoded-navigation-label">'.$value['name'].$label_menu.'</div>'];
-                                            break;
-                                        case 'D':
-                                            $items[] = ['label' => '<span class="pcoded-divider"></span>'];
-                                            break;
-                                        case 'L':
-                                            $items[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value['icon'].'"></i></span><span class="pcoded-mtext">'.$value['name'].$label_menu.'</span>', 'url' => $url_];
-                                            break;
-                                        case 'S':
-
-                                            /* ------------------------------------------ MENU LEVEL 2 ------------------------------------------ */
-                                            
-                                            $user_menu2 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
-                                            
-                                            $items2 = array();
-
-                                            if (count($user_menu2) > 0) // Check if Array Exists
-                                            {
-                                                foreach ($user_menu2 as $key2 => $value2) 
-                                                {
-                                                    $label_menu2 = '';
-
-                                                    if (Url::current() == Url::toRoute('user-menu/create') || 
-                                                        Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
-                                                        Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
-                                                        Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
-                                                    {
-                                                        $label_menu2 =  ' (' . $value2['seq'] . ')';
-                                                    }
-
-                                                    if ($value2['id_sub2'] == 0)
-                                                    {
-                                                        $url2       = sprintf('%s/%s', $value2['url_controller'], $value2['url_view']);
-                                                        $url2_      = array();
-                                                        $url2_array = array($url2);
-
-                                                        if (strpos($value2['url_parameter'], ',')) {
-
-                                                            $url2_parameter = explode(',', $value2['url_parameter']);
-
-                                                            $url2_param_array = [];
-
-                                                            foreach ($url2_parameter as $key2 => $value2) {
-
-                                                                if (strpos($value2, '=')) {
-
-                                                                    $param = explode('=', $value2);
-
-                                                                    $url2_param_array[trim($param[0])] = trim($param[1]);
-                                                                }
-                                                                
-                                                            }
-
-                                                            $url2_ = array_merge($url2_array, $url2_param_array);
-
-                                                        } else {
-
-                                                            $url2_param_array = [];
-
-                                                            if (strpos($value2['url_parameter'], '=')) {
-
-                                                                $param = explode('=', $value2['url_parameter']);
-
-                                                                $url2_param_array[trim($param[0])] = trim($param[1]);
-
-                                                            }
-
-                                                            $url2_ = array_merge($url2_array, $url2_param_array);
-
-                                                        }
-
-                                                        switch ($value2['class']) {
-                                                            case 'H':
-                                                                $items2[] = ['label' => '<div class="pcoded-navigation-label">'.$value2['name'].$label_menu2.'</div>'];
-                                                                break;
-                                                            case 'D':
-                                                                $items2[] = ['label' => '<span class="pcoded-divider"></span>'];
-                                                                break;
-                                                            case 'L':
-                                                                $items2[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value2['icon'].'"></i></span><span class="pcoded-mtext">'.$value2['name'].$label_menu2.'</span>', 'url' => $url2_];
-                                                                break;
-                                                            case 'S':
-
-                                                                /* ------------------------------------------ MENU LEVEL 3 ------------------------------------------ */
-                                            
-                                                                $user_menu3 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id'], 'id_sub2' => $value2['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
-
-                                                                $items3 = array();
-
-                                                                if (count($user_menu3) > 0) // Check if Array Exists
-                                                                {
-                                                                    foreach ($user_menu3 as $key3 => $value3) 
-                                                                    {
-                                                                        $label_menu3 = '';
-
-                                                                        if (Url::current() == Url::toRoute('user-menu/create') || 
-                                                                            Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
-                                                                            Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
-                                                                            Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
-                                                                        {
-                                                                            $label_menu3 =  ' (' . $value3['seq'] . ')';
-                                                                        }
-
-                                                                        if ($value3['id_sub2'] == $value2['id']) 
-                                                                        {
-                                                                            $url3       = sprintf('%s/%s', $value3['url_controller'], $value3['url_view']);
-                                                                            $url3_      = array();
-                                                                            $url3_array = array($url3);
-
-                                                                            if (strpos($value['url_parameter'], ',')) {
-
-                                                                                $url3_parameter = explode(',', $value3['url_parameter']);
-
-                                                                                $url3_param_array = [];
-
-                                                                                foreach ($url3_parameter as $key2 => $value2) {
-
-                                                                                    if (strpos($value2, '=')) {
-
-                                                                                        $param = explode('=', $value2);
-
-                                                                                        $url3_param_array[trim($param[0])] = trim($param[1]);
-                                                                                    }
-                                                                                    
-                                                                                }
-
-                                                                                $url3_ = array_merge($url3_array, $url3_param_array);
-
-                                                                            } else {
-
-                                                                                $url3_param_array = [];
-
-                                                                                if (strpos($value3['url_parameter'], '=')) {
-
-                                                                                    $param = explode('=', $value3['url_parameter']);
-
-                                                                                    $url3_param_array[trim($param[0])] = trim($param[1]);
-
-                                                                                }
-
-                                                                                $url3_ = array_merge($url3_array, $url3_param_array);
-
-                                                                            }
-
-                                                                            switch ($value3['class']) {
-                                                                                case 'H':
-                                                                                    $items3[] = ['label' => '<div class="pcoded-navigation-label">'.$value3['name'].$label_menu3.'</div>'];
-                                                                                    break;
-                                                                                case 'D':
-                                                                                    $items3[] = ['label' => '<span class="pcoded-divider"></span>'];
-                                                                                    break;
-                                                                                case 'L':
-                                                                                    $items3[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value3['icon'].'"></i></span><span class="pcoded-mtext">'.$value3['name'].$label_menu3.'</span>', 'url' => $url3_];
-                                                                                    break;
-                                                                                case 'S':
-                                                                                    /* MENU LEVEL 4 */
-                                                                                break;
-
-                                                                                default:
-                                                                                    break;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-
-                                                                $items2[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value2['icon'].'"></i></span><span class="pcoded-mtext">'.$value2['name'].$label_menu2.'</span>',
-                                                                                'url' => 'javascript:void(0)',
-                                                                                'options'=>['class'=>'pcoded-hasmenu'],
-                                                                                'itemOptions' => ['class'=>'pcoded-submenu'],
-                                                                                'items' => $items3,
-                                                                            ];
-
-                                                                //['label' => '<i class="feather '.$value2['icon'].'"></i> <span>'.$value2['name'].'</span>'.$label_menu2, 'url' => $url2_, 'items' => $items3];
-                                                                break;
                                 
-                                                            default:
-                                                                break;
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            $items[] = ['label' => '<span class="pcoded-micon"><i class="feather '.$value['icon'].'"></i></span><span class="pcoded-mtext">'.$value['name'].$label_menu.'</span>',
-                                                            'url' => 'javascript:void(0)',
-                                                            'options'=>['class'=>'pcoded-hasmenu'],
-                                                            'itemOptions' => ['class'=>'pcoded-submenu'],
-                                                            'items' => $items2,
-                                                        ];
-                                            
-                                            //['label' => '<i class="feather '.$value['icon'].'"></i> <span>'.$value['name'].'</span>'.$label_menu, 'url' => $url_, 'items' => $items2];
-                                            break;
-            
-                                        default:
-                                            break;
-                                    }
-                                }
                             }
+
+                            $url_ = array_merge($url_array, $url_param_array);
+
+                        } else {
+
+                            $url_param_array = [];
+
+                            if (strpos($value['url_parameter'], '=')) {
+
+                                $param = explode('=', $value['url_parameter']);
+
+                                $url_param_array[trim($param[0])] = trim($param[1]);
+
+                            }
+
+                            $url_ = array_merge($url_array, $url_param_array);
+
                         }
 
-                    ?>
+                        switch ($value['class']) 
+                        {
+                            case 'H':
+                                $items[] = ['label' => '<div class="nav-header">'.$value['name'].$label_menu.'</div>'];
+                                break;
+                            
+                            case 'D':
+                                $items[] = ['label' => '<div class="nav-divider"></div>'];
+                                break;
+                            
+                            case 'L':
+                                $items[] = ['label' => '<i class="nav-icon '.$value['icon'].'"></i><p>'.$value['name'].$label_menu.'</p>', 'url' => $url_];
+                                break;
+                            
+                            case 'S':
 
-                    <?= '<nav class="pcoded-navbar">' ?>
-                        <?= '<div class="nav-list">' ?>
-                            <?= '<div class="pcoded-inner-navbar main-menu">'?>
-                                <?=  Menu::widget([
-                                    'items' => $items,
-                                    'encodeLabels' => false,
-                                    'activateParents' => true,
-                                    'activeCssClass' => 'active pcoded-trigger',
-                                    'itemOptions' => [
-                                        'class' => '',
-                                    ],
-                                    'options' => [
-                                        'class' => 'pcoded-item pcoded-left-item',
-                                    ],
-                                    'linkTemplate' => '
-                                        <a href="{url}" class="waves-effect waves-dark">
-                                            {label}
-                                        </a>',
-                                    'submenuTemplate' => '<ul class="pcoded-submenu">{items}</ul>',
-                                ]); ?>
-                            <?= '</div>' ?>
-                        <?= '</div>' ?>
-                    <?= '</div>' ?>
+                                /* ------------------------------------------ MENU LEVEL 2 ------------------------------------------ */
+                                
+                                $user_menu2 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+                                
+                                $items2 = array();
 
-                    <!-- [ navigation menu ] end -->
-                    <div class="pcoded-content">
-                        <!-- [ breadcrumb ] start -->
-                        <div class="page-header card">
-                            <div class="row align-items-end">
-                                <div class="col-lg-6">
-                                    <div class="page-header-title">
-                                        <i class="feather icon-sidebar bg-c-blue"></i>
-                                        <div class="d-inline">
-                                            <h5><?= Html::encode(isset($this->params['page_title']) ? $this->params['page_title'] : '') ?></h5>
-                                            <span><?= Html::encode(isset($this->params['page_desc']) ? $this->params['page_desc'] : '') ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="page-header-breadcrumb">
-                                        <?= Breadcrumbs::widget([
-                                        'homeLink' => [
-                                            'label' => '<i class="feather icon-monitor"></i> Dashboard',
-                                            'url' => Url::to(['site/index']),
-                                            'template' => '<li class="breadcrumb-item">{link}</li> ',
-                                        ],
-                                        'encodeLabels' => false,
-                                        'options' => ['class' => 'breadcrumb breadcrumb-title'],
-                                        'itemTemplate' => "<li class='breadcrumb-item'><i>{link}</i></li>",
-                                        'activeItemTemplate' => "<li class='breadcrumb-item active'><i>{link}</i></li>",
-                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                        ]) ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- [ breadcrumb ] end -->
-                        <div class="pcoded-inner-content">
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page body start -->
-                                    <div class="page-body">
-                                        <?= $content ?>
-                                    </div>
-                                    <!-- Page body end -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                if (count($user_menu2) > 0) // Check if Array Exists
+                                {
+                                    foreach ($user_menu2 as $key2 => $value2)
+                                    {
+                                        $label_menu2 = '';
 
-                    <!-- ___________________________________________________________________________________________
-                         _________________ let this stamped here, with this you have prayed for me _________________
-                         Tangerang Selatan, 28 Februari 2019 _______________________________________________________
-                         by Adi Apriyanto __________________________________________________________________________
-                         ___________________________________________________________________________________________ -->
+                                        if (Url::current() == Url::toRoute('user-menu/create') || 
+                                            Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                                            Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                                            Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                                        {
+                                            $label_menu2 =  ' (' . $value2['seq'] . ')';
+                                        }
 
-                </div>
-            </div>
-        </div>
+                                        if ($value2['id_sub2'] == 0)
+                                        {
+                                            $url2       = sprintf('%s/%s', $value2['url_controller'], $value2['url_view']);
+                                            $url2_      = array();
+                                            $url2_array = array($url2);
+
+                                            if (strpos($value2['url_parameter'], ',')) {
+
+                                                $url2_parameter = explode(',', $value2['url_parameter']);
+
+                                                $url2_param_array = [];
+
+                                                foreach ($url2_parameter as $key2 => $value2) {
+
+                                                    if (strpos($value2, '=')) {
+
+                                                        $param = explode('=', $value2);
+
+                                                        $url2_param_array[trim($param[0])] = trim($param[1]);
+                                                    }
+                                                    
+                                                }
+
+                                                $url2_ = array_merge($url2_array, $url2_param_array);
+
+                                            } else {
+
+                                                $url2_param_array = [];
+
+                                                if (strpos($value2['url_parameter'], '=')) {
+
+                                                    $param = explode('=', $value2['url_parameter']);
+
+                                                    $url2_param_array[trim($param[0])] = trim($param[1]);
+
+                                                }
+
+                                                $url2_ = array_merge($url2_array, $url2_param_array);
+
+                                            }
+
+                                            switch ($value2['class']) {
+
+                                                case 'H':
+                                                    $items2[] = ['label' => '<div class="nav-header">'.$value2['name'].$label_menu2.'</div>'];
+                                                    break;
+                                                case 'D':
+                                                    $items2[] = ['label' => '<div class="nav-divider"></div>'];
+                                                    break;
+                                                case 'L':
+                                                    $items2[] = ['label' => '<i class="nav-icon '.$value2['icon'].'"></i><p>'.$value2['name'].$label_menu2.'</p>', 'url' => $url2_];
+                                                    break;
+                                                case 'S':
+
+                                                    /* ------------------------------------------ MENU LEVEL 3 ------------------------------------------ */
+                                
+                                                    $user_menu3 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id'], 'id_sub2' => $value2['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+
+                                                    $items3 = array();
+
+                                                    if (count($user_menu3) > 0) // Check if Array Exists
+                                                    {
+                                                        foreach ($user_menu3 as $key3 => $value3) 
+                                                        {
+                                                            $label_menu3 = '';
+
+                                                            if (Url::current() == Url::toRoute('user-menu/create') || 
+                                                                Url::current(['id' => null]) == Url::toRoute('user-menu/update') || 
+                                                                Url::current(['id' => null]) == Url::toRoute('user-menu/view') || 
+                                                                Url::current(['page' => null]) == Url::toRoute('user-menu/index'))
+                                                            {
+                                                                $label_menu3 =  ' (' . $value3['seq'] . ')';
+                                                            }
+
+                                                            if ($value3['id_sub2'] == $value2['id']) 
+                                                            {
+                                                                $url3       = sprintf('%s/%s', $value3['url_controller'], $value3['url_view']);
+                                                                $url3_      = array();
+                                                                $url3_array = array($url3);
+
+                                                                if (strpos($value['url_parameter'], ',')) {
+
+                                                                    $url3_parameter = explode(',', $value3['url_parameter']);
+
+                                                                    $url3_param_array = [];
+
+                                                                    foreach ($url3_parameter as $key2 => $value2) {
+
+                                                                        if (strpos($value2, '=')) {
+
+                                                                            $param = explode('=', $value2);
+
+                                                                            $url3_param_array[trim($param[0])] = trim($param[1]);
+                                                                        }
+                                                                        
+                                                                    }
+
+                                                                    $url3_ = array_merge($url3_array, $url3_param_array);
+
+                                                                } else {
+
+                                                                    $url3_param_array = [];
+
+                                                                    if (strpos($value3['url_parameter'], '=')) {
+
+                                                                        $param = explode('=', $value3['url_parameter']);
+
+                                                                        $url3_param_array[trim($param[0])] = trim($param[1]);
+
+                                                                    }
+
+                                                                    $url3_ = array_merge($url3_array, $url3_param_array);
+
+                                                                }
+
+                                                                switch ($value3['class']) {
+
+                                                                    case 'H':
+                                                                        $items3[] = ['label' => '<div class="nav-header">'.$value3['name'].$label_menu3.'</div>'];
+                                                                        break;
+                                                                    case 'D':
+                                                                        $items3[] = ['label' => '<div class="nav-divider"></div>'];
+                                                                        break;
+                                                                    case 'L':
+                                                                        $items3[] = ['label' => '<i class="nav-icon '.$value3['icon'].'"></i><p>'.$value3['name'].$label_menu3.'</p>', 'url' => $url3_];
+                                                                        break;
+                                                                    case 'S':
+                                                                        /* MENU LEVEL 4 */
+                                                                    break;
+
+                                                                    default:
+                                                                        break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    $items2[] = ['label' => '<i class="nav-icon '.$value2['icon'].'"></i><p>'.$value2['name'].$label_menu2.'<i class="fas fa-angle-left right"></i></p>',
+                                                                    'url' => 'javascript:void(0)',
+                                                                    'options'=>['class'=>'nav-item has-treeview'],
+                                                                    // 'itemOptions' => ['class'=>'nav nav-treeview'],
+                                                                    'items' => $items3,
+                                                                ];
+
+                                                    //['label' => '<i class="feather '.$value2['icon'].'"></i> <span>'.$value2['name'].'</span>'.$label_menu2, 'url' => $url2_, 'items' => $items3];
+                                                    break;
+                                                  
+                                                  default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                $items[] = ['label' => '<i class="nav-icon '.$value['icon'].'"></i><p>'.$value['name'].$label_menu.'<i class="fas fa-angle-left right"></i></p>',
+                                                'url' => 'javascript:void(0)',
+                                                'options'=>['class'=>'nav-item has-treeview'],
+                                                // 'itemOptions' => ['class'=>'nav nav-treeview'],
+                                                'items' => $items2,
+                                            ];
+                                
+                                //['label' => '<i class="feather '.$value['icon'].'"></i> <span>'.$value['name'].'</span>'.$label_menu, 'url' => $url_, 'items' => $items2];
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+
+      ?>
+
+        <?= '<nav class="mt-2">' ?>
+
+          <?=  Menu::widget([
+              'items' => $items,
+              'encodeLabels' => false,
+              'activateParents' => true,
+              'activeCssClass' => 'active',
+              'itemOptions' => [
+                  'class' => 'nav-item',
+              ],
+              'options' => [
+                  'class' => 'nav nav-pills nav-sidebar flex-column',
+                  'data-widget' => 'treeview',
+                  'role' => 'menu',
+                  'data-accordion' => 'false',
+              ],
+              'linkTemplate' => '<a href="{url}" class="nav-link">{label}</a>',
+              'submenuTemplate' => '<ul class="nav nav-treeview">{items}</ul>',
+          ]); ?>
+
+        <?= '</div>' ?>
+
     </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3><?=isset($this->params['page_title']) ? $this->params['page_title'] : ''?></h3>
+          </div>
+          <div class="col-sm-6">
+            <?= Breadcrumbs::widget([
+              'options' => ['class' => 'float-sm-right'],
+              'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <?= Alert::widget() ?>
+      <?= $content ?>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.0.5
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+    
 
 <?php endif; ?>
 
@@ -538,9 +597,10 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 <script>
-jQuery(window).on('load', function() {
-    $('.loadingin').fadeOut(2000);
-});
+    jQuery(window).on('load', function() {
+        // $.widget.bridge('uibutton', $.ui.button);
+        $('.loadingin').fadeOut(2000);
+    });
 </script>
 <?php foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
     <?php

@@ -1,6 +1,6 @@
 RewriteEngine on
-# link generate to http://localhost/backup/webapps/backend
-RewriteBase /backup/webapps/backend
+# link generate to http://localhost/webapps/backend
+RewriteBase /webapps/backend
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php
