@@ -474,20 +474,46 @@ AppAsset::register($this);
 
       ?>
 
+      <?php
+
+        // echo NavBar::begin(['brandLabel' => 'NavBar Test']);
+        // echo Nav::widget([
+        //   'items' => [
+
+        //       ['label' => 'Menu 1', 'url' => ['site/index']],
+        //       ['label' => 'Menu 2', 'url' => ['user/index']],
+        //       [
+        //         'label' => 'Submenu', 
+        //         'items' => [
+        //             ['label' => 'Action', 'url' => '#'],
+        //             ['label' => 'Another action', 'url' => '#'],
+        //             ['label' => 'Something else here', 'url' => '#'],
+        //           ],
+        //       ],
+        //   ],
+        //   'activateParents' => true,
+        //   'encodeLabels' => false,
+        //   'options' => ['class' =>'nav nav-pills nav-sidebar flex-column nav-flat'], // set this to nav-tab to get tab-styled navigation
+        // ]);
+        // echo NavBar::end();
+
+      ?>
+
         <?= '<nav class="mt-2">' ?>
 
-          <?=  Menu::widget([
+          <?php echo Menu::widget([
               'items' => $items,
               'encodeLabels' => false,
-              'activateParents' => true,
-              'activeCssClass' => 'active',
+              // 'activateItems' => true,
+              // 'activateParents' => true,
+              // 'activeCssClass' => 'active',
               'itemOptions' => [
                   'class' => 'nav-item',
               ],
               'options' => [
-                  'class' => 'nav nav-pills nav-sidebar flex-column',
-                  'data-widget' => 'treeview',
+                  'class' => 'nav nav-pills nav-sidebar flex-column nav-flat',
                   'role' => 'menu',
+                  'data-widget' => 'treeview',
                   'data-accordion' => 'false',
               ],
               'linkTemplate' => '<a href="{url}" class="nav-link">{label}</a>',
