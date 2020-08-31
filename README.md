@@ -4,7 +4,7 @@
 
 Yii2 Web Application is a Starter Project dedicated to the yii2 developer community which is equipped with features for fast application creation needs with extra security.
 
-###This project was built with:
+### This project was built with :
 
 AdminLTE 3 https://adminlte.io/docs/3.0
 
@@ -12,7 +12,7 @@ Yii2 Last Version https://www.yiiframework.com/doc/guide/2.0/en
 
 Bootstrap 4 https://getbootstrap.com/docs/4.0/getting-started/introduction
 
-###Become an Open Source Collective contributor:
+### Become an Open Source Collective contributor :
 
 https://opencollective.com/yiisoft
 
