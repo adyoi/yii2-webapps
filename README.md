@@ -16,6 +16,8 @@ Bootstrap 4 https://getbootstrap.com/docs/4.0/getting-started/introduction
 
 https://opencollective.com/yiisoft
 
+---
+
 ## Installation
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
