@@ -191,10 +191,10 @@ AppAsset::register($this);
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=Url::base()?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?=Url::base().Yii::$app->user->identity->image?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?=Yii::$app->user->identity->name?></a>
         </div>
       </div>
 
@@ -474,38 +474,13 @@ AppAsset::register($this);
 
       ?>
 
-      <?php
-
-        // echo NavBar::begin(['brandLabel' => 'NavBar Test']);
-        // echo Nav::widget([
-        //   'items' => [
-
-        //       ['label' => 'Menu 1', 'url' => ['site/index']],
-        //       ['label' => 'Menu 2', 'url' => ['user/index']],
-        //       [
-        //         'label' => 'Submenu', 
-        //         'items' => [
-        //             ['label' => 'Action', 'url' => '#'],
-        //             ['label' => 'Another action', 'url' => '#'],
-        //             ['label' => 'Something else here', 'url' => '#'],
-        //           ],
-        //       ],
-        //   ],
-        //   'activateParents' => true,
-        //   'encodeLabels' => false,
-        //   'options' => ['class' =>'nav nav-pills nav-sidebar flex-column nav-flat'], // set this to nav-tab to get tab-styled navigation
-        // ]);
-        // echo NavBar::end();
-
-      ?>
-
         <?= '<nav class="mt-2">' ?>
 
           <?php echo Menu::widget([
               'items' => $items,
               'encodeLabels' => false,
-              // 'activateItems' => true,
-              // 'activateParents' => true,
+              'activateItems' => true,
+              'activateParents' => true,
               // 'activeCssClass' => 'active',
               'itemOptions' => [
                   'class' => 'nav-item',
@@ -556,12 +531,11 @@ AppAsset::register($this);
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+  <footer class="main-footer text-sm">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -623,10 +597,22 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 <script>
-    jQuery(window).on('load', function() {
-        // $.widget.bridge('uibutton', $.ui.button);
-        $('.loadingin').fadeOut(2000);
-    });
+  jQuery(window).on('load', function() {
+    // $.widget.bridge('uibutton', $.ui.button);
+    $('.loadingin').fadeOut(2000);
+  });
+  /* Yii2 Widget Menu for AdminLTE */
+  $( ".nav-sidebar li" ).each(function( index ) {
+    // Move active class from parent
+    if ($(this).hasClass('active')) {
+      $(this).find('.nav-link').addClass('active');
+      // Indcated Submenu is open
+      if ($(this).hasClass('has-treeview')) {
+        $(this).addClass('menu-open');
+      }
+      $(this).removeClass('active');
+    }
+  });
 </script>
 <?php foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
     <?php

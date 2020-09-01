@@ -5,3 +5,7 @@
 .table-nowrap table {
 	white-space: nowrap;
 }
+
+.maximized-card .card-body {
+    overflow: auto;
+}
