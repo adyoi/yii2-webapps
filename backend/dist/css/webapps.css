@@ -6,6 +6,8 @@
 	white-space: nowrap;
 }
 
+/* Fix Custome CSS */
+
 .maximized-card .card-body {
     overflow: auto;
 }

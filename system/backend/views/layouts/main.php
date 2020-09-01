@@ -65,6 +65,9 @@ AppAsset::register($this);
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?=Url::base()?>/logout" class="nav-link">Logout</a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -546,8 +549,6 @@ AppAsset::register($this);
 </div>
 <!-- ./wrapper -->
 
-    
-
 <?php endif; ?>
 
 <!-- Warning Section Starts -->
@@ -596,23 +597,31 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
-<script>
-  jQuery(window).on('load', function() {
-    // $.widget.bridge('uibutton', $.ui.button);
-    $('.loadingin').fadeOut(2000);
-  });
-  /* Yii2 Widget Menu for AdminLTE */
-  $( ".nav-sidebar li" ).each(function( index ) {
-    // Move active class from parent
-    if ($(this).hasClass('active')) {
-      $(this).find('.nav-link').addClass('active');
-      // Indcated Submenu is open
-      if ($(this).hasClass('has-treeview')) {
-        $(this).addClass('menu-open');
-      }
-      $(this).removeClass('active');
+<script type="text/javascript">
+/* 
+ * Animated Loading 
+ */
+jQuery(window).on('load', function() { $('.loadingin').fadeOut(2000); });
+
+/* 
+ * Yii2 Widget Menu for AdminLTE by adyoi
+ */
+$( ".nav-sidebar li" ).each(function( index ) {
+  // Moved active class from parent
+  if ($(this).hasClass('active')) {
+    // Add active class on nav-link
+    $(this).find('.nav-link').addClass('active');
+    // Indicated Submenu is open
+    if ($(this).hasClass('has-treeview')) {
+      // Add menu-open class on treeview
+      $(this).addClass('menu-open');
+      // Remove active class on treeview
+      $(this).find('.nav-link').removeClass('active');
     }
-  });
+    // Remove active class on nav-items
+    $(this).removeClass('active');
+  }
+});
 </script>
 <?php foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
     <?php
