@@ -205,7 +205,7 @@ $level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, 
 		    <?= $form->field($model, 'action')->hiddenInput(['rows' => 6])->label(false) ?>
 
 		    <div class="form-group">
-		    	<?= Html::submitButton($model->isNewRecord ? 'Simpan' : 'Update', ['id' =>'action-save', 'class' => $model->isNewRecord ? 'btn btn-xs btn-success' : 'btn btn-xs btn-primary']) ?>
+		    	<?= Html::submitButton($model->isNewRecord ? 'Simpan' : 'Update', ['id' =>'action-save', 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 		    </div>
 
 		</div>
@@ -243,7 +243,6 @@ var t = $('.table-account').DataTable({
 	    }
 	},
 	'fnPreDrawCallback': function( oSettings ) {
-		//$('.styled').uniform();
 		$('.styled').on('change', function(){
 	    	if($(this).is(":checked")) {
 				$(this).attr('checked', true);
@@ -332,7 +331,6 @@ $('#action-save').on('click', function(e) {
 $('#check-all').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('.styled').uniform();
 		$('.styled').each(function() {
 			if (!$(this).hasClass('locked')) {
 				$(this).parent('span').addClass('checked');
@@ -343,7 +341,6 @@ $('#check-all').on('change', function(e){
 		});
 	}
 	else {
-		//$('.styled').uniform();
 		$('.styled').each(function() {
 			if (!$(this).hasClass('locked')) {
 				$(this).parent('span').removeClass('checked');
@@ -358,7 +355,6 @@ $('#check-all').on('change', function(e){
 $('#check-index').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('input[data-action=index]').uniform();
 		$('input[data-action=index]').each(function() {
 			$(this).parent('span').addClass('checked');
 			$(this).prop('checked', true);
@@ -367,7 +363,6 @@ $('#check-index').on('change', function(e){
 		});
 	}
 	else {
-		//$('input[data-action=index]').uniform();
 		$('input[data-action=index]').each(function() {
 			$(this).parent('span').removeClass('checked');
 			$(this).prop('checked', false);
@@ -380,7 +375,6 @@ $('#check-index').on('change', function(e){
 $('#check-create').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('input[data-action=create]').uniform();
 		$('input[data-action=create]').each(function() {
 			$(this).parent('span').addClass('checked');
 			$(this).prop('checked', true);
@@ -389,7 +383,6 @@ $('#check-create').on('change', function(e){
 		});
 	}
 	else {
-		//$('input[data-action=create]').uniform();
 		$('input[data-action=create]').each(function() {
 			$(this).parent('span').removeClass('checked');
 			$(this).prop('checked', false);
@@ -402,7 +395,6 @@ $('#check-create').on('change', function(e){
 $('#check-update').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('input[data-action=update]').uniform();
 		$('input[data-action=update]').each(function() {
 			$(this).parent('span').addClass('checked');
 			$(this).prop('checked', true);
@@ -411,7 +403,6 @@ $('#check-update').on('change', function(e){
 		});
 	}
 	else {
-		//$('input[data-action=update]').uniform();
 		$('input[data-action=update]').each(function() {
 			$(this).parent('span').removeClass('checked');
 			$(this).prop('checked', false);
@@ -424,7 +415,6 @@ $('#check-update').on('change', function(e){
 $('#check-view').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('input[data-action=view]').uniform();
 		$('input[data-action=view]').each(function() {
 			$(this).parent('span').addClass('checked');
 			$(this).prop('checked', true);
@@ -433,7 +423,6 @@ $('#check-view').on('change', function(e){
 		});
 	}
 	else {
-		//$('input[data-action=view]').uniform();
 		$('input[data-action=view]').each(function() {
 			$(this).parent('span').removeClass('checked');
 			$(this).prop('checked', false);
@@ -446,7 +435,6 @@ $('#check-view').on('change', function(e){
 $('#check-delete').on('change', function(e){
 	e.preventDefault();
 	if ($(this).is(":checked")) {
-		//$('input[data-action=delete]').uniform();
 		$('input[data-action=delete]').each(function() {
 			$(this).parent('span').addClass('checked');
 			$(this).prop('checked', true);
@@ -455,7 +443,6 @@ $('#check-delete').on('change', function(e){
 		});
 	}
 	else {
-		//$('input[data-action=delete]').uniform();
 		$('input[data-action=delete]').each(function() {
 			$(this).parent('span').removeClass('checked');
 			$(this).prop('checked', false);

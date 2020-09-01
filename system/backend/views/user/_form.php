@@ -96,7 +96,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
         <div class="col-md-12 text-center">
             
             <div class="form-group">
-                <?= Html::submitButton('Save', ['class' => 'btn btn-xs btn-success']) ?>
+                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
             </div>
 
         </div>

@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <p>
                         <?= Html::a('<i class="feather icon-trash"></i> Clear', ['index', 'action' => 'clear'], [
-                            'class' => 'btn btn-xs btn-danger',
+                            'class' => 'btn btn-danger',
                             'data' => [
                                 'confirm' => 'Are you sure you want to clear log ?',
                                 'method' => 'post',
@@ -76,16 +76,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                         }
                                         $html2 .= "</tr>";
                                         $html3 .= "</tr>";
-                                        return '<center><button class="btn btn-xs btn-success" title="Click to show/hide content" type="button" onclick="
+                                        return '<center><button class="btn btn-success" title="Click to show/hide content" type="button" onclick="
                                         if (document.getElementById(\'spoiler' . $keys . '\').style.display==\'none\') {
                                             document.getElementById(\'spoiler' . $keys . '\').style.display=\'block\'} else {
                                             document.getElementById(\'spoiler' . $keys . '\').style.display=\'none\'}">
-                                            <i class="feather icon-eye"></i></button>
-                                            <button class="btn btn-xs btn-primary" title="Click to show/hide content" type="button" onclick="
+                                            <i class="fa fa-eye"></i></button>
+                                            <button class="btn btn-primary" title="Click to show/hide content" type="button" onclick="
                                         if (document.getElementById(\'spoiler2' . $keys . '\').style.display==\'none\') {
                                             document.getElementById(\'spoiler2' . $keys . '\').style.display=\'block\'} else {
                                             document.getElementById(\'spoiler2' . $keys . '\').style.display=\'none\'}">
-                                            <i class="feather icon-list"></i></button>
+                                            <i class="fa fa-table"></i></button>
                                             <div id="spoiler' . $keys . '" style="display:block">
                                                 <table class="table table-bordered table-kecil table-nowrap">' . $html . '</table>
                                             </div><br>

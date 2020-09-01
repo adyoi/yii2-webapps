@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <p>
                         <?= Html::a('<i class="feather icon-trash"></i> Clear', ['index', 'action' => 'clear'], [
-                            'class' => 'btn btn-xs btn-danger',
+                            'class' => 'btn btn-danger',
                             'data' => [
                                 'confirm' => 'Are you sure you want to clear log ?',
                                 'method' => 'post',
