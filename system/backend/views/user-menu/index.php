@@ -187,7 +187,28 @@ $fontawesome = ['fab fa-accessible-icon' => 'fa-accessible-icon', 'fab fa-accuso
                     ],
                     'name',
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header' => 'Action',
+                        'template' => '{view} {update} {delete}',
+                        'buttons' => [
+                        'view' => function($url, $model) {
+                            return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
+                                ['view', 'id' => $model['id']], 
+                                ['title' => 'View']);
+                        },
+                        'update' => function($url, $model) {
+                            return Html::a('<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>', 
+                                ['update', 'id' => $model['id']], 
+                                ['title' => 'Update']);
+                        },
+                        'delete' => function($url, $model) {
+                            return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
+                                ['delete', 'id' => $model['id']], 
+                                ['title' => 'Delete']);
+                            }
+                        ]
+                    ],
                 ],
             ]); ?>
 

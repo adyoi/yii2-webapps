@@ -26,15 +26,16 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <style type="text/css">
         .loadingin {
-            position: fixed;
-            left: 0px;
             top: 0px;
+            left: 0px;
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url('<?=Url::base()?>/images/loader/loader-icons-set-1-32x64x128/loader-64x/Preloader_3.gif') center no-repeat #fff;
+            position: fixed;
+            background: url('<?=Url::base()?>/images/loader/loader-icons-set-1-32x64x128/loader-64x/Preloader_1.gif') center no-repeat #fff;
         }
         .nav-divider {
+            margin: 10px 0;
             border-bottom: 1px solid #4f5962;
         }
     </style>
@@ -601,7 +602,7 @@ AppAsset::register($this);
 /* 
  * Animated Loading 
  */
-jQuery(window).on('load', function() { $('.loadingin').fadeOut(2000); });
+jQuery(window).on('load', function() { $('.loadingin').fadeOut(1000); });
 
 /* 
  * Yii2 Widget Menu for AdminLTE by adyoi
@@ -633,10 +634,9 @@ $( ".nav-sidebar li" ).each(function( index ) {
     <script>
         jQuery(document).ready(function(e) {
             swal({
-                html: true, 
                 title: '<?=$title?>',
                 text: '<?=$text?>',
-                type: '<?=$type?>',
+                icon: '<?=$type?>',
                 timer: <?=$timer?>,
                 showCancelButton: false,
                 showConfirmButton: true

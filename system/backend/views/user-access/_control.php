@@ -231,12 +231,11 @@ var t = $('.table-account').DataTable({
     ],
     "initComplete": function(settings, json) {
     	if ('$_module') {
-	        swal({
-	            html: true, 
+	        swal.fire({
 	            title: 'User Access',
 	            text: 'Load Data',
-	            type: 'success',
-	            timer: 2000,
+	            icon: 'success',
+	            timer: 5000,
 	            showCancelButton: false,
 	            showConfirmButton: true
 	        });
@@ -284,12 +283,11 @@ $('#action-save').on('click', function(e) {
         },
         statusCode: {
 		    403: function() {
-	            swal({
-	                html: true, 
+	            swal.fire({
 	                title: 'User Access',
 	                text: 'User Not Authorized',
-	                type: 'error',
-	                timer: 2000,
+	                icon: 'error',
+	                timer: 5000,
 	                showCancelButton: false,
 	                showConfirmButton: true
 	            });
@@ -300,23 +298,21 @@ $('#action-save').on('click', function(e) {
 			what = JSON.parse(data);
 
             if (what.status == 'success') {
-	            swal({
-	                html: true, 
+	            swal.fire({
 	                title: 'User Access',
 	                text: what.message,
-	                type: 'success',
-	                timer: 2000,
+	                icon: 'success',
+	                timer: 5000,
 	                showCancelButton: false,
 	                showConfirmButton: true
 	            });
 
             } else if (what.status == 'error') {
-                swal({
-	                html: true, 
+                swal.fire({
 	                title: 'User Access',
 	                text: what.message,
-	                type: 'error',
-	                timer: 2000,
+	                icon: 'error',
+	                timer: 5000,
 	                showCancelButton: false,
 	                showConfirmButton: true
 	            });

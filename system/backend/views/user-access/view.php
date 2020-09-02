@@ -13,46 +13,45 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card table-card">
     <div class="card-header">
-        <h5 class="card-title"><?= Html::encode($this->title) ?></h5>
-        <div class="card-header-right">                       
-            <ul class="list-unstyled card-option">
-                <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
-                <li><i class="feather icon-maximize full-card"></i></li>
-                <li><i class="feather icon-minus minimize-card"></i></li>
-                <li><i class="feather icon-refresh-cw reload-card"></i></li>
-                <li><i class="feather icon-trash close-card"></i></li>
-                <li><i class="feather icon-chevron-left open-card-option"></i></li>
-            </ul>
+        <h3 class="card-title"><?= Html::encode($this->title) ?></h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="maximize" data-toggle="tooltip" title="Maximize">
+            <i class="fas fa-expand"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+            <i class="fas fa-times"></i></button>
         </div>
     </div>
     <div class="card-block">
         <div class="card-body">
             <div class="card-text">
                 <div class="user-access-view">
-                        <p>
-                            <?= Html::a('Update', ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
-                            <?= Html::a('Delete', ['delete', 'id' => $model->code], [
-                                'class' => 'btn btn-danger',
-                                'data' => [
-                                    'confirm' => 'Are you sure you want to delete this item?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?>
-                        </p>
-
-                        <?= DetailView::widget([
-                            'model' => $model,
-                            'attributes' => [
-                                'id',
-                                'level',
-                                'module',
-                                'controller',
-                                'action:ntext',
-                                'id_stamp',
-                                'datestamp',
-                                'timestamp',
+                    <p>
+                        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+                        <?= Html::a('Update', ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
+                        <?= Html::a('Delete', ['delete', 'id' => $model->code], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
                             ],
                         ]) ?>
+                    </p>
+
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'attributes' => [
+                            'id',
+                            'level',
+                            'module',
+                            'controller',
+                            'action:ntext',
+                            'id_stamp',
+                            'datestamp',
+                            'timestamp',
+                        ],
+                    ]) ?>
                 </div>
             </div>
         </div>

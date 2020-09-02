@@ -32,10 +32,10 @@ class UserAccess extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['level', 'module', 'controller', 'action'], 'required'],
+            [['level', 'module', 'controller'], 'required'],
             [['action'], 'string'],
             [['id_stamp'], 'integer'],
-            [['datestamp', 'timestamp'], 'safe'],
+            [['action', 'datestamp', 'timestamp'], 'safe'],
             [['level'], 'string', 'max' => 32],
             [['module'], 'string', 'max' => 20],
             [['controller'], 'string', 'max' => 50],

@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
         "//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css",
         "plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
         "plugins/fontawesome-free/css/all.min.css",
-        "plugins/sweetalert2/sweetalert2.min.css",
+        "plugins/sweetalert2/sweetalert2.css",
         "dist/css/adminlte.min.css",
         "dist/css/webapps.css",
 
@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
 
         "plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
         "plugins/bootstrap/js/bootstrap.bundle.min.js",
-        "plugins/sweetalert2/sweetalert2.all.min.js",
+        "plugins/sweetalert2/sweetalert2.all.js",
         "dist/js/adminlte.min.js",
         "dist/js/demo.js",
         

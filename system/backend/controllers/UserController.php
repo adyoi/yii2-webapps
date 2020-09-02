@@ -126,7 +126,6 @@ class UserController extends Controller
             
             Yii::$app->getSession()->setFlash('user_update_save', [
                     'type'     => 'success',
-                    'delay'    => 500,
                     'duration' => 5000,
                     'title'    => 'System Information',
                     'message'  => 'Data Created !',
@@ -146,8 +145,8 @@ class UserController extends Controller
                 }
                 Yii::$app->getSession()->setFlash('user_create', [
                         'type'     => 'error',
-                        'delay'    => 500,
                         'duration' => 5000,
+                        'title'  => 'Error',
                         'message'  => $message,
                     ]
                 );
@@ -205,7 +204,6 @@ class UserController extends Controller
             /* Feedback Message */
             Yii::$app->getSession()->setFlash('user_update_save', [
                     'type'     => 'success',
-                    'delay'    => 500,
                     'duration' => 5000,
                     'title'    => 'System Information',
                     'message'  => 'Data Updated !',
@@ -226,7 +224,6 @@ class UserController extends Controller
                 }
                 Yii::$app->getSession()->setFlash('user_update', [
                         'type'     => 'error',
-                        'delay'    => 500,
                         'duration' => 5000,
                         'title'    => 'Error',
                         'message'  => $message,
