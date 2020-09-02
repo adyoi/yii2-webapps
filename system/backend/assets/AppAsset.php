@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
     public $js = [
 
         "plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
-        "plugins/bootstrap/js/bootstrap.bundle.min.js",
+        // "plugins/bootstrap/js/bootstrap.bundle.min.js",
         "plugins/sweetalert2/sweetalert2.all.js",
         "dist/js/adminlte.min.js",
         "dist/js/demo.js",
