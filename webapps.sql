@@ -81,13 +81,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `level` (`level`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table webapps.user: ~4 rows (approximately)
+-- Dumping data for table webapps.user: ~5 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 REPLACE INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `name`, `image`, `level`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
 	(1, 'root', '0AwqpjBTwa9AAv2dih8TPqyZqfuhyla8', '$2y$13$nAKuTfVbllxviIwOczggg.QC2Wove1rZ06LKt3v26Uv6n9As6JuKC', NULL, 'root@root.com', 'The Root', '/images/upload/user/root.jpg', '6fb4f22992a0d164b77267fde5477248', 10, 1582829438, 1586125515, 'aFPU-cKNQjyh2bkekFVImt2RbVI4A_Vy_1582666196'),
 	(2, 'admin', '9d5iN9B7AnK7zusmBTJArV8AEbtAWdRJ', '$2y$13$na0oLU.ohHr.KH140vT2y..NjyOkEG9.QM7hPSc5flEMYoCjIn5bu', NULL, 'admin@admin.com', 'Admin', '/images/upload/user/admin.jpg', '6fb4f22992a0d164b77267fde5477248', 10, 1582829973, 1582839032, NULL),
 	(3, 'user', 'gylSa9MSAmeHbulXhhFN7flRSMlanoxA', '$2y$13$jq5nJ8QWqcTB7nLT7KTpceIwo2nT7OPBcRsTrspY0MTHo3vq9SSKe', NULL, 'user@user.com', 'User', '/images/upload/user/user.jpg', '2b6cc9c30eaad9c109091ea928529cbd', 10, 1582830712, 1582839057, NULL),
-	(4, 'menu', 'NK_aDlA5Ir7fCy45gB8ojOrT9L21x2cd', '$2y$13$cUandq2FHic8nHCE4yoJQu0XxgG5l.vWMrXuEz2SO3B/LMlRTcjXS', NULL, 'menu@menu.com', 'Demo Menu', '/images/upload/user/menu.jpg', '3ed53fbeb1eab0443561b68ca0c0b5cf', 10, 1598935611, 1598939886, NULL);
+	(4, 'menu', 'fwzIqkFJpXdfGsaYldIT9Bv-Q-57C3ox', '$2y$13$WH8O0Wf4psPSzEjRAStA7ekYoBH98RWLJpfZNlLm//qRyB6004q9C', NULL, 'menu@menu.com', 'Demo Menu', '/images/upload/user/menu.jpg', '3ed53fbeb1eab0443561b68ca0c0b5cf', 10, 1598935611, 1599105578, NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table webapps.user_access
