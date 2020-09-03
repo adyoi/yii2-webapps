@@ -18,6 +18,8 @@ https://opencollective.com/yiisoft
 
 ---
 
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/18.png)
+
 ## Installation
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
