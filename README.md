@@ -151,3 +151,7 @@ API Support :
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/11.png)
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/12.png)
+
+### 🍔🍟🍕🍱🥪🥑🥛💻
+---
+<a href="https://paypal.me/adyoi?locale.x=id_ID"><img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-paypal.png" alt="donate-paypal" width="100"/></a>
