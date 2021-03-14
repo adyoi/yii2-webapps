@@ -23,32 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-                <div class="app-log-view">
-                    <p>
-                        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
-                        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
-                                'method' => 'post',
-                            ],
-                        ]) ?>
-                    </p>
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'attributes' => [
-                            'id',
-                            'id_user',
-                            'module',
-                            'activity',
-                            'timestamp',
+    <div class="card-body">
+        <div class="card-text">
+            <div class="app-log-view">
+                <p>
+                    <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+                    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
                         ],
                     ]) ?>
-                </div>
+                </p>
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'id',
+                        'id_user',
+                        'module',
+                        'activity',
+                        'timestamp',
+                    ],
+                ]) ?>
             </div>
         </div>
     </div>

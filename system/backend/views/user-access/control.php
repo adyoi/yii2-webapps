@@ -25,15 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-                <div class="user-access">
-                    <?= $this->render('_control', [
-                        'model' => $model,
-                        'controller' => $controller,
-                    ]) ?>
-                </div>
+    <div class="card-body">
+        <div class="card-text">
+            <div class="user-access">
+                <?= $this->render('_control', [
+                    'model' => $model,
+                    'controller' => $controller,
+                ]) ?>
             </div>
         </div>
     </div>

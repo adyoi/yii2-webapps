@@ -8,6 +8,14 @@
 	white-space: nowrap;
 }
 
+.nav-sidebar>.nav-item .nav-icon {
+    margin-right: 1rem;
+}
+
+.user-panel .info {
+    padding: 5px 5px 5px 15px;
+}
+
 /* -------------------------------------------  Fix AdminLTE CSS ------------------------------------------- */
 
 .maximized-card .card-body {

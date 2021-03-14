@@ -22,20 +22,18 @@ $this->params['breadcrumbs'][] = 'Update';
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-				<div class="user-menu-update">
+    <div class="card-body">
+        <div class="card-text">
+			<div class="user-menu-update">
 
-				    <?= $this->render('_form', [
-				        'model' => $model,
-				    ]) ?>
+			    <?= $this->render('_form', [
+			        'model' => $model,
+			    ]) ?>
 
-				</div>
 			</div>
 		</div>
-        <div class="card-footer">
-            <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
-        </div>
 	</div>
+    <div class="card-footer">
+        <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
+    </div>
 </div>

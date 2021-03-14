@@ -23,30 +23,28 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-                <div class="user-level-view">
-                    <p>
-                        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
-                        <?= Html::a('Update', ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a('Delete', ['delete', 'id' => $model->code], [
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
-                                'method' => 'post',
-                            ],
-                        ]) ?>
-                    </p>
-
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'attributes' => [
-                            'code',
-                            'name',
+    <div class="card-body">
+        <div class="card-text">
+            <div class="user-level-view">
+                <p>
+                    <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
+                    <?= Html::a('Update', ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Delete', ['delete', 'id' => $model->code], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
                         ],
                     ]) ?>
-                </div>
+                </p>
+
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'code',
+                        'name',
+                    ],
+                ]) ?>
             </div>
         </div>
     </div>

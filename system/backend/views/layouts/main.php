@@ -25,15 +25,6 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style type="text/css">
-        .loadingin {
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            position: fixed;
-            background: url('<?=Url::base()?>/images/loader/loader-icons-set-1-32x64x128/loader-64x/Preloader_1.gif') center no-repeat #fff;
-        }
         .nav-divider {
             margin: 10px 0;
             border-bottom: 1px solid #4f5962;
@@ -42,8 +33,6 @@ AppAsset::register($this);
 </head>
 <body class="hold-transition <?= Yii::$app->user->isGuest ? 'login-page' : 'sidebar-mini layout-fixed' ?>">
 <?php $this->beginBody() ?>
-
-<div class="loadingin"></div>
 
 <?php if (Yii::$app->user->isGuest): ?>
 
@@ -539,7 +528,7 @@ AppAsset::register($this);
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved. - <a href="https://github.com/adyoi/yii2-webapps">Yii2-Webapps</a>
   </footer>
 
   <!-- Control Sidebar -->
@@ -599,10 +588,12 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 <script type="text/javascript">
-/* 
- * Animated Loading 
+/*
+ * Pace Animated loading
  */
-jQuery(window).on('load', function() { $('.loadingin').fadeOut(1000); });
+$(document).ajaxStart(function() { 
+    Pace.restart(); 
+});
 
 /* 
  * Yii2 Widget Menu for AdminLTE by adyoi

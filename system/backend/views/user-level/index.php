@@ -24,52 +24,50 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-                <div class="user-level-index">
+    <div class="card-body">
+        <div class="card-text">
+            <div class="user-level-index">
 
-                    <p>
-                        <?= Html::a('Create User Level', ['create'], ['class' => 'btn btn-success']) ?>
-                    </p>
+                <p>
+                    <?= Html::a('Create User Level', ['create'], ['class' => 'btn btn-success']) ?>
+                </p>
 
-                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                    <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-                        'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
 
-                            // 'code',
-                            'name',
+                        // 'code',
+                        'name',
 
-                            [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => 'Action',
-                                'template' => '{view} {update} {delete}',
-                                'buttons' => [
-                                'view' => function($url, $model) {
-                                    return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
-                                        ['view', 'id' => $model['code']], 
-                                        ['title' => 'View']);
-                                },
-                                'update' => function($url, $model) {
-                                    return Html::a('<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>', 
-                                        ['update', 'id' => $model['code']], 
-                                        ['title' => 'Update']);
-                                },
-                                'delete' => function($url, $model) {
-                                    return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
-                                        ['delete', 'id' => $model['code']], 
-                                        ['title' => 'Delete']);
-                                    }
-                                ]
-                            ],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'header' => 'Action',
+                            'template' => '{view} {update} {delete}',
+                            'buttons' => [
+                            'view' => function($url, $model) {
+                                return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
+                                    ['view', 'id' => $model['code']], 
+                                    ['title' => 'View']);
+                            },
+                            'update' => function($url, $model) {
+                                return Html::a('<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>', 
+                                    ['update', 'id' => $model['code']], 
+                                    ['title' => 'Update']);
+                            },
+                            'delete' => function($url, $model) {
+                                return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
+                                    ['delete', 'id' => $model['code']], 
+                                    ['title' => 'Delete']);
+                                }
+                            ]
                         ],
-                    ]); ?>
+                    ],
+                ]); ?>
 
-                </div>
             </div>
         </div>
     </div>

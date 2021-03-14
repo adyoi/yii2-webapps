@@ -24,52 +24,50 @@ $this->params['breadcrumbs'][] = $this->title;
             <i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div class="card-block">
-        <div class="card-body">
-            <div class="card-text">
-                <div class="app-log-index">
+    <div class="card-body">
+        <div class="card-text">
+            <div class="app-log-index">
 
-                    <p>
-                        <?= Html::a('<i class="feather icon-trash"></i> Clear', ['index', 'action' => 'clear'], [
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to clear log ?',
-                                'method' => 'post',
+                <p>
+                    <?= Html::a('<i class="feather icon-trash"></i> Clear', ['index', 'action' => 'clear'], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to clear log ?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                </p>
+
+                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+                <div class="table-responsive">
+
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+
+                            //'id',
+                            [
+                                'label' => 'Username',
+                                'attribute' => 'id_user',
+                                'value' => function ($data) {
+                                    $user = \backend\models\User::findOne(['id' => $data['id_user']]);
+                                    return $user['username'];
+                                },
                             ],
-                        ]) ?>
-                    </p>
+                            'module',
+                            'activity',
+                            'timestamp',
 
-                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-                    <div class="table-responsive">
-
-                        <?= GridView::widget([
-                            'dataProvider' => $dataProvider,
-                            'filterModel' => $searchModel,
-                            'columns' => [
-                                ['class' => 'yii\grid\SerialColumn'],
-
-                                //'id',
-                                [
-                                    'label' => 'Username',
-                                    'attribute' => 'id_user',
-                                    'value' => function ($data) {
-                                        $user = \backend\models\User::findOne(['id' => $data['id_user']]);
-                                        return $user['username'];
-                                    },
-                                ],
-                                'module',
-                                'activity',
-                                'timestamp',
-
-                                // ['class' => 'yii\grid\ActionColumn'],
-                            ],
-                        ]); ?>
-
-                    </div>
-
+                            // ['class' => 'yii\grid\ActionColumn'],
+                        ],
+                    ]); ?>
 
                 </div>
+
+
             </div>
         </div>
     </div>
