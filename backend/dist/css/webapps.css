@@ -16,6 +16,10 @@
     padding: 5px 5px 5px 15px;
 }
 
+.brand-text {
+    padding-left: 10px;
+}
+
 /* -------------------------------------------  Fix AdminLTE CSS ------------------------------------------- */
 
 .maximized-card .card-body {

@@ -60,7 +60,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
                 'data' => [ 10 => 'ACTIVE', 9 => 'INACTIVE', 0 => 'DELETED' ],
                 'options' => [
                     'placeholder' => 'Pilih ...',
-                    'value' => $model->isNewRecord ? 10 : null,
+                    'value' => $model->isNewRecord ? 10 : $model->status,
                 ],
                 'pluginOptions' => [
                     'allowClear' => false

@@ -25,6 +25,14 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style type="text/css">
+        .center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); /* (x, y)  => position */
+          -ms-transform: translate(-50%, -50%); /* IE 9 */
+          -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */    
+        }
         .nav-divider {
             margin: 10px 0;
             border-bottom: 1px solid #4f5962;
@@ -36,7 +44,9 @@ AppAsset::register($this);
 
 <?php if (Yii::$app->user->isGuest): ?>
 
+  <div class="center">
     <?= $content ?>
+  </div>
     
 <?php else: ?>
 
@@ -171,12 +181,12 @@ AppAsset::register($this);
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="<?=Url::base()?>/dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
+    <a href="<?=Url::base()?>" class="brand-link">
+      <img src="<?=Url::base()?>/dist/img/Yii2WebappsLogo.png"
+           alt="Yii2 Webapps Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Yii2 Webapps</span>
     </a>
 
     <!-- Sidebar -->
@@ -528,7 +538,7 @@ AppAsset::register($this);
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved. - <a href="https://github.com/adyoi/yii2-webapps">Yii2-Webapps</a>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved. <a href="https://github.com/adyoi/yii2-webapps">Yii2 Webapps</a>
   </footer>
 
   <!-- Control Sidebar -->

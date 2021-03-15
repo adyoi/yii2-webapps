@@ -4,6 +4,8 @@ return [
     'language' => 'id_ID',
     // Timezone
     'timeZone' => 'Asia/Jakarta',
+    // Name
+    'name' => 'Yii2 Webapps',
 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

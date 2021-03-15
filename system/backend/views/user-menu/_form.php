@@ -91,7 +91,7 @@ foreach ($controllerlist as $controller)
                     'data' => $select_menu,
                     'options' => [
                         'placeholder' => 'Pilih Menu Level 2',
-                        'value' => $model->isNewRecord ? 0 : null,
+                        'value' => $model->isNewRecord ? 0 : $model->id_sub,
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -103,7 +103,7 @@ foreach ($controllerlist as $controller)
                     'data' => $select_menu,
                     'options' => [
                         'placeholder' => 'Pilih Menu Level 2',
-                        'value' => $model->isNewRecord ? 0 : null,
+                        'value' => $model->isNewRecord ? 0 : $model->id_sub2,
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -119,7 +119,7 @@ foreach ($controllerlist as $controller)
                     'data' => $select_level,
                     'options' => [
                         'placeholder' => 'User Level',
-                        'value' => $model->isNewRecord ? Yii::$app->user->identity->level : null,
+                        'value' => $model->isNewRecord ? Yii::$app->user->identity->level : $model->level,
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -131,7 +131,7 @@ foreach ($controllerlist as $controller)
                     'data' => ['app-backend-webapps' => 'app-backend-webapps', 'app-frontend-webapps' => 'app-frontend-webapps'] ,
                     'options' => [
                         'placeholder' => 'Pilih Module',
-                        'value' => $model->isNewRecord ? 'app-backend-webapps' : null,
+                        'value' => $model->isNewRecord ? 'app-backend-webapps' : $model->module,
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -143,7 +143,7 @@ foreach ($controllerlist as $controller)
                     'data' => [ 'L' => 'LINK', 'S' => 'SUB MENU', 'H' => 'HEADER', 'D' => 'DIVIDER' ],
                     'options' => [
                         'placeholder' => 'Pilih Class',
-                        'value' => $model->isNewRecord ? 'L' : null,
+                        'value' => $model->isNewRecord ? 'L' : $model->class,
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -159,7 +159,7 @@ foreach ($controllerlist as $controller)
                     'data' => ArrayHelper::map($fulllist, 'key', 'key'),
                     'options' => [
                         'placeholder' => 'Pilih Controller',
-                        'value' => $model->isNewRecord ? 'L' : null,
+                        'value' => $model->isNewRecord ? 'L' : $model->url_controller,
                     ],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -171,7 +171,7 @@ foreach ($controllerlist as $controller)
                     'data' => $model->isNewRecord ? null : [$model->url_view => $model->url_view],
                     'options' => [
                         'placeholder' => 'Pilih View',
-                        'value' => $model->isNewRecord ? null : null,
+                        'value' => $model->isNewRecord ? null : $model->url_view,
                     ],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -185,7 +185,7 @@ foreach ($controllerlist as $controller)
 
         <div class="col-lg-3">
 
-            <?= $form->field($model, 'seq')->textInput(['type' => 'number', 'min' => 0, 'value' => $model->isNewRecord ? 0 : null]) ?>
+            <?= $form->field($model, 'seq')->textInput(['type' => 'number', 'min' => 0, 'value' => $model->isNewRecord ? 0 : $model->seq]) ?>
 
             <?= $form->field($model, 'icon')->widget(Select2::classname(),[
                     'data' => $fontawesome,
