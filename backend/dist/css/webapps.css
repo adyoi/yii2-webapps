@@ -8,7 +8,7 @@
 	white-space: nowrap;
 }
 
-.nav-sidebar>.nav-item .nav-icon {
+.nav-sidebar > .nav-item .nav-icon {
     margin-right: 1rem;
 }
 
@@ -24,6 +24,28 @@
 
 .maximized-card .card-body {
     overflow: auto;
+}
+
+.content-wrapper > .content {
+    padding-bottom: 1rem;
+}
+
+.has-error .form-control {
+    border-width: 1px;
+    border-color: #dc3545 !important;
+}
+
+.has-error .help-block {
+    color: #dc3545 !important;
+}
+
+.has-success .form-control {
+    border-width: 1px;
+    border-color: #3d9970 !important;
+}
+
+.has-success .help-block {
+    color: #3d9970 !important;
 }
 
  /* -------------------------------------- Bootstrap 3 Pagination CSS -------------------------------------- */

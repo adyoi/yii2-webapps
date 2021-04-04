@@ -52,6 +52,10 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                    'pager' => [
+                        'firstPageLabel' => 'First',
+                        'lastPageLabel'  => 'Last'
+                    ],
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
