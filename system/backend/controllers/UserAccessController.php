@@ -91,7 +91,7 @@ class UserAccessController extends Controller
 
         }
     }
-
+    
     protected function actionGetcontrollersandactions()
     {
         $fulllist = [];
