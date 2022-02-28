@@ -291,6 +291,7 @@ foreach ($frontend_controllerlist as $frontend_controller)
 <?php
 
 $list_search   = json_encode($backend_fulllist2);
+$list_search2  = json_encode($frontend_fulllist2);
 $list_backend  = json_encode(ArrayHelper::map($backend_fulllist, 'key', 'key'));
 $list_frontend = json_encode(ArrayHelper::map($frontend_fulllist, 'key', 'key'));
 
@@ -299,24 +300,25 @@ $js = <<< JS
 $('#usermenu-module').on('change', function(e) {
 	var data = '$list_backend';
 	if (this.value === 'app-frontend-webapps') data = '$list_frontend';
-    what = JSON.parse(data);
-    html = '<option></option>';
-    $.each(what, function(i, val) {
-        html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
-    });
-    $("#usermenu-url_controller").html(html);
-    $("#usermenu-url_view").html(null);
+	what = JSON.parse(data);
+	html = '<option></option>';
+	$.each(what, function(i, val) {
+		html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
+	});
+	$("#usermenu-url_controller").html(html);
+	$("#usermenu-url_view").html(null);
 });
 
 $('#usermenu-url_controller').on('change', function(e) {
-    var data = '$list_search';
-    var value = this.value;
-    what = JSON.parse(data);
-    html = '<option></option>';
-    $.each(what[value], function(i, val) {
-        html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
-    });
-    $("#usermenu-url_view").html(html);
+	var data = '$list_search';
+	if ($('#usermenu-module').val() === 'app-frontend-webapps') data = '$list_search2';
+	var value = this.value;
+	what = JSON.parse(data);
+	html = '<option></option>';
+	$.each(what[value], function(i, val) {
+		html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
+	});
+	$("#usermenu-url_view").html(html);
 });
 
 JS;
