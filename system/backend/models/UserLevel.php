@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "user_level".
  *
  * @property string $code
+ * @property string $type
  * @property string $name
  */
 class UserLevel extends \yii\db\ActiveRecord
@@ -26,8 +27,9 @@ class UserLevel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'name'], 'required'],
+            [['code', 'type', 'name'], 'required'],
             [['code'], 'string', 'max' => 10],
+            [['type'], 'string', 'max' => 2],
             [['name'], 'string', 'max' => 50],
             [['code'], 'unique'],
         ];
@@ -40,6 +42,7 @@ class UserLevel extends \yii\db\ActiveRecord
     {
         return [
             'code' => 'Code',
+            'type' => 'Type',
             'name' => 'Name',
         ];
     }

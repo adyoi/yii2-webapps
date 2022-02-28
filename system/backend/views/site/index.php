@@ -6,14 +6,15 @@ use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
 $this->params['page_title'] = 'Dashboard';
-$this->params['page_desc'] = $this->title;
+$this->params['page_desc'] = 'Yii2-Webapps';
 $this->params['title_card'] = 'Information';
 
 ?>
+
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title"><?= Html::encode($this->title) ?></h3>
+            <h3 class="card-title">Welcome!</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                 <i class="fas fa-minus"></i></button>
@@ -27,64 +28,46 @@ $this->params['title_card'] = 'Information';
 
             <div class="jumbotron">
 
-                <h1>Congratulations!</h1>
-
-                <p class="lead">You have successfully created your Yii-powered application.</p>
-
-                <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+                <h1 align="center">Yii2 Web Application</h1>
+                <p align="center" class="lead">Yii2 Web Application is a Starter Project dedicated to the yii2 developer community which is equipped with features for fast application creation needs with extra security.</p>
+                <p align="center"><a class="btn btn-lg btn-primary" href="https://github.com/adyoi/yii2-webapps">Open on Github</a></p>
             
             </div>
-
             <div class="body-content">
-
                 <div class="row">
-
-                    <div class="col-lg-4">
-
-                        <h2>Heading</h2>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.</p>
-
-                        <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                    <div class="col-lg-6">
+                        <h5>This project was built with :</h5>
+                            AdminLTE 3 <a href="https://adminlte.io/docs/3.0" target="_blank">https://adminlte.io/docs/3.0</a><br>
+                            Yii2 Lastest Version <a href="https://www.yiiframework.com/doc/guide/2.0/en" target="_blank">https://www.yiiframework.com/doc/guide/2.0/en</a><br>
+                            Bootstrap 4 <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction" target="_blank">https://getbootstrap.com/docs/4.0/getting-started/introduction</a>
                     </div>
-
-                    <div class="col-lg-4">
-
-                        <h2>Heading</h2>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.</p>
-
-                        <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                    <div class="col-lg-6">
+                        <h5>Become an Open Source Collective contributor :</h5>
+                        <a href="https://opencollective.com/yiisoft" target="_blank">https://opencollective.com/yiisoft</a><br>
+                        <a href="https://opencollective.com/phpfoundation" target="_blank">https://opencollective.com/phpfoundation</a><br>
                     </div>
-
-                    <div class="col-lg-4">
-
-                        <h2>Heading</h2>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.</p>
-
-                        <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-                    
-                    </div>
-                
                 </div>
-
             </div>
-
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
+            <div class="text-center"><i>Created and Designed by <a href="https://adyoi.blogspot.com/" target="_blank">@adyoi</a></i></div>
         </div>
         <!-- /.card-footer-->
     </div>
     <!-- /.card -->
+
+<?php
+
+$js = <<< JS
+
+JS;
+
+$css = <<< CSS
+
+CSS;
+
+$this->registerJs($js);
+$this->registerCss($css);
+
+?>

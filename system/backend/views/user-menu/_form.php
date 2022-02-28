@@ -20,7 +20,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
 }, function($model, $defaultValue) {
 
-        return sprintf('%s', $model['name']);
+        return sprintf('%s - %s', $model['type'], $model['name']);
     }
 );
 
@@ -30,51 +30,103 @@ $select_menu = array(0 => 'NONE') + ArrayHelper::map(UserMenu::find()->asArray()
     }
 );
 
-$fulllist = [];
-$fulllist2 = [];
-$controllerlist = [];
+/* ------------------------------------------------------------------- BACKEND CONTROLLERS ------------------------------------------------------------------- */
 
-if ($handle = opendir(Yii::getAlias('@app/controllers'))) 
+$backend_fulllist = [];
+$backend_fulllist2 = [];
+$backend_controllerlist = [];
+
+if ($backend_handle = opendir(Yii::getAlias('@backend/controllers')))
 {
-    while (false !== ($file = readdir($handle))) 
+    while (false !== ($backend_file = readdir($backend_handle))) 
     {
-        if ($file != "." && $file != ".." && substr($file, strrpos($file, '.') - 10) == 'Controller.php') 
+        if ($backend_file != "." && $backend_file != ".." && substr($backend_file, strrpos($backend_file, '.') - 10) == 'Controller.php') 
         {
-            $controllerlist[] = $file;
+            $backend_controllerlist[] = $backend_file;
         }
     }
 
-    closedir($handle);
+    closedir($backend_handle);
 }
 
-asort($controllerlist);
+asort($backend_controllerlist);
 
-foreach ($controllerlist as $controller)
+foreach ($backend_controllerlist as $backend_controller)
 {
-    $handle = fopen(Yii::getAlias('@app/controllers') . '/' . $controller, "r");
+    $backend_handle = fopen(Yii::getAlias('@backend/controllers') . '/' . $backend_controller, "r");
 
-    if ($handle) 
+    if ($backend_handle) 
     {
-        while (($line = fgets($handle)) !== false) 
+        while (($backend_line = fgets($backend_handle)) !== false) 
         {
-            if (preg_match('/public function action(.*?)\(/', $line, $action))
+            if (preg_match('/public function action(.*?)\(/', $backend_line, $backend_action))
             {
-                if (strlen($action[1]) > 2)
+                if (strlen($backend_action[1]) > 2)
                 {
-                    $controller_fix = preg_replace('/Controller.php/', '', $controller);
-                    $controller_divide = preg_split('/(?=[A-Z])/', $controller_fix, -1, PREG_SPLIT_NO_EMPTY);
-                    $controller_lowletter = strtolower(implode($controller_divide, '-'));
-                    $action_divide = preg_split('/(?=[A-Z])/', trim($action[1]), -1, PREG_SPLIT_NO_EMPTY);
-                    $action_lowletter = strtolower(implode($action_divide, '-'));
-                    $fulllist[] = ['key' => $controller_lowletter, 'val' => $action_divide];
-                    $fulllist2[$controller_lowletter][] = $action_divide;
+                    $backend_controller_fix = preg_replace('/Controller.php/', '', $backend_controller);
+                    $backend_controller_divide = preg_split('/(?=[A-Z])/', $backend_controller_fix, -1, PREG_SPLIT_NO_EMPTY);
+                    $backend_controller_lowletter = strtolower(implode($backend_controller_divide, '-'));
+                    $backend_action_divide = preg_split('/(?=[A-Z])/', trim($backend_action[1]), -1, PREG_SPLIT_NO_EMPTY);
+                    $backend_action_lowletter = strtolower(implode($backend_action_divide, '-'));
+                    $backend_fulllist[] = ['key' => $backend_controller_lowletter, 'val' => $backend_action_lowletter];
+                    $backend_fulllist2[$backend_controller_lowletter][] = $backend_action_lowletter;
                 }
             }
         }
     }
 
-    fclose($handle);
+    fclose($backend_handle);
 }
+
+/* ------------------------------------------------------------------- FRONTEND CONTROLLERS ------------------------------------------------------------------- */
+
+$frontend_fulllist = [];
+$frontend_fulllist2 = [];
+$frontend_controllerlist = [];
+
+if ($frontend_handle = opendir(Yii::getAlias('@frontend/controllers')))
+{
+    while (false !== ($frontend_file = readdir($frontend_handle))) 
+    {
+        if ($frontend_file != "." && $frontend_file != ".." && substr($frontend_file, strrpos($frontend_file, '.') - 10) == 'Controller.php') 
+        {
+            $frontend_controllerlist[] = $frontend_file;
+        }
+    }
+
+    closedir($frontend_handle);
+}
+
+asort($frontend_controllerlist);
+
+foreach ($frontend_controllerlist as $frontend_controller)
+{
+    $frontend_handle = fopen(Yii::getAlias('@frontend/controllers') . '/' . $frontend_controller, "r");
+
+    if ($frontend_handle) 
+    {
+        while (($frontend_line = fgets($frontend_handle)) !== false) 
+        {
+            if (preg_match('/public function action(.*?)\(/', $frontend_line, $frontend_action))
+            {
+                if (strlen($frontend_action[1]) > 2)
+                {
+                    $frontend_controller_fix = preg_replace('/Controller.php/', '', $frontend_controller);
+                    $frontend_controller_divide = preg_split('/(?=[A-Z])/', $frontend_controller_fix, -1, PREG_SPLIT_NO_EMPTY);
+                    $frontend_controller_lowletter = strtolower(implode($frontend_controller_divide, '-'));
+                    $frontend_action_divide = preg_split('/(?=[A-Z])/', trim($frontend_action[1]), -1, PREG_SPLIT_NO_EMPTY);
+                    $frontend_action_lowletter = strtolower(implode($frontend_action_divide, '-'));
+                    $frontend_fulllist[] = ['key' => $frontend_controller_lowletter, 'val' => $frontend_action_lowletter];
+                    $frontend_fulllist2[$frontend_controller_lowletter][] = $frontend_action_lowletter;
+                }
+            }
+        }
+    }
+
+    fclose($frontend_handle);
+}
+
+
 ?>
 
 <div class="user-menu-form">
@@ -156,7 +208,7 @@ foreach ($controllerlist as $controller)
         <div class="col-lg-3">
 
             <?= $form->field($model, 'url_controller')->widget(Select2::classname(),[
-                    'data' => ArrayHelper::map($fulllist, 'key', 'key'),
+                    'data' => ArrayHelper::map($backend_fulllist, 'key', 'key'),
                     'options' => [
                         'placeholder' => 'Pilih Controller',
                         'value' => $model->isNewRecord ? 'L' : $model->url_controller,
@@ -238,16 +290,30 @@ foreach ($controllerlist as $controller)
 
 <?php
 
-$list = json_encode($fulllist2);
+$list_search   = json_encode($backend_fulllist2);
+$list_backend  = json_encode(ArrayHelper::map($backend_fulllist, 'key', 'key'));
+$list_frontend = json_encode(ArrayHelper::map($frontend_fulllist, 'key', 'key'));
 
 $js = <<< JS
 
-$('#usermenu-url_controller').on('change', function(e){
-    var asu = '$list';
-    var asi = this.value;
-    what = JSON.parse(asu);
-    html = '';
-    $.each(what[asi], function(i, val) {
+$('#usermenu-module').on('change', function(e) {
+	var data = '$list_backend';
+	if (this.value === 'app-frontend-webapps') data = '$list_frontend';
+    what = JSON.parse(data);
+    html = '<option></option>';
+    $.each(what, function(i, val) {
+        html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
+    });
+    $("#usermenu-url_controller").html(html);
+    $("#usermenu-url_view").html(null);
+});
+
+$('#usermenu-url_controller').on('change', function(e) {
+    var data = '$list_search';
+    var value = this.value;
+    what = JSON.parse(data);
+    html = '<option></option>';
+    $.each(what[value], function(i, val) {
         html+= '<option value="' + val.toString().toLowerCase() + '">' + val.toString().toLowerCase() + '</option>';
     });
     $("#usermenu-url_view").html(html);

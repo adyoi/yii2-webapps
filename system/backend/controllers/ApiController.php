@@ -66,7 +66,7 @@ class ApiController extends ActiveController
 
         /* --- With Basic Authorization --- */
 
-        /*$behaviors['basicAuth'] = [
+        $behaviors['basicAuth'] = [
             'class' => HttpBasicAuth::className(),
             'auth' => function ($username, $password) {
                 $user = \common\models\User::find()->where(['username' => $username])->one();
@@ -75,7 +75,7 @@ class ApiController extends ActiveController
                 }
                 return null;
             },
-        ];*/
+        ];
 
         return $behaviors;
     }

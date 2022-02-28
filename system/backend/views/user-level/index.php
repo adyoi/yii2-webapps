@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use backend\models\UserType;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserLevelSearch */
@@ -11,6 +13,13 @@ $this->title = 'User Levels';
 $this->params['page_title'] = 'Index';
 $this->params['page_desc'] = $this->title;
 $this->params['breadcrumbs'][] = $this->title;
+
+$select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', function($model, $defaultValue) {
+
+        return $model['table'];
+    }
+);
+
 ?>
 <div class="card table-card">
     <div class="card-header">
@@ -34,43 +43,56 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'pager' => [
-                        'firstPageLabel' => 'First',
-                        'lastPageLabel'  => 'Last'
-                    ],
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+                <div class="table-responsive table-nowrap">
 
-                        // 'code',
-                        'name',
-
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'header' => 'Action',
-                            'template' => '{view} {update} {delete}',
-                            'buttons' => [
-                            'view' => function($url, $model) {
-                                return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
-                                    ['view', 'id' => $model['code']], 
-                                    ['title' => 'View']);
-                            },
-                            'update' => function($url, $model) {
-                                return Html::a('<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>', 
-                                    ['update', 'id' => $model['code']], 
-                                    ['title' => 'Update']);
-                            },
-                            'delete' => function($url, $model) {
-                                return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
-                                    ['delete', 'id' => $model['code']], 
-                                    ['title' => 'Delete']);
-                                }
-                            ]
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'pager' => [
+                            'firstPageLabel' => 'First',
+                            'lastPageLabel'  => 'Last'
                         ],
-                    ],
-                ]); ?>
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+
+                            // 'code',
+                             [
+                                'format' => 'raw',
+                                'attribute' => 'type',
+                                'filter' => $select_type,
+                                'value' => function ($data) {
+                                    $user_type = UserType::findOne($data['type']);
+                                    return $user_type['table'];
+                                },
+                            ],
+                            'name',
+
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => 'Action',
+                                'template' => '{view} {update} {delete}',
+                                'buttons' => [
+                                'view' => function($url, $model) {
+                                    return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
+                                        ['view', 'id' => $model['code']], 
+                                        ['title' => 'View']);
+                                },
+                                'update' => function($url, $model) {
+                                    return Html::a('<button class="btn btn-sm btn-success"><i class="fa fa-edit"></i></button>', 
+                                        ['update', 'id' => $model['code']], 
+                                        ['title' => 'Update']);
+                                },
+                                'delete' => function($url, $model) {
+                                    return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
+                                        ['delete', 'id' => $model['code']], 
+                                        ['title' => 'Delete']);
+                                    }
+                                ]
+                            ],
+                        ],
+                    ]); ?>
+
+                </div>
 
             </div>
         </div>

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use backend\models\UserLevel;
+use backend\models\UserType;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
@@ -20,7 +21,13 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
 }, function($model, $defaultValue) {
 
-        return sprintf('%s', $model['name']);
+        return sprintf('%s - %s', $model['type'], $model['name']);
+    }
+);
+
+$select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', function($model, $defaultValue) {
+
+        return $model['table'];
     }
 );
 
@@ -47,7 +54,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            <div class="table-responsive">
+            <div class="table-responsive table-nowrap">
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
@@ -60,15 +67,16 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
                         ['class' => 'yii\grid\SerialColumn'],
 
                         //'id',
-                        'username',
-                        //'auth_key',
-                        //'password_hash',
-                        //'password_reset_token',
-                        //'email:email',
-                        //'created_at',
-                        //'updated_at',
-                        //'verification_token',
-                        'name',
+                         [
+                            'format' => 'raw',
+                            'attribute' => 'type',
+                            'filter' => $select_type,
+                            'value' => function ($data) {
+                                $user_type = UserType::findOne($data['type']);
+                                return $user_type['table'];
+                            },
+                        ],
+                        'code',
                         [
                             'filter' => $select_level,
                             'attribute' => 'level',
@@ -76,12 +84,14 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
                                 $level = \yii\helpers\ArrayHelper::map(UserLevel::find()->asArray()->all(),
 
-                                    function($model, $defaultValue) 
-                                    {
-                                        return md5($model['code']);
-                                    },
+                                function($model, $defaultValue) 
+                                {
+                                    return md5($model['code']);
 
-                                    'name'
+                                }, function($model, $defaultValue) {
+
+                                        return sprintf('%s', $model['name']);
+                                    }
                                 );
 
                                 if (array_key_exists($data['level'], $level))
@@ -91,6 +101,15 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
                             },
                         ],
+                        'username',
+                        //'auth_key',
+                        //'password_hash',
+                        //'password_reset_token',
+                        //'email:email',
+                        //'created_at',
+                        //'updated_at',
+                        //'verification_token',
+                        'name',
                         [
                             'filter' => [ 10 => 'ACTIVE', 9 => 'INACTIVE', 0 => 'DELETED' ],
                             'attribute' => 'status',

@@ -8,6 +8,9 @@ use Yii;
  * This is the model class for table "user".
  *
  * @property int $id
+ * @property string $type
+ * @property string $code
+ * @property string $level
  * @property string $username
  * @property string $auth_key
  * @property string $password_hash
@@ -15,7 +18,6 @@ use Yii;
  * @property string $email
  * @property string $name
  * @property string|null $image
- * @property string $level
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
@@ -40,16 +42,16 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'password_repeat', 'auth_key', 'password_hash', 'email', 'name', 'level', 'created_at', 'updated_at'], 'required'],
-            [['password_repeat'], 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords tidak sama" ],
+            [['type', 'code', 'level', 'username', 'password', 'password_repeat', 'auth_key', 'password_hash', 'email', 'name', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
+            [['type'], 'string', 'max' => 2],
+            [['code', 'level', 'name'], 'string', 'max' => 50],
             [['username', 'password_hash', 'password_reset_token', 'email', 'image', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['name', 'level'], 'string', 'max' => 50],
             [['username'], 'unique'],
             [['email'], 'unique'],
-            [['email'], 'email'],
             [['password_reset_token'], 'unique'],
+            [['password_repeat'], 'compare', 'compareAttribute' => 'password', 'message' => "Passwords tidak sama" ],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'gif'], 'maxSize' => 1024 * 1024 * 2, 'maxFiles' => 1 ]
         ];
     }
@@ -61,6 +63,9 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'type' => 'Type',
+            'code' => 'Code',
+            'level' => 'Level',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
@@ -68,7 +73,6 @@ class User extends \yii\db\ActiveRecord
             'email' => 'Email',
             'name' => 'Name',
             'image' => 'Image',
-            'level' => 'Level',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

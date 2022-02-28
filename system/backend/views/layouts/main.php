@@ -197,7 +197,7 @@ AppAsset::register($this);
           <img src="<?=Url::base().Yii::$app->user->identity->image?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?=Yii::$app->user->identity->name?></a>
+          <a href="<?= Url::toRoute(['user/view', 'id' => Yii::$app->user->identity->id])?>" class="d-block"><?=Yii::$app->user->identity->name?></a>
         </div>
       </div>
 
@@ -207,7 +207,7 @@ AppAsset::register($this);
             $level   = Yii::$app->user->identity->level;
             $items   = array();
             $items[] = ['label' => '<div class="nav-header">Main Menu</div>'];
-            $items[] = ['label' => '<i class="nav-icon fa fa-file"></i><p>Dashboard</p>', 'url' => ['site/index']];
+            $items[] = ['label' => '<i class="nav-icon fa fa-home"></i><p>Dashboard</p>', 'url' => ['site/index']];
 
             /* ------------------------------------------ MENU LEVEL 1 ------------------------------------------ */
 
@@ -511,7 +511,7 @@ AppAsset::register($this);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h3><?=isset($this->params['page_title']) ? $this->params['page_title'] : ''?></h3>
+            <h3><?=isset($this->params['page_title']) ? $this->params['page_title'] : ''?><?=isset($this->params['page_desc']) ? ' <span style="font-size:1rem;">' . $this->params['page_desc'] . '</span>' : ''?></h3>
           </div>
           <div class="col-sm-6">
             <?= Breadcrumbs::widget([

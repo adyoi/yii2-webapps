@@ -20,9 +20,14 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 $id_level  = Yii::$app->request->get('level') ?: Yii::$app->user->identity->level;
 $id_module = Yii::$app->request->get('module') ?: 'app-backend-webapps';
 
-$level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, $defaultValue) {
-        return md5($model['code']);
-    }, 'name'
+$select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, $defaultValue) {
+
+    return md5($model['code']);
+
+}, function($model, $defaultValue) {
+
+        return sprintf('%s - %s', $model['type'], $model['name']);
+    }
 );
 
 ?>
@@ -36,7 +41,7 @@ $level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, 
     	<div class="col-lg-3">
 
 		    <?= $form->field($model, 'level')->textInput()->widget(Select2::classname(), [ 
-		        'data' => $level,
+		        'data' => $select_level,
 		        'disabled' => $model->isNewRecord ? false : true,
 		        'options' => [
 		            'placeholder' => 'Pilih Level',

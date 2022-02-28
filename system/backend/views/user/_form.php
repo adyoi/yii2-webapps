@@ -6,18 +6,32 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use backend\models\UserLevel;
+use backend\models\UserType;
+use backend\models\Branch;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
-$select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($model, $defaultValue) {
+$select_level = ArrayHelper::map(UserLevel::find()->where(['type' => 'B'])->asArray()->all(), function($model, $defaultValue) {
 
     return md5($model['code']);
 
 }, function($model, $defaultValue) {
 
         return sprintf('%s', $model['name']);
+    }
+);
+
+$select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', function($model, $defaultValue) {
+
+        return $model['table'];
+    }
+);
+
+$select_branch = ArrayHelper::map(Branch::find()->asArray()->all(),'code', function($model, $defaultValue) {
+
+        return $model['bch_name'];
     }
 );
 
@@ -31,6 +45,30 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
         <div class="col-lg-4">
 
+            <?= $form->field($model, 'type')->widget(Select2::classname(),[
+                    'data' => $select_type,
+                    'options' => [
+                        'placeholder' => 'Pilih Type',
+                        'value' => $model->isNewRecord ? 'B' : $model->type,
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => false
+                    ],
+                ]);
+            ?>
+
+            <?= $form->field($model, 'code')->widget(Select2::classname(),[
+                    'data' => $select_branch,
+                    'options' => [
+                        'placeholder' => 'Pilih Code',
+                    'value' => $model->isNewRecord ? 'B' : $model->code,
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => false
+                    ],
+                ]);
+            ?>
+
             <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'password')->passwordInput(['class' => 'form-control border-input']) ?>
@@ -40,10 +78,6 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
         </div>
 
         <div class="col-lg-4">
-
-            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'level')->widget(Select2::classname(),[
                     'data' => $select_level,
@@ -55,6 +89,10 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
                     ],
                 ]);
             ?>
+
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'status')->widget(Select2::classname(),[
                 'data' => [ 10 => 'ACTIVE', 9 => 'INACTIVE', 0 => 'DELETED' ],
@@ -109,6 +147,8 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
 <?php
 
+$url_reff_type = Url::to(['reff/user-type']);
+
 $js = <<< JS
 
 $('#user-image').on('change', function(e) {
@@ -127,6 +167,51 @@ function readURL(input) {
         $('#img-preview').attr('src', '$image');
     }
 }
+
+$('#user-type').on('change', function(e) {
+
+    this_val = $(this).val();
+
+    $.post('$url_reff_type' + '?code=' + this_val, function(data) { 
+
+            /*what = JSON.parse(data);
+
+            if (what.status) {
+
+                alert(what.message);
+            }*/
+
+            if (data.status) {
+
+                data_level = '<option></option>';
+
+                $.each(data.data_level, function(i, val) {
+                    data_level+= '<option value="' + val.code + '">' + val.name + '</option>';
+                });
+
+                $("#user-level").html(data_level);
+
+                data_code = '<option></option>';
+
+                $.each(data.data_code, function(i, val) {
+
+                    val_name = '';
+
+                    if (this_val == 'B') {
+                        val_name = val.bch_name ;
+                    } 
+                    if (this_val == 'C') {
+                        val_name = val.cus_name ;
+                    }
+
+                    data_code+= '<option value="' + val.code + '">' + val_name + '</option>';
+                });
+
+                $("#user-code").html(data_code);
+            }
+
+    });
+});
 
 JS;
 

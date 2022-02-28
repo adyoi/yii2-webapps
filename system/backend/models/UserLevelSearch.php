@@ -17,7 +17,7 @@ class UserLevelSearch extends UserLevel
     public function rules()
     {
         return [
-            [['code', 'name'], 'safe'],
+            [['code', 'type', 'name'], 'safe'],
         ];
     }
 
@@ -57,6 +57,7 @@ class UserLevelSearch extends UserLevel
 
         // grid filtering conditions
         $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;

@@ -21,7 +21,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
 }, function($model, $defaultValue) {
 
-        return sprintf('%s', $model['name']);
+        return sprintf('%s - %s', $model['type'], $model['name']);
     }
 );
 
@@ -93,12 +93,14 @@ $fontawesome = ['fab fa-accessible-icon' => 'fa-accessible-icon', 'fab fa-accuso
 
                             $level = \yii\helpers\ArrayHelper::map(UserLevel::find()->asArray()->all(),
 
-                                function($model, $defaultValue) 
-                                {
-                                    return md5($model['code']);
-                                },
+                            function($model, $defaultValue) 
+                            {
+                                return md5($model['code']);
+                                
+                            }, function($model, $defaultValue) {
 
-                                'name'
+                                    return sprintf('%s - %s', $model['type'], $model['name']);
+                                }
                             );
 
                             if (array_key_exists($data['level'], $level))

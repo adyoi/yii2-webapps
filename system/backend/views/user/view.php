@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use backend\models\UserLevel;
+use backend\models\UserType;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
@@ -46,21 +47,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'attributes' => [
                         //'id',
-                        'username',
-                        //auth_key',
-                        //'password_hash',
-                        //'password_reset_token',
-                        'email:email',
-                        'name',
                         [
                             'format' => 'raw',
-                            'attribute' => 'image',
+                            'attribute' => 'type',
                             'value' => function ($data) {
-
-                                $image = $data['image'] && is_file(Yii::getAlias('@webroot') . $data['image']) ? $data['image'] : '../images/no_photo.jpg';
-                                return Html::img(Url::base().$image, ['height' => '200']);
+                                $user_type = UserType::findOne($data['type']);
+                                return $user_type['table'];
                             },
                         ],
+                        'code',
                         [
                             'attribute' => 'level',
                             'value' => function ($data) {
@@ -80,6 +75,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $level[$data['level']];
                                 }
 
+                            },
+                        ],
+                        'username',
+                        //auth_key',
+                        //'password_hash',
+                        //'password_reset_token',
+                        'email:email',
+                        'name',
+                        [
+                            'format' => 'raw',
+                            'attribute' => 'image',
+                            'value' => function ($data) {
+
+                                $image = $data['image'] && is_file(Yii::getAlias('@webroot') . $data['image']) ? $data['image'] : '../images/no_photo.jpg';
+                                return Html::img(Url::base().$image, ['height' => '200']);
                             },
                         ],
                         [
