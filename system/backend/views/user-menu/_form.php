@@ -247,22 +247,22 @@ foreach ($frontend_controllerlist as $frontend_controller)
                     'pluginOptions' => [
                         'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
                         'templateResult' => new JsExpression('function formatState (state) {
-
-                            console.log(state);
-
-                          if (!state.id) {
-                            return state.text;
-                          }
-                          var state = $(\'<i class="\' + state.id + \'"></i>\' + \' <span>(\' + state.text + \')</span>\');
-                          return state;
-                        }'),
-                        'templateSelection' => new JsExpression('function formatState (state) {
-                          if (!state.id) {
-                            return state.text;
-                          }
-                          var state = $(\'<i class="\' + state.id + \'"></i>\' + \' <span>(\' + state.text + \')</span>\');
-                          return state;
-                        }'),
+								console.log(state);
+								if (!state.id) {
+									return state.text;
+								}
+								var state = $(\'<i class="\' + state.id + \'"></i>\' + \' <span>(\' + state.text + \')</span>\');
+								return state;
+							}'
+						),
+						'templateSelection' => new JsExpression('function formatState (state) {
+								if (!state.id) {
+									return state.text;
+								}
+								var state = $(\'<i class="\' + state.id + \'"></i>\' + \' <span>(\' + state.text + \')</span>\');
+								return state;
+	                        }'
+	                    ),
                         'allowClear' => false
                     ],
                 ]);
@@ -277,7 +277,9 @@ foreach ($frontend_controllerlist as $frontend_controller)
         <div class="col-lg-12">
 
             <div class="form-group">
+
                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+
             </div>
 
         </div>

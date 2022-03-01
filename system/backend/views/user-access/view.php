@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="user-access-view">
                 <p>
                     <?= Html::a('Create', ['create'], ['class' => 'btn btn-success']) ?>
-                    <?= Html::a('Update', ['update', 'id' => $model->code], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('Delete', ['delete', 'id' => $model->code], [
+                    <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'confirm' => 'Are you sure you want to delete this item?',

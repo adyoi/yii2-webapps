@@ -634,7 +634,7 @@ $( ".nav-sidebar li" ).each(function( index ) {
     ?>
     <script>
         jQuery(document).ready(function(e) {
-            swal({
+            swal.fire({
                 title: '<?=$title?>',
                 text: '<?=$text?>',
                 icon: '<?=$type?>',

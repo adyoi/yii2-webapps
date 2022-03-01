@@ -8,12 +8,13 @@ use kartik\select2\Select2;
 use backend\models\UserLevel;
 use backend\models\UserType;
 use backend\models\Branch;
+use backend\models\Customer;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
-$select_level = ArrayHelper::map(UserLevel::find()->where(['type' => 'B'])->asArray()->all(), function($model, $defaultValue) {
+$select_level = ArrayHelper::map(UserLevel::find()->where(['type' => $model->isNewRecord ? 'B' : $model->type])->asArray()->all(), function($model, $defaultValue) {
 
     return md5($model['code']);
 
@@ -29,11 +30,20 @@ $select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', funct
     }
 );
 
-$select_branch = ArrayHelper::map(Branch::find()->asArray()->all(),'code', function($model, $defaultValue) {
+$select_code = ArrayHelper::map(Branch::find()->asArray()->all(),'code', function($model, $defaultValue) {
 
         return $model['bch_name'];
     }
 );
+
+if ($model->type === 'C')
+{
+    $select_code = ArrayHelper::map(Customer::find()->asArray()->all(),'code', function($model, $defaultValue) {
+
+            return $model['cus_name'];
+        }
+    );
+}
 
 ?>
 
@@ -58,7 +68,7 @@ $select_branch = ArrayHelper::map(Branch::find()->asArray()->all(),'code', funct
             ?>
 
             <?= $form->field($model, 'code')->widget(Select2::classname(),[
-                    'data' => $select_branch,
+                    'data' => $select_code,
                     'options' => [
                         'placeholder' => 'Pilih Code',
                     'value' => $model->isNewRecord ? 'B' : $model->code,

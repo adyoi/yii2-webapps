@@ -8,7 +8,7 @@ use yii\filters\VerbFilter;
 class SystemController extends \yii\web\Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {

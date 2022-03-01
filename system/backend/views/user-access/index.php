@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                <div class="table-responsive">
+                <div class="table-responsive table-nowrap">
 
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,

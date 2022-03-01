@@ -1,7 +1,9 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\AppLogSearch */
@@ -29,18 +31,55 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="app-log-index">
 
                 <p>
-                    <?= Html::a('<i class="feather icon-trash"></i> Clear', ['index', 'action' => 'clear'], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'confirm' => 'Are you sure you want to clear log ?',
-                            'method' => 'post',
-                        ],
-                    ]) ?>
+
+                    <div class="row">
+
+                        <div class="col-lg-3">
+
+                            <div class="form-group">
+                                <?= Html::label('Datetime Log', 'timestamp', ['class' => 'control-label']) ?>
+                                <?= DateTimePicker::widget(['id' => 'timestamp',
+                                    'name' => 'timestamp',
+                                    'value' => date('Y-m-d 23:59:59'),
+                                    'options' => [
+                                        'placeholder'  => 'Tanggal Log',
+                                        'autocomplete' => 'off',
+                                        'onchange' => ''
+                                    ],
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd hh:ii:ss'
+                                    ]
+                                ]) ?>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="form-group">
+                                <?= Html::label('&nbsp;', '', ['class' => 'control-label']) ?>
+                                <div class="button-group">
+                                    <?= Html::a('<i class="feather icon-trash"></i> Clear Under', ['index', 'action' => 'clear'], [
+                                        'class' => 'btn btn-danger clear',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to clear log ?',
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </p>
 
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                <div class="table-responsive">
+                <div class="table-responsive table-nowrap">
 
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
@@ -71,8 +110,43 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div>
 
-
             </div>
+
         </div>
+
     </div>
+
 </div>
+
+<?php
+
+$url_clear = Url::to(['app-log/index']);
+
+$js = <<< JS
+
+var url_clear = '$url_clear' + '?action=clear' ;
+
+$('.clear').on('click', function(e){
+    e.preventDefault();
+    $(this).attr('href', function() {
+        return url_clear + '&timestamp=' + $('#timestamp').val();
+    });
+});
+
+$('#timestamp').on('change', function(e) {
+    $('.clear').attr('href', function() {
+        return url_clear + '&timestamp=' + $('#timestamp').val();
+    });
+
+});
+
+JS;
+
+$css = <<< CSS
+
+CSS;
+
+$this->registerJs($js);
+$this->registerCss($css);
+
+?>

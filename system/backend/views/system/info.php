@@ -106,11 +106,11 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 		                        <tbody>
 		                            <tr>
 		                                <td>Version</td>
-		                                <td><?= Yii::$app->db->createCommand("SELECT @@version")->queryScalar() ?></td>
+		                                <td><?= Yii::$app->db2->createCommand("SELECT @@version")->queryScalar() ?></td>
 		                            </tr>
 		                            <tr>
 		                                <td>Time</td>
-		                                <td><?= Yii::$app->db->createCommand("SELECT CURRENT_TIMESTAMP()")->queryScalar() ?> (<?= Yii::$app->db->createCommand("SELECT @@system_time_zone")->queryScalar() ?>)</td>
+		                                <td><?= Yii::$app->db2->createCommand("SELECT CURRENT_TIMESTAMP()")->queryScalar() ?> (<?= Yii::$app->db2->createCommand("SELECT @@system_time_zone")->queryScalar() ?>)</td>
 		                            </tr>
 		                        </tbody>
 		                    </table>
@@ -143,8 +143,8 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 	                                $sql = "
 	                                SELECT `engine` AS `Engine`,`table_name` AS `Table`,round(`data_length` + `index_length`) AS `Size`   
 	                                FROM `information_schema`.`TABLES`  
-	                                WHERE `table_schema` = '".Yii::$app->db->createCommand("SELECT DATABASE()")->queryScalar()."';";
-	                                $rows = Yii::$app->db->createCommand($sql)->queryAll();
+	                                WHERE `table_schema` = '".Yii::$app->db2->createCommand("SELECT DATABASE()")->queryScalar()."';";
+	                                $rows = Yii::$app->db2->createCommand($sql)->queryAll();
 	                                $tr = '';
 	                                foreach ($rows as $key => $val )
 	                                {
@@ -152,7 +152,7 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 	                                    $tr .= '<td class="no-sort"></td>';
 	                                    $tr .= '<td>' . $val['Table'] . '</td>';
 	                                    $tr .= '<td>' . $val['Engine'] . '</td>';
-	                                    $tr .= '<td>' . Yii::$app->db->createCommand("SELECT COUNT(*) AS asu FROM `".$val['Table']."`")->queryScalar() . '</td>';
+	                                    $tr .= '<td>' . Yii::$app->db2->createCommand("SELECT COUNT(*) AS asu FROM `".$val['Table']."`")->queryScalar() . '</td>';
 	                                    $tr .= '<td data-sort="'.$val['Size'].'">' . \Yii::$app->formatter->asShortSize($val['Size']) . '</td>';
 	                                    $tr .= '</tr>';
 	                                }

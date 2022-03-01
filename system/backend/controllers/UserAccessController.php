@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class UserAccessController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -96,8 +96,14 @@ class UserAccessController extends Controller
     {
         $fulllist = [];
         $controllerlist = [];
+        $alias = '@backend/controllers';
 
-        if ($handle = opendir(Yii::getAlias('@app/controllers'))) 
+        if (Yii::$app->request->get('module') === 'app-frontend-webapps')
+        {
+            $alias = '@frontend/controllers';
+        }
+
+        if ($handle = opendir(Yii::getAlias($alias))) 
         {
             while (false !== ($file = readdir($handle))) 
             {
@@ -114,7 +120,7 @@ class UserAccessController extends Controller
         
         foreach ($controllerlist as $controller)
         {
-            $handle = fopen(Yii::getAlias('@app/controllers') . '/' . $controller, "r");
+            $handle = fopen(Yii::getAlias($alias) . '/' . $controller, "r");
 
             if ($handle) 
             {
@@ -152,7 +158,18 @@ class UserAccessController extends Controller
             $params = array();
             parse_str($checkbox, $params);
 
-            foreach ($params['checkbox'] as $key => $value) 
+            $fix = [];
+
+            foreach ($this->actionGetcontrollersandactions() as $key => $value) {
+
+                foreach ($value as $key1 => $value2) {
+
+                    $fix[$key][$value2] = isset($params['checkbox'][$key][$value2]) ?: 0;
+                }
+                
+            }
+
+            foreach ($fix as $key => $value) 
             {
                 $temp = [];
 
@@ -179,6 +196,7 @@ class UserAccessController extends Controller
                     $model->level = $level;
                     $model->module = $module;
                     $model->controller = $key;
+                    $model->datestamp = date('Y-m-d H:i:s');
                     $model->action = json_encode($temp);
                     $model->id_stamp = Yii::$app->user->identity->id;
                     $model->save();
@@ -186,6 +204,7 @@ class UserAccessController extends Controller
                 }
                 else
                 {
+                    $user_access->datestamp = date('Y-m-d H:i:s');
                     $user_access->action = json_encode($temp);
                     $user_access->id_stamp = Yii::$app->user->identity->id;
                     $user_access->save();

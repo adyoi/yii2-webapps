@@ -16,7 +16,7 @@ use yii\web\UploadedFile;
 class UserController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -115,6 +115,7 @@ class UserController extends Controller
                 $model->image = $file;
             }
 
+            $model->level =  md5($model->level);
             $model->auth_key = Yii::$app->security->generateRandomString();
             $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             $model->save();
@@ -192,6 +193,7 @@ class UserController extends Controller
                 $model->image = $path->image;
             }
 
+            $model->level =  md5($model->level);
             $model->auth_key = Yii::$app->security->generateRandomString();
             $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             $model->save();

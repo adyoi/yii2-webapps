@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class UserLevelController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {

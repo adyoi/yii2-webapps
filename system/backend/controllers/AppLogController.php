@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class AppLogController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -70,10 +70,17 @@ class AppLogController extends Controller
 
         if (Yii::$app->request->get('action') == 'clear')
         {
-            $delete = AppLog::deleteAll();
+            $delete = AppLog::deleteAll('timestamp < :param', [':param' => Yii::$app->request->get('timestamp')]);
 
             if ($delete)
             {
+                Yii::$app->getSession()->setFlash('log_index', [
+                        'type'     => 'success',
+                        'duration' => 5000,
+                        'title'    => 'System Information',
+                        'message'  => 'Deleted Success !',
+                    ]
+                );
                 return $this->redirect(['index']);
             }
         }

@@ -29,14 +29,14 @@ $select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', funct
             'data' => $select_type,
             'options' => [
                 'placeholder' => 'Pilih Type',
-            'value' => $model->isNewRecord ? 'B' : $model->type,
+                'value' => $model->isNewRecord ? 'B' : $model->type,
             ],
             'pluginOptions' => [
                 'allowClear' => false
             ],
         ]);
     ?>
-
+    
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">

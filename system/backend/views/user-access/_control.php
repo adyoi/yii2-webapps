@@ -158,7 +158,10 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 					    {
 							if ($key == 'user-access') 
 							{
-								echo  '<input type="checkbox" class="styled locked" checked disabled>&nbsp;&nbsp;<label>' . $value . '</label><br>';
+								if (in_array($value, ['cekidot', 'control']))
+								{
+									echo  '<input type="checkbox" class="locked styled" checked value="1" name="checkbox['. $key .'][' . $value.']">&nbsp;&nbsp;<label>' . $value . '</label><br>';
+								}
 							} 
 							else 
 							{
@@ -174,16 +177,13 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 								{
 									$auth = \yii\helpers\BaseJson::decode($access['action'], true);
 
-									foreach($auth as $tor => $rot)
+									if ($auth[$value])
 									{
-										if ($tor == $value)
-										{
-											echo 'value="1" checked';
-										}
-										else
-										{
-											echo '';
-										}
+										echo 'value="1" checked';
+									}
+									else
+									{
+										echo '';
 									}
 								}
 								else
@@ -278,6 +278,8 @@ $('#action-save').on('click', function(e) {
 
     var input = t.$('input').serialize();
 
+    console.log(input);
+
     $.post({
         url: '$url_user_access_save',
         data: {
@@ -338,6 +340,11 @@ $('#check-all').on('change', function(e){
 				$(this).prop('checked', true);
 				$(this).attr('checked', true);
 				$(this).val(1);
+			} else {
+				$(this).parent('span').addClass('checked');
+				$(this).prop('checked', true);
+				$(this).attr('checked', true);
+				$(this).val(1);
 			}
 		});
 	}
@@ -348,6 +355,11 @@ $('#check-all').on('change', function(e){
 				$(this).prop('checked', false);
 				$(this).attr('checked', false);
 				$(this).val(0);
+			} else {
+				$(this).parent('span').addClass('checked');
+				$(this).prop('checked', true);
+				$(this).attr('checked', true);
+				$(this).val(1);
 			}
 		});
 	}
@@ -456,6 +468,11 @@ $('#check-delete').on('change', function(e){
 JS;
 
 $css = <<< CSS
+
+.locked {
+	opacity: 0.5;
+	pointer-events: none;
+}
 
 CSS;
 
