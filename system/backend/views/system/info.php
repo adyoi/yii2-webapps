@@ -168,6 +168,11 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 	        </div>
 	    </div>
 	</div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
+    </div>
+    <!-- /.card-footer-->
 </div>
 
 

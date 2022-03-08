@@ -28,6 +28,9 @@ $this->params['page_desc'] = $this->title;
             <p>
                 Please contact us if you think this is a server error. Thank you.
             </p>
+            <p>
+                <a href="<?=Url::base()?>"><b>Back</b></a>
+            </p>
 
         </div>
 

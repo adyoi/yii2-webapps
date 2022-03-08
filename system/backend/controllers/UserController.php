@@ -168,6 +168,23 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+        /* -------------------------------------- START DEMO VERSION ----------------------------------------- */
+
+        if (in_array($id, [1,2,3,4,5]))
+        {
+            Yii::$app->getSession()->setFlash('user_update_demo', [
+                    'type'     => 'error',
+                    'duration' => 5000,
+                    'title'    => 'Yii2-Webapps DEMO',
+                    'message'  => 'Data Failed to Update',
+                ]
+            );
+
+            return $this->redirect(['view', 'id' => $id]);
+        }
+
+        /* -------------------------------------- END DEMO VERSION ----------------------------------------- */
+
         $model = $this->findModel($id);
 
         // Bypass Validation Here
@@ -248,6 +265,23 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
+        /* -------------------------------------- START DEMO VERSION ----------------------------------------- */
+
+        if (in_array($id, [1,2,3,4,5]))
+        {
+            Yii::$app->getSession()->setFlash('user_delete_demo', [
+                    'type'     => 'error',
+                    'duration' => 5000,
+                    'title'    => 'Yii2-Webapps DEMO',
+                    'message'  => 'Data Failed to Delete',
+                ]
+            );
+
+            return $this->redirect(['view', 'id' => $id]);
+        }
+
+        /* -------------------------------------- END DEMO VERSION ----------------------------------------- */
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

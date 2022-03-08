@@ -26,7 +26,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 
 $select_menu = array(0 => 'NONE') + ArrayHelper::map(UserMenu::find()->asArray()->all(),'id', function($model, $defaultValue) {
 
-        return $model['name'];
+        return sprintf('%s (%s)', $model['name'], $model['class']);
     }
 );
 

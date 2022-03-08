@@ -211,7 +211,7 @@ AppAsset::register($this);
 
             /* ------------------------------------------ MENU LEVEL 1 ------------------------------------------ */
 
-            $user_menu = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+            $user_menu = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id])->orderBy(['seq' => SORT_ASC, 'id' => SORT_DESC])->asArray()->all();
 
             if (count($user_menu) > 0) // Check if Array Exists
             {
@@ -286,7 +286,7 @@ AppAsset::register($this);
 
                                 /* ------------------------------------------ MENU LEVEL 2 ------------------------------------------ */
                                 
-                                $user_menu2 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+                                $user_menu2 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id']])->orderBy(['seq' => SORT_ASC, 'id' => SORT_DESC])->asArray()->all();
                                 
                                 $items2 = array();
 
@@ -360,7 +360,7 @@ AppAsset::register($this);
 
                                                     /* ------------------------------------------ MENU LEVEL 3 ------------------------------------------ */
                                 
-                                                    $user_menu3 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id'], 'id_sub2' => $value2['id']])->orderBy(['seq' => SORT_ASC])->asArray()->all();
+                                                    $user_menu3 = \backend\models\UserMenu::find()->where(['level' => Yii::$app->user->identity->level, 'module' => Yii::$app->controller->module->id, 'id_sub' => $value['id'], 'id_sub2' => $value2['id']])->orderBy(['seq' => SORT_ASC, 'id' => SORT_DESC])->asArray()->all();
 
                                                     $items3 = array();
 

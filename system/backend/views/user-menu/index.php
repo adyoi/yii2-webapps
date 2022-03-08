@@ -210,8 +210,10 @@ $fontawesome = ['fab fa-accessible-icon' => 'fa-accessible-icon', 'fab fa-accuso
                         },
                         'delete' => function($url, $model) {
                             return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
-                                ['delete', 'id' => $model['id']], 
-                                ['title' => 'Delete']);
+                                    ['delete', 'id' => $model['id']], 
+                                    ['title' => 'Delete',
+                                     'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                     'data-method'  => 'post']);
                             }
                         ]
                     ],

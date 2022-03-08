@@ -50,6 +50,7 @@ class User extends \yii\db\ActiveRecord
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            [['password', 'password_repeat'], 'string', 'min' => 4],
             [['password_reset_token'], 'unique'],
             [['password_repeat'], 'compare', 'compareAttribute' => 'password', 'message' => "Passwords tidak sama" ],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg', 'gif'], 'maxSize' => 1024 * 1024 * 2, 'maxFiles' => 1 ]

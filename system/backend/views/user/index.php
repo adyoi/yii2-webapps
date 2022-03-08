@@ -136,7 +136,9 @@ $select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', funct
                             'delete' => function($url, $model) {
                                 return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
                                     ['delete', 'id' => $model['id']], 
-                                    ['title' => 'Delete']);
+                                    ['title' => 'Delete',
+                                     'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                     'data-method'  => 'post']);
                                 }
                             ]
                         ],

@@ -84,8 +84,10 @@ $select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', funct
                                 },
                                 'delete' => function($url, $model) {
                                     return Html::a('<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>', 
-                                        ['delete', 'id' => $model['code']], 
-                                        ['title' => 'Delete']);
+                                    ['delete', 'id' => $model['code']], 
+                                    ['title' => 'Delete',
+                                     'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                     'data-method'  => 'post']);
                                     }
                                 ]
                             ],
@@ -97,4 +99,9 @@ $select_type = ArrayHelper::map(UserType::find()->asArray()->all(),'code', funct
             </div>
         </div>
     </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
+    </div>
+    <!-- /.card-footer-->
 </div>

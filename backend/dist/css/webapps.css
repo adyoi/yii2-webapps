@@ -20,6 +20,11 @@
     padding-left: 10px;
 }
 
+.content-wrapper, .login-page {
+	/* https://www.freepik.com/ */
+    background: url('../img/background-1.jpg') !important;
+}
+
 /* -------------------------------------------  Fix AdminLTE CSS ------------------------------------------- */
 
 .maximized-card .card-body {

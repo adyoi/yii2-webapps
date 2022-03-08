@@ -35,4 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <div class="text-center"><i><?= Html::encode($this->title) ?></i></div>
+    </div>
+    <!-- /.card-footer-->
 </div>

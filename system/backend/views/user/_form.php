@@ -235,7 +235,7 @@ $css = <<< CSS
 
 #preview img {
     width: 100%;
-    max-height: 220px;
+    max-height: 290px;
 }
 
 CSS;
