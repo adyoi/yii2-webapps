@@ -177,7 +177,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 								{
 									$auth = \yii\helpers\BaseJson::decode($access['action'], true);
 
-									if ($auth[$value])
+									if (isset($auth[$value]))
 									{
 										echo 'value="1" checked';
 									}
