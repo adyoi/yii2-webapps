@@ -115,7 +115,6 @@ class UserController extends Controller
                 $model->image = $file;
             }
 
-            $model->level =  md5($model->level);
             $model->auth_key = Yii::$app->security->generateRandomString();
             $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             $model->save();
@@ -210,7 +209,6 @@ class UserController extends Controller
                 $model->image = $path->image;
             }
 
-            $model->level =  md5($model->level);
             $model->auth_key = Yii::$app->security->generateRandomString();
             $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
             $model->save();
@@ -220,16 +218,31 @@ class UserController extends Controller
             $table_update = Yii::$app->request->post()[$model->formName()];
             Yii::$app->application->log_update($table_name.'/update', json_encode($table_update));
 
-            /* Feedback Message */
-            Yii::$app->getSession()->setFlash('user_update_save', [
-                    'type'     => 'success',
-                    'duration' => 5000,
-                    'title'    => 'System Information',
-                    'message'  => 'Data Updated !',
-                ]
-            );
+            if (Yii::$app->user->identity->id === $model->id)
+            {
+                /* Feedback Message */
+                Yii::$app->getSession()->setFlash('user_update_save', [
+                        'type'     => 'success',
+                        'duration' => 5000,
+                        'title'    => 'System Information',
+                        'message'  => 'Password has change, Please Login again !',
+                    ]
+                );
 
-            return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['site/index']);
+            }
+            else
+            {
+                /* Feedback Message */
+                Yii::$app->getSession()->setFlash('user_update_save', [
+                        'type'     => 'success',
+                        'duration' => 5000,
+                        'title'    => 'System Information',
+                        'message'  => 'Data Updated !',
+                    ]
+                );
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
         else
         {

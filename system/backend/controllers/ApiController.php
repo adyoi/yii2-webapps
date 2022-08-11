@@ -14,7 +14,7 @@ use yii\filters\auth\QueryParamAuth;
 class ApiController extends ActiveController
 {
 	// The model class name. This property must be set.
-    public $modelClass = 'backend\models\AppLog';
+    public $modelClass = 'backend\models\AppLoga';
 
 	public function behaviors()
 	{
@@ -26,7 +26,7 @@ class ApiController extends ActiveController
                 // restrict access to
                 'Origin' => ['localhost', '127.0.0.1'],
                 // Allow only POST and PUT methods
-                'Access-Control-Request-Method' => ['POST'],
+                'Access-Control-Request-Method' => ['GET', 'POST'],
                 // Allow only headers 'X-Wsse'
                 'Access-Control-Request-Headers' => ['X-Wsse'],
                 // Allow credentials (cookies, authorization headers, etc.) to be exposed to the browser
@@ -81,8 +81,21 @@ class ApiController extends ActiveController
     }
     
     public function actionIp() {
+
         $callback = [];
         $callback['user_ip'] = Yii::$app->getRequest()->getUserIP();
+        $callback['user_agent'] = Yii::$app->getRequest()->getUserAgent();
+
+        /* ---------------------- START APP LOG API ---------------------- */
+        $app_loga             = new \backend\models\AppLoga();
+        $app_loga->id_user    = Yii::$app->user->identity->id;
+        $app_loga->name       = 'API_IP';                                     // Change Name API
+        $app_loga->update     = json_encode($callback);                       // Summary Callback
+        $app_loga->ip_address = Yii::$app->getRequest()->getUserIP();
+        $app_loga->user_agent = Yii::$app->getRequest()->getUserAgent();
+        $app_loga->save(false);
+        /* ---------------------- (PLACE BEFORE RETURN) ---------------------- */
+
         return $callback;
     }
 

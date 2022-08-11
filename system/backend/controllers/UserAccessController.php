@@ -132,9 +132,11 @@ class UserAccessController extends Controller
                         {
                             $controller_fix = preg_replace('/Controller.php/', '', $controller);
                             $controller_divide = preg_split('/(?=[A-Z])/', $controller_fix, -1, PREG_SPLIT_NO_EMPTY);
-                            $controller_lowletter = strtolower(implode($controller_divide, '-'));
+                            $controller_divide_ = isset($controller_divide) && is_array($controller_divide) ? $controller_divide : [];
+                            $controller_lowletter = strtolower(implode('-', $controller_divide_));
                             $action_divide = preg_split('/(?=[A-Z])/', trim($action[1]), -1, PREG_SPLIT_NO_EMPTY);
-                            $action_lowletter = strtolower(implode($action_divide, '-'));
+                            $action_divide_ = isset($action_divide) && is_array($action_divide) ? $action_divide : [];
+                            $action_lowletter = strtolower(implode('-', $action_divide));
                             $fulllist[$controller_lowletter][] = $action_lowletter;
                         }
                     }

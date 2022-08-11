@@ -104,7 +104,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             'activity',
                             'timestamp',
 
-                            // ['class' => 'yii\grid\ActionColumn'],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'header' => 'Action',
+                                'template' => '{view}',
+                                'buttons' => [
+                                'view' => function($url, $model) {
+                                    return Html::a('<button class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>', 
+                                        ['view', 'id' => $model['id']], 
+                                        ['title' => 'View']);
+                                    }
+                                ]
+                            ],
                         ],
                     ]); ?>
 

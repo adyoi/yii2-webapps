@@ -173,7 +173,7 @@ $select_level = ArrayHelper::map(UserLevel::find()->asArray()->all(), function($
 									'controller' => $key
 								]);
 
-								if (is_null($access['action']) == false)
+								if (isset($access['action']) && is_null($access['action']) == false)
 								{
 									$auth = \yii\helpers\BaseJson::decode($access['action'], true);
 
