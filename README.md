@@ -152,6 +152,18 @@ API Support :
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/12.png)
 
-### 🍔🍟🍕🍱🥪🥑🥛💻
+### Support me :) 🍔🍟🍕🍱🥪🥑🥛💻
 ---
-<a href="https://paypal.me/adyoi?locale.x=id_ID"><img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-paypal.png" alt="donate-paypal" width="100"/></a>
+<img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-paypal.png" alt="donate-paypal" width="100"/>
+
+1. PAYPAL
+
+<a href="https://paypal.me/adyoi?locale.x=id_ID">https://paypal.me/adyoi</a>
+
+<img src="https://www.bca.co.id/-/media/Feature/Card/List-Card/Tentang-BCA/Brand-Assets/Logo-BCA/Logo-BCA_Biru.png" alt="Logo BCA" width="100"/> 
+
+2. BANK BCA (INDONESIA)
+
+Account Number : 4740919909
+
+Account Name : ADI APRIYANTO
