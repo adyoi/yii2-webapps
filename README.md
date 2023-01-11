@@ -38,8 +38,25 @@ $ composer update
 <?php
 return [
     'components' => [
+    
         'application' => [
             'class' => 'common\components\Application',
+        ],
+        
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=webapps',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        ],
+        
+        'db2' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=webapps_table',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
         ],
         
         ...
@@ -67,7 +84,7 @@ return [
     'language' => 'id_ID',
     // Timezone
     'timeZone' => 'Asia/Jakarta',
-
+    
     ...
     ...
     
@@ -107,6 +124,16 @@ password : user
 Frontend : http://localhost/webapps/
 Backend  : http://localhost/webapps/backend
 ```
+
+### Version 2.1
+---
+
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/19.png)
+
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/20.png)
+
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/21.png)
+
 
 ### Version 2.0
 ---

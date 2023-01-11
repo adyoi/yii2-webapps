@@ -36,7 +36,34 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 
 	                <div class="col-lg-12">
 
-	                    <h4>SERVER</h4>
+	                    <h4>Application</h4>
+
+	                    <div class="table-responsive">
+
+		                    <table class="table table-bordered table-server">
+		                        <tbody>
+		                            <tr>
+		                                <td>Name</td>
+		                                <td><?= Yii::$app->name ?></td>
+		                            </tr>
+		                            <tr>
+		                                <td>Version</td>
+		                                <td><?= Yii::$app->version ?></td>
+		                            </tr>
+		                        </tbody>
+		                    </table>
+
+		                </div>
+
+	                </div>
+
+	            </div>
+
+	        	<div class="row" style="margin-top: 25px">
+
+	                <div class="col-lg-4">
+
+	                    <h4>Server</h4>
 
 	                    <div class="table-responsive">
 
@@ -61,11 +88,7 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 
 	                </div>
 
-	            </div>
-
-	        	<div class="row">
-
-	                <div class="col-lg-12">
+	                <div class="col-lg-4">
 
 	                    <h4>PHP</h4>
 
@@ -92,13 +115,9 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 
 	                </div>
 
-	            </div>
+	                <div class="col-lg-4">
 
-	        	<div class="row">
-
-	                <div class="col-lg-12">
-
-	                    <h4>MYSQL</h4>
+	                    <h4>MySQL</h4>
 
 	                    <div class="table-responsive">
 
@@ -121,7 +140,7 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 
 	            </div>
 
-	            <div class="row">
+	            <div class="row" style="margin-top: 25px">
 
 	                <div class="col-lg-12">
 

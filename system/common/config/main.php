@@ -6,6 +6,8 @@ return [
     'timeZone' => 'Asia/Jakarta',
     // Name
     'name' => 'Yii2 Webapps',
+    // Version
+    'version' => '2.1',
 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
