@@ -20,11 +20,11 @@
         "kartik-v/yii2-widget-select2": "^2.1",
         "yiisoft/yii2-bootstrap": "^2.0",
         "yiisoft/yii2-bootstrap4": "^2.0",
-        "kartik-v/yii2-widget-datetimepicker": "^1.5"
+        "kartik-v/yii2-widget-datetimepicker": "^1.5",
+        "yiisoft/yii2-gii": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
-        "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/codeception": "^4.0",
         "codeception/module-asserts": "^1.0",

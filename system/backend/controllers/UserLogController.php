@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\AppLoga;
-use backend\models\AppLogaSearch;
+use backend\models\UserLog;
+use backend\models\UserLogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AppLogaController implements the CRUD actions for AppLoga model.
+ * UserLogController implements the CRUD actions for UserLog model.
  */
-class AppLogaController extends Controller
+class UserLogController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -60,13 +60,30 @@ class AppLogaController extends Controller
     }
 
     /**
-     * Lists all AppLoga models.
+     * Lists all UserLog models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AppLogaSearch();
+        $searchModel = new UserLogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if (Yii::$app->request->get('action') == 'clear')
+        {
+            $delete = UserLog::deleteAll();
+
+            if ($delete)
+            {
+                Yii::$app->getSession()->setFlash('user_log_index', [
+                        'type'     => 'success',
+                        'duration' => 5000,
+                        'title'    => 'System Information',
+                        'message'  => 'Deleted Success !',
+                    ]
+                );
+                return $this->redirect(['index']);
+            }
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -75,7 +92,7 @@ class AppLogaController extends Controller
     }
 
     /**
-     * Displays a single AppLoga model.
+     * Displays a single UserLog model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -88,7 +105,45 @@ class AppLogaController extends Controller
     }
 
     /**
-     * Deletes an existing AppLoga model.
+     * Creates a new UserLog model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new UserLog();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing UserLog model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Deletes an existing UserLog model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -102,15 +157,15 @@ class AppLogaController extends Controller
     }
 
     /**
-     * Finds the AppLoga model based on its primary key value.
+     * Finds the UserLog model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return AppLoga the loaded model
+     * @return UserLog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AppLoga::findOne($id)) !== null) {
+        if (($model = UserLog::findOne($id)) !== null) {
             return $model;
         }
 
