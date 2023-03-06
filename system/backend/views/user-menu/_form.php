@@ -65,9 +65,9 @@ foreach ($backend_controllerlist as $backend_controller)
                 {
                     $backend_controller_fix = preg_replace('/Controller.php/', '', $backend_controller);
                     $backend_controller_divide = preg_split('/(?=[A-Z])/', $backend_controller_fix, -1, PREG_SPLIT_NO_EMPTY);
-                    $backend_controller_lowletter = strtolower(implode($backend_controller_divide, '-'));
+                    $backend_controller_lowletter = strtolower(implode('-', $backend_controller_divide));
                     $backend_action_divide = preg_split('/(?=[A-Z])/', trim($backend_action[1]), -1, PREG_SPLIT_NO_EMPTY);
-                    $backend_action_lowletter = strtolower(implode($backend_action_divide, '-'));
+                    $backend_action_lowletter = strtolower(implode('-', $backend_action_divide));
                     $backend_fulllist[] = ['key' => $backend_controller_lowletter, 'val' => $backend_action_lowletter];
                     $backend_fulllist2[$backend_controller_lowletter][] = $backend_action_lowletter;
                 }
@@ -113,9 +113,9 @@ foreach ($frontend_controllerlist as $frontend_controller)
                 {
                     $frontend_controller_fix = preg_replace('/Controller.php/', '', $frontend_controller);
                     $frontend_controller_divide = preg_split('/(?=[A-Z])/', $frontend_controller_fix, -1, PREG_SPLIT_NO_EMPTY);
-                    $frontend_controller_lowletter = strtolower(implode($frontend_controller_divide, '-'));
+                    $frontend_controller_lowletter = strtolower(implode('-', $frontend_controller_divide));
                     $frontend_action_divide = preg_split('/(?=[A-Z])/', trim($frontend_action[1]), -1, PREG_SPLIT_NO_EMPTY);
-                    $frontend_action_lowletter = strtolower(implode($frontend_action_divide, '-'));
+                    $frontend_action_lowletter = strtolower(implode('-', $frontend_action_divide));
                     $frontend_fulllist[] = ['key' => $frontend_controller_lowletter, 'val' => $frontend_action_lowletter];
                     $frontend_fulllist2[$frontend_controller_lowletter][] = $frontend_action_lowletter;
                 }

@@ -41,11 +41,106 @@ $this->params['breadcrumbs'][] = $this->title;
                         'id',
                         'id_user',
                         'table_name',
-                        'update:ntext',
+                        [
+                        'format' => 'raw',
+                        'attribute' => 'update',
+                        'value' => function ($data) {
+
+                                 return '<div id="json">' . $data['update'] . '</div>';
+                            },
+                        ],
                         'timestamp',
                     ],
                 ]) ?>
+
             </div>
+
         </div>
+
     </div>
+    
 </div>
+
+<?php
+
+$js = <<< JS
+
+$(document).ready(function(e) {
+    json = $("#json").html();
+    json_pretty = syntaxHighlight(json);
+    $("#json").html('<pre>'+json_pretty+'</pre>');
+});
+
+function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+         json = JSON.stringify(json, undefined, 2);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+
+JS;
+
+$css = <<< CSS
+
+pre {
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+}
+.string {
+  color: green;
+  display: inline;
+}
+.number {
+  color: darkorange;
+  display: inline;
+}
+.boolean {
+  color: blue;
+  display: inline;
+}
+.null {
+  color: magenta;
+  display: inline;
+}
+.key {
+  color: red;
+}
+.string::after {
+  content: "\a";
+  white-space: pre;
+}
+.number::after {
+  content: "\a";
+  white-space: pre;
+}
+.null::after {
+  content: "\a";
+  white-space: pre;
+}
+.boolean::after {
+  content: "\a";
+  white-space: pre;
+}
+
+CSS;
+
+$this->registerCss($css);
+$this->registerJs($js);
+
+?>
