@@ -176,19 +176,15 @@ $this->params['title_card'] = 'Information';
                                     echo '</div>';
                                 }
 
-                                /*if ($count % $totalcount == ($totalcount-1)) 
-                                {
-                                    echo '</tbody>';
-                                    echo '</table>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }*/
-
                                 $count++;
                             }
-                        ?>
 
-                        <!-- FIX --> </div> <!-- FIX --> 
+                            echo '</tbody>';
+                            echo '</table>';
+                            echo '</div>';
+                            echo '</div>';
+
+                        ?>
 
                     </div>
 
