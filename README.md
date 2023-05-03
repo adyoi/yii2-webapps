@@ -131,6 +131,14 @@ Frontend : http://localhost/webapps/
 Backend  : http://localhost/webapps/backend
 ```
 
+### Version 2.2
+---
+
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/22.png)
+
+![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/23.png)
+
+
 ### Version 2.1
 ---
 
