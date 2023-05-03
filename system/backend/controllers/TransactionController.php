@@ -15,28 +15,41 @@ use yii\filters\VerbFilter;
 class TransactionController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
+                    ],
                 ],
-            ],
-        ];
+            ]
+        );
+    }
+
+    /**
+     * Lists all Pickup models.
+     * @return mixed
+     */
+    public function actionModal()
+    {
+
     }
 
     /**
      * Lists all Transaction models.
-     * @return mixed
+     *
+     * @return string
      */
     public function actionIndex()
     {
         $searchModel = new TransactionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -45,95 +58,227 @@ class TransactionController extends Controller
     }
 
     /**
-     * Lists all Transaction models.
-     * @return mixed
-     */
-    public function actionInput()
-    {
-        $searchModel = new TransactionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('input', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
      * Displays a single Transaction model.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if ($this->request->isAjax) 
+        {
+            return $this->renderAjax('_view', [ // Render Ajax to use PJAX
+                'model' => $this->findModel($id),
+            ]);
+        } 
+        else 
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     /**
      * Creates a new Transaction model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Transaction();
+        $model   = new Transaction();
+        $error   = false;
+        $message = '<!-- The requested not valid -->';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        /*if ($this->request->isPost) {
+
+            $post = $this->request->post('Transaction');
+        
+            $transaction = Transaction::findOne(['number' => $post['number']]);
+
+            if ($transaction) 
+            {
+                $model = $transaction;
+            }
+
+            if ($model->load($this->request->post())  && $model->validate()) {
+
+                $model->datetime = date('Y-m-d H:i:s');
+                $model->id_user  = Yii::$app->user->identity->id;
+                $model->save();
+
+                if ($this->request->isAjax) 
+                {
+                    if ($transaction) 
+                    {
+                        $message = 'Data Updated';
+                    } 
+                    else 
+                    {
+                        $message = 'Data Saved';
+                    }
+                }
+                else
+                {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+            else
+            {
+                if ($model->errors)
+                {
+                    $error = true;
+                    $message = json_encode($model->errors);
+                }
+            }
+        } 
+        else 
+        {
+            if ($this->request->isAjax) 
+            {
+                $get = $this->request->get('number');
+                $model = Transaction::findOne(['number' => $get]);
+            }
+            else
+            {
+                $model->loadDefaultValues();
+            }
+        }*/
+
+        if ($this->request->isPost) {
+
+            if ($model->load($this->request->post()) && $model->validate()) {
+
+                $model->datetime = date('Y-m-d H:i:s');
+                $model->id_user  = Yii::$app->user->identity->id;
+                $model->save();
+
+                if ($this->request->isAjax) 
+                {
+                    $message = 'Data Saved';
+                }
+                else
+                {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+            else
+            {
+                if ($model->errors)
+                {
+                    $error = true;
+                    $message = json_encode($model->errors);
+                }
+            }
+        } 
+        else 
+        {
+            $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if ($this->request->isAjax) 
+        {
+            return $this->renderAjax('_form_', [ // Render Ajax to use PJAX
+                'model' => $model,
+                'error' => $error,
+                'message' => $message,
+            ]);
+        } 
+        else 
+        {
+            return $this->render('create', [
+                'model' => $model,
+                'error' => $error,
+                'message' => $message,
+            ]);
+        }
     }
 
     /**
      * Updates an existing Transaction model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model   = $this->findModel($id);
+        $error   = false;
+        $message = '<!-- The requested not valid -->';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->validate()) {
+
+            $model->id_user  = Yii::$app->user->identity->id;
+            $model->save();
+
+            if ($this->request->isAjax) 
+            {
+                $message = 'Data Updated';
+            }
+            else
+            {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+        else
+        {
+            if ($model->errors)
+            {
+                $error = true;
+                $message = json_encode($model->errors);
+            }
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if ($this->request->isAjax) 
+        {
+            return $this->renderAjax('_form_', [ // Render Ajax to use PJAX
+                'model' => $model,
+                'error' => $error,
+                'message' => $message,
+            ]);
+        } 
+        else 
+        {
+            return $this->render('update', [
+                'model' => $model,
+                'error' => $error,
+                'message' => $message,
+            ]);
+        }
     }
 
     /**
      * Deletes an existing Transaction model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * @param int $id ID
+     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        if ($this->request->isAjax) 
+        {
+            return 'Data Deleted';
+        } 
+        else 
+        {
+            return $this->redirect(['index']);
+        }
     }
 
     /**
      * Finds the Transaction model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id ID
      * @return Transaction the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Transaction::findOne($id)) !== null) {
+        if (($model = Transaction::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

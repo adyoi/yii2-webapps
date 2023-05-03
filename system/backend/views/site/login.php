@@ -6,6 +6,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\captcha\Captcha;
 use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Login';
@@ -15,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="login-box">
         
-        <div class="login-logo">
-            <a href="<?=Url::base()?>"><b>Admin</b>LTE</a>
+        <div class="login-logo"> 
+            <a href="<?=Url::base()?>"><b>Yii2</b>Webapps</a>
         </div>
 
         <div class="card">
@@ -32,15 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'inputOptions' => [ 'class' => 'form-control', 'placeholder' => 'Username'],
                     'labelOptions' => [ 'class' => ''],
                     'template' => '
-                    <div class="input-group mb-3">
-                    {input}
-                    <div class="input-group-append">
-                    <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
-                    </div>
-                    </div>
-                    {error}{hint}
-                    </div>'
+                        <div class="input-group mb-3">
+                            {input}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        {error}{hint}
+                        </div>'
                     ])->textInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
 
                 <?= $form->field($model, 'password', [
@@ -48,16 +49,37 @@ $this->params['breadcrumbs'][] = $this->title;
                     'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Password'],
                     'labelOptions' => [ 'class' => ''],
                     'template' => '
-                    <div class="input-group mb-3">
-                    {input}
-                    <div class="input-group-append">
-                    <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                    </div>
-                    </div>
-                    {error}{hint}
-                    </div>'
+                        <div class="input-group mb-3">
+                            {input}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        {error}{hint}
+                        </div>'
                     ])->passwordInput(['autofocus' => true,], [ 'class' => 'form-group form-primary',]) ?>
+
+                <?= $form->field($model, 'verification', [
+                    'inputOptions' => ['class' => 'form-control', 'placeholder' => 'Verification'],
+                    //'template' => '{input}{error}{hint}',
+                    ])->widget(Captcha::classname(), [
+                    'imageOptions' => ['id' => 'verification-image'],
+                    'template' => '
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group">
+                                    {input}
+                                    <div class="input-group-append">
+                                        <button class="form-control btn btn-info verification-button" title="Click to refresh">↺</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5" title="Please refresh if unreadable">
+                                {image}
+                            </div>
+                        </div>',
+                    ])->label(false) ?>
 
                 <div class="row">
 
@@ -81,29 +103,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php ActiveForm::end(); ?>
 
-                <div class="social-auth-links text-center mb-3">
-
-                <p>- OR -</p>
-
-                <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-
-                <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-
-                </div>
-                <!-- /.social-auth-links -->
-
-                <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-                </p>
-
-                <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-                </p>
-
             </div>
             <!-- /.login-card-body -->
 
@@ -117,13 +116,39 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 
 $js = <<< JS
-
+$('.verification-button').on('click', function (e) {
+    e.preventDefault();
+    $('#verification-image').yiiCaptcha('refresh');
+});
+/* Fix The Universe Problem */
+$('.form-control').keypress(function (e) {
+    if (e.which == 13) { e.preventDefault(); $('#login-form').submit(); }
+});
+$(".fas.fa-lock").click(function() {
+    $(this).toggleClass("fa fa-unlock");
+    input = $(this).parents('.input-group').find("input");
+    if (input.attr("type") == "password") {
+        input.attr("type", "text");
+    } else {
+        input.attr("type", "password");
+    }
+});
 JS;
 
 $css = <<< CSS
-
+#verification-image {
+    border-radius: 5px;
+    border:1px solid #ddd
+}
+@media (max-width: 991px) {
+    #verification-image {
+        margin: 15px 0;
+    }
+}
+.invalid-feedback {
+    display: block;
+}
 CSS;
 
 $this->registerJs($js);
 $this->registerCss($css);
-

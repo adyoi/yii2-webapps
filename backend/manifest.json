@@ -1,0 +1,30 @@
+{
+    "name": "Yii2 Webapps Backend",
+    "short_name": "YII2_WEBAPPS_BACKEND",
+    "description": "Yii2 Webapps Backend",
+    "icons": [
+        {
+            "src": "http://localhost/webapps/backend/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "http://localhost/webapps/backend/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "http://localhost/webapps/backend/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "scope": "http://localhost/webapps/backend/",
+    "start_url": "http://localhost/webapps/backend/",
+    "display": "standalone",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF"
+}

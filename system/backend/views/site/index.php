@@ -182,7 +182,7 @@ $this->params['title_card'] = 'Information';
                             echo '</tbody>';
                             echo '</table>';
                             echo '</div>';
-                            echo '</div>';
+                            // echo '</div>';
 
                         ?>
 

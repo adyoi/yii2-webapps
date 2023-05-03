@@ -41,7 +41,7 @@ class Transaction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number', 'code_customer', 'datetime', 'name', 'type'], 'required'],
+            [['number', 'code_customer', 'name', 'type', 'value'], 'required'],
             [['datetime', 'timestamp'], 'safe'],
             [['value', 'id_user'], 'integer'],
             [['number', 'code_customer', 'type'], 'string', 'max' => 50],

@@ -3,11 +3,11 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
-//use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
@@ -17,11 +17,28 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <title><?= sprintf('%s | %s', Html::encode($this->title), Html::encode(Yii::$app->name)) ?></title>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Yii2 Webapps" />
+    <meta name="keywords" content="Yii2 Webapps" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="<?= Yii::$app->language ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Yii2 Webapps" />
+    <meta property="og:url" content="<?= Url::base() ?>" />
+    <meta property="og:site_name" content="Yii2 Webapps" />
+    <link rel="canonical" href="<?= Url::base() ?>" />
+    <link rel="shortcut icon" href="<?= Url::base() ?>/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= Url::base() ?>/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= Url::base() ?>/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= Url::base() ?>/favicon-16x16.png" />
+    <link rel="manifest" href="<?= Url::base() ?>/manifest.json" />
+    <link rel="mask-icon" href="<?= Url::base() ?>/safari-pinned-tab.svg" color="#111111" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <script type="text/javascript" src="<?= Url::base() ?>/service-app.js"></script>
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -33,7 +50,7 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top',
+            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
     $menuItems = [
@@ -55,7 +72,7 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav ml-auto'],
         'items' => $menuItems,
     ]);
     NavBar::end();

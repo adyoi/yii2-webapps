@@ -5,8 +5,8 @@
 /* @var $model \frontend\models\ContactForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,7 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                    'imageOptions' => ['id' => 'verification-image'],
+                    'template' => '
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group">
+                                    {input}
+                                    <div class="input-group-append">
+                                        <button class="form-control btn btn-info verification-button" title="Click to refresh">↺</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" title="Please refresh if unreadable">
+                                {image}
+                            </div>
+                        </div>',
                 ]) ?>
 
                 <div class="form-group">
@@ -43,3 +57,31 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+
+<?php
+
+$js = <<< JS
+$('.verification-button').on('click', function (e) {
+    e.preventDefault();
+    $('#verification-image').yiiCaptcha('refresh');
+});
+/* Fix The Universe Problem */
+$('.form-control').keypress(function (e) {
+    if (e.which == 13) { e.preventDefault(); $('#contact-form').submit(); }
+});
+JS;
+
+$css = <<< CSS
+#verification-image {
+    border-radius: 5px;
+    border:1px solid #ddd
+}
+@media (max-width: 991px) {
+    #verification-image {
+        margin: 15px 0;
+    }
+}
+CSS;
+
+$this->registerJs($js);
+$this->registerCss($css);

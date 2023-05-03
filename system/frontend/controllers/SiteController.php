@@ -62,6 +62,8 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
+                'fontFile' => '@webroot/fonts/DejaVuSanssr.ttf',
+                'foreColor' => 0x17a2b8,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];

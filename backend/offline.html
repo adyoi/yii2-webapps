@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OFFLINE</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="shortcut icon" href="./favicon.ico" />
+  <style>
+  body {
+    width: 100%;
+    min-height: 100vh;
+    display: relative;
+    margin: 0;
+    padding: 0;
+    background: #1488CC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .wrapper {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  h1 {
+    color: white;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 50px;
+    letter-spacing: 9px;
+    line-height: 1rem;
+    text-shadow: 0 0 5px white;
+  }
+  h4 {
+    color: #f1f1f1;
+    font-family: arial;
+    font-weight: 300;
+    font-size: 16px;
+  }
+  a {
+    padding:12px;
+    color: white;
+    font-family: arial;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 3px;
+    display: inline-block;
+    border: 2px solid #ddd;
+  }
+  a:hover {
+    box-shadow: 0 0 3px white;
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>OFFLINE</h1>
+    <h4>Please check your internet connection</h4>
+    <a href="." class="button">RETRY</a>
+  </div>
+</body>
+</html>

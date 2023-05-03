@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use backend\models\UserLog;
+use backend\models\AppSettings;
 
 /**
  * Site controller
@@ -23,7 +24,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'captcha'],
                         'allow' => true,
                     ],
                     [
@@ -50,6 +51,12 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fontFile' => '@webroot/fonts/DejaVuSanssr.ttf',
+                'foreColor' => 0x17a2b8,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -82,45 +89,68 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
         {
-            if (UserLog::find()
-                ->where(['id_user' => Yii::$app->user->identity->id])
-                ->andWhere(['<>', 'ip_address', Yii::$app->getRequest()->getUserIP()])
-                ->exists())
+            $app_settings = AppSettings::findOne(['code' => 'SETTING_LOCK_LOGIN_IP']);
+
+            if ($app_settings['value'] === 'YES')
             {
-                $username = Yii::$app->user->identity->username;
-                Yii::$app->user->logout();
-                Yii::$app->application->log('Attemping Login');
-                Yii::$app->getSession()->setFlash('login', 
-                    [
-                        'type'     => 'warning',
-                        'duration' => 5000,
-                        'title'    => 'System Information',
-                        'message'  => "Username : $username has login in another IP Address,<br>Make sure you are Logout before closing the Browser.<br>Please contact Administrator",
-                    ]
-                );
+                if (UserLog::find()
+                    ->where(['id_user' => Yii::$app->user->identity->id])
+                    ->andWhere(['<>', 'ip_address', Yii::$app->getRequest()->getUserIP()])
+                    ->exists())
+                {
+                    $username = Yii::$app->user->identity->username;
+                    Yii::$app->user->logout();
+                    Yii::$app->application->log('Attemping Login');
+                    Yii::$app->getSession()->setFlash('login', 
+                        [
+                            'type'     => 'warning',
+                            'duration' => 5000,
+                            'title'    => 'System Information',
+                            'message'  => "Username : $username has login in another IP Address,<br>Make sure you are Logout before closing the Browser.<br>Please contact Administrator",
+                        ]
+                    );
 
-                return $this->redirect(['login']);
+                    return $this->redirect(['login']);
+                }
+                else
+                {
+                    $log             = new UserLog();
+                    $log->id_user    = Yii::$app->user->identity->id;
+                    $log->ip_address = Yii::$app->getRequest()->getUserIP(); 
+                    $log->user_agent = Yii::$app->getRequest()->getUserAgent();
+                    $log->save();
+
+                    Yii::$app->application->log('Login');
+                    Yii::$app->getSession()->setFlash('login', 
+                        [
+                            'type'     => 'success',
+                            'duration' => 5000,
+                            'title'    => 'System Information',
+                            'message'  => "Login Success at " . date('Y-m-d H:i:s'),
+                        ]
+                    );
+
+                    return $this->goBack();
+                }
+
             }
-            else
-            {
-                $log             = new UserLog();
-                $log->id_user    = Yii::$app->user->identity->id;
-                $log->ip_address = Yii::$app->getRequest()->getUserIP(); 
-                $log->user_agent = Yii::$app->getRequest()->getUserAgent();
-                $log->save();
 
-                Yii::$app->application->log('Login');
-                Yii::$app->getSession()->setFlash('login', 
-                    [
-                        'type'     => 'success',
-                        'duration' => 5000,
-                        'title'    => 'System Information',
-                        'message'  => "Login Success at " . date('Y-m-d H:i:s'),
-                    ]
-                );
+            $log             = UserLog::find()->where(['id_user' => Yii::$app->user->identity->id])->one() ?: new UserLog;
+            $log->id_user    = Yii::$app->user->identity->id;
+            $log->ip_address = Yii::$app->getRequest()->getUserIP(); 
+            $log->user_agent = Yii::$app->getRequest()->getUserAgent();
+            $log->save();
 
-                return $this->goBack();
-            }
+            Yii::$app->getSession()->setFlash('login', 
+                [
+                    'type'     => 'success',
+                    'icon'     => 'icon-alert',
+                    'title'    => 'System Information',
+                    'message'  => "Login Success at " . date('Y-m-d H:i:s'),
+                ]
+            );  
+
+            return $this->goBack();
 
         } 
         else 
@@ -142,12 +172,26 @@ class SiteController extends Controller
     {
         Yii::$app->application->log('Logout');
 
-        foreach (UserLog::find()->where([
-            'id_user' => Yii::$app->user->identity->id, 
-            'ip_address' => Yii::$app->getRequest()->getUserIP()
-        ])->all() as $log) 
+        $app_settings = AppSettings::findOne(['code' => 'SETTING_LOCK_LOGIN_IP']);
+
+        if ($app_settings['value'] === 'YES')
         {
-            $log->delete();
+            foreach (UserLog::find()->where([
+                'id_user' => Yii::$app->user->identity->id, 
+                'ip_address' => Yii::$app->getRequest()->getUserIP()
+            ])->all() as $log) 
+            {
+                $log->delete();
+            }
+        }
+        else
+        {
+            foreach (UserLog::find()->where([
+                'id_user' => Yii::$app->user->identity->id
+            ])->all() as $log) 
+            {
+                $log->delete();
+            }
         }
 
         Yii::$app->user->logout();

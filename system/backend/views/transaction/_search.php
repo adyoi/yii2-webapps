@@ -3,9 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model backend\models\TransactionSearch */
-/* @var $form yii\widgets\ActiveForm */
+/** @var yii\web\View $this */
+/** @var backend\models\TransactionSearch $model */
+/** @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="transaction-search">

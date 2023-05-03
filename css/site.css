@@ -97,7 +97,7 @@ a.desc:after {
 
 /* align the logout "link" (button in form) of the navbar */
 .nav li > form > button.logout {
-    padding: 15px;
+    padding: 8px;
     border: none;
 }
 
@@ -117,4 +117,8 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.help-block-error {
+    color: #dc3545;
 }
