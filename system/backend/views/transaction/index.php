@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -59,7 +60,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'name',
                         'type',
                         'value',
-                        'id_user',
+                        [
+                            'label' => 'Username',
+                            'attribute' => 'id_user',
+                            'filter' => ArrayHelper::map(\backend\models\User::find()->asArray()->all(), 'id', 'username'),
+                            'value' => function ($data) {
+                                $user = \backend\models\User::findOne(['id' => $data['id_user']]);
+                                return $user['username'];
+                            },
+                        ],
                         'timestamp',
                         [
                             'class' => 'yii\grid\ActionColumn',

@@ -49,7 +49,7 @@ $select_customer = ArrayHelper::map(Customer::find()->asArray()->all(),'code', f
             <?= $form->field($model, 'code_customer')->widget(Select2::classname(),[
                     'data' => $select_customer,
                     'options' => [
-                        'placeholder' => 'Pilih Customer',
+                        'placeholder' => 'Select Customer',
                     ],
                     'pluginOptions' => [
                         'allowClear' => false
@@ -63,7 +63,17 @@ $select_customer = ArrayHelper::map(Customer::find()->asArray()->all(),'code', f
 
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'type')->widget(Select2::classname(),[
+                    'data' => ['REGULER' => 'REGULER', 'MEDIUM' => 'MEDIUM', 'LARGE' => 'LARGE'],
+                    'options' => [
+                        'value' => $model->isNewRecord ? 'REGULER' : $model->type,
+                        'placeholder' => 'Select Type',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => false
+                    ],
+                ]);
+            ?>
 
         </div>
 

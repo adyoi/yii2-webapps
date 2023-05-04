@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
 use backend\models\User;
 
@@ -66,6 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'format' => 'raw',
                                 'attribute' => 'id_user',
+                                'filter' => ArrayHelper::map(\backend\models\User::find()->asArray()->all(), 'id', 'username'),
                                 'value' => function ($data) {
                                     $user = User::findOne($data['id_user']);
                                     return $user['username'];

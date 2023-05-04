@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `app_loga` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table webapps.app_loga: ~0 rows (approximately)
-INSERT IGNORE INTO `app_loga` (`id`, `id_user`, `name`, `update`, `ip_address`, `user_agent`, `timestamp`) VALUES
+-- Dumping data for table webapps.app_loga: ~1 rows (approximately)
+INSERT INTO `app_loga` (`id`, `id_user`, `name`, `update`, `ip_address`, `user_agent`, `timestamp`) VALUES
 	(1, 2, 'API_IP', '{"user_ip":"::1","user_agent":"PostmanRuntime\\/7.29.2"}', '::1', 'PostmanRuntime/7.29.2', '2022-08-09 08:28:46');
 
 -- Dumping structure for table webapps.app_logd
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `app_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table webapps.app_settings: ~1 rows (approximately)
-INSERT IGNORE INTO `app_settings` (`code`, `value`) VALUES
+INSERT INTO `app_settings` (`code`, `value`) VALUES
 	('SETTING_LOCK_LOGIN_IP', 'YES');
 
 -- Dumping structure for table webapps.migration
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps.migration: ~3 rows (approximately)
-INSERT IGNORE INTO `migration` (`version`, `apply_time`) VALUES
+INSERT INTO `migration` (`version`, `apply_time`) VALUES
 	('m000000_000000_base', 1582665882),
 	('m130524_201442_init', 1582665886),
 	('m190124_110200_add_verification_token_column_to_user_table', 1582665887);
@@ -108,8 +108,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `level` (`level`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table webapps.user: ~6 rows (approximately)
-INSERT IGNORE INTO `user` (`id`, `type`, `code`, `code_sub`, `level`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `name`, `image`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
+-- Dumping data for table webapps.user: ~5 rows (approximately)
+INSERT INTO `user` (`id`, `type`, `code`, `code_sub`, `level`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `name`, `image`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
 	(1, 'B', 'BCH001', '', '6fb4f22992a0d164b77267fde5477248', 'root', '0AwqpjBTwa9AAv2dih8TPqyZqfuhyla8', '$2y$13$nAKuTfVbllxviIwOczggg.QC2Wove1rZ06LKt3v26Uv6n9As6JuKC', NULL, 'root@root.com', 'The Root', '/images/upload/user/root.jpg', 10, 1582829438, 1586125515, NULL),
 	(2, 'B', 'BCH001', '', '6fb4f22992a0d164b77267fde5477248', 'admin', '9d5iN9B7AnK7zusmBTJArV8AEbtAWdRJ', '$2y$13$na0oLU.ohHr.KH140vT2y..NjyOkEG9.QM7hPSc5flEMYoCjIn5bu', NULL, 'admin@admin.com', 'Admin', '/images/upload/user/admin.jpg', 10, 1582829973, 1582839032, NULL),
 	(3, 'B', 'BCH001', '', '2b6cc9c30eaad9c109091ea928529cbd', 'user', 'gylSa9MSAmeHbulXhhFN7flRSMlanoxA', '$2y$13$jq5nJ8QWqcTB7nLT7KTpceIwo2nT7OPBcRsTrspY0MTHo3vq9SSKe', NULL, 'user@user.com', 'User', '/images/upload/user/user.jpg', 10, 1582830712, 1582839057, NULL),
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `user_access` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps.user_access: ~16 rows (approximately)
-INSERT IGNORE INTO `user_access` (`id`, `level`, `module`, `controller`, `action`, `id_stamp`, `datestamp`, `timestamp`) VALUES
+INSERT INTO `user_access` (`id`, `level`, `module`, `controller`, `action`, `id_stamp`, `datestamp`, `timestamp`) VALUES
 	(1, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'user-access', '{"index":false,"control":true,"cekidot":true,"view":false,"create":false,"update":false,"delete":false}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
 	(2, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'app-log', '{"index":true,"view":true}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
 	(3, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'app-logd', '{"index":true,"view":true}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
@@ -146,7 +146,7 @@ INSERT IGNORE INTO `user_access` (`id`, `level`, `module`, `controller`, `action
 	(13, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'user-log', '{"index":true,"view":true,"create":false,"update":false,"delete":false}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
 	(14, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'app-loga', '{"index":true,"view":true,"delete":false}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
 	(15, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'app-settings', '{"index":true,"view":true,"create":true,"update":true,"delete":false}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34'),
-	(16, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'transaction', '{"index":true,"input":true,"view":true,"create":true,"update":true,"delete":true}', 2, '2023-04-29 06:14:34', '2023-04-28 23:14:34');
+	(16, '6fb4f22992a0d164b77267fde5477248', 'app-backend-webapps', 'transaction', '{"index":true,"view":true,"create":true,"update":true,"delete":true}', 2, '2023-04-29 06:14:34', '2023-05-04 16:34:56');
 
 -- Dumping structure for table webapps.user_level
 CREATE TABLE IF NOT EXISTS `user_level` (
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `user_level` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps.user_level: ~5 rows (approximately)
-INSERT IGNORE INTO `user_level` (`code`, `type`, `name`) VALUES
+INSERT INTO `user_level` (`code`, `type`, `name`) VALUES
 	('ADM', 'B', 'ADMIN'),
 	('API', 'B', 'API'),
 	('MENU', 'B', 'MENU'),
@@ -172,11 +172,11 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `user_agent` text DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table webapps.user_log: ~1 rows (approximately)
-INSERT IGNORE INTO `user_log` (`id`, `id_user`, `ip_address`, `user_agent`, `timestamp`) VALUES
-	(1, 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36', '2023-04-29 16:47:25');
+INSERT INTO `user_log` (`id`, `id_user`, `ip_address`, `user_agent`, `timestamp`) VALUES
+	(28, 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36', '2023-05-03 07:42:41');
 
 -- Dumping structure for table webapps.user_menu
 CREATE TABLE IF NOT EXISTS `user_menu` (
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `user_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps.user_menu: ~32 rows (approximately)
-INSERT IGNORE INTO `user_menu` (`id`, `id_sub`, `id_sub2`, `level`, `module`, `class`, `url_controller`, `url_view`, `url_parameter`, `seq`, `icon`, `name`) VALUES
+INSERT INTO `user_menu` (`id`, `id_sub`, `id_sub2`, `level`, `module`, `class`, `url_controller`, `url_view`, `url_parameter`, `seq`, `icon`, `name`) VALUES
 	(1, 0, 0, '3ed53fbeb1eab0443561b68ca0c0b5cf', 'app-backend-webapps', 'L', 'site', 'index', '', 1, 'fa fa-file', 'Link'),
 	(2, 0, 0, '3ed53fbeb1eab0443561b68ca0c0b5cf', 'app-backend-webapps', 'D', '', '', '', 2, '', 'Divider'),
 	(3, 0, 0, '3ed53fbeb1eab0443561b68ca0c0b5cf', 'app-backend-webapps', 'H', '', '', '', 3, '', 'Header'),
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `user_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps.user_type: ~2 rows (approximately)
-INSERT IGNORE INTO `user_type` (`code`, `table`) VALUES
+INSERT INTO `user_type` (`code`, `table`) VALUES
 	('B', 'branch'),
 	('C', 'customer');
 
@@ -256,8 +256,8 @@ CREATE TABLE IF NOT EXISTS `branch` (
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table webapps_table.branch: ~0 rows (approximately)
-INSERT IGNORE INTO `branch` (`code`, `bch_type`, `bch_name`, `bch_address`) VALUES
+-- Dumping data for table webapps_table.branch: ~1 rows (approximately)
+INSERT INTO `branch` (`code`, `bch_type`, `bch_name`, `bch_address`) VALUES
 	('BCH001', 'CENTER', 'BRANCH 1', 'Street 1');
 
 -- Dumping structure for table webapps_table.customer
@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table webapps_table.customer: ~2 rows (approximately)
-INSERT IGNORE INTO `customer` (`code`, `code_branch`, `cus_type`, `cus_name`, `cus_address`) VALUES
+INSERT INTO `customer` (`code`, `code_branch`, `cus_type`, `cus_name`, `cus_address`) VALUES
 	('CUS00001', 'BCH001', 'AGENT', 'CUSTOMER 1', 'Street 1'),
 	('CUS00002', 'BCH001', 'AGENT', 'CUSTOMER 2', 'Street 2');
 
@@ -289,12 +289,11 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `id_user` int(11) NOT NULL DEFAULT 0,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table webapps_table.transaction: ~2 rows (approximately)
-INSERT IGNORE INTO `transaction` (`id`, `number`, `code_customer`, `datetime`, `name`, `type`, `value`, `id_user`, `timestamp`) VALUES
-	(1, 'T0000001', 'CUS00001', '2022-03-02 23:20:11', 'TEST', 'item', 50000, 2, '2022-03-02 16:20:13'),
-	(2, 'T0000001', 'CUS00001', '2022-03-02 23:20:11', 'TEST 2', 'item', 100000, 2, '2022-03-02 16:20:14');
+-- Dumping data for table webapps_table.transaction: ~1 rows (approximately)
+INSERT INTO `transaction` (`id`, `number`, `code_customer`, `datetime`, `name`, `type`, `value`, `id_user`, `timestamp`) VALUES
+	(1, 'TRX00001', 'CUS00001', '2023-05-03 14:43:30', '1', '1', 1000, 2, '2023-05-03 07:43:30');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
