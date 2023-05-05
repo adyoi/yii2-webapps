@@ -28,6 +28,8 @@ https://opencollective.com/yiisoft
 
 ## Installation
 
+Video : https://www.awesomescreenshot.com/video/17127094?key=f669668d4cefa461f3ca137cf15284a5
+
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
 $ cd system<br>
@@ -105,6 +107,9 @@ RewriteBase /webapps/backend
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php
+
+# Disallow Browser Indexing
+Options -Indexes
 ```
 
 * Default Account 
