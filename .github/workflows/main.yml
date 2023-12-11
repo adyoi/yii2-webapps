@@ -8,5 +8,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Update Composer
-        run: composer update
+      - name: Test
+        run: uname -a
