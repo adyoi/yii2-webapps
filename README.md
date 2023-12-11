@@ -37,6 +37,17 @@ $ chmod +x ./init<br>
 $ ./init<br>
 $ composer update
 
+## Create Directory Assets
+```php
+ Default Directory Frontend /
+ Default Directory Backend /backend
+
+ # Change Directory Backend
+ $ sudo ./chbackend.sh
+
+```
+$ sudo ./mkassets.sh
+
 ## Configuration
 
 * import webapps.sql
