@@ -6,7 +6,7 @@ on:
     branches: [master]
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Uname
         run: uname -a
@@ -19,3 +19,6 @@ jobs:
         
       - name: Ifconfig
         run: ifconfig
+
+      - name: Dig
+        run: dig localhost
