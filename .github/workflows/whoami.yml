@@ -1,0 +1,12 @@
+name: Yii2-Webapps
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  build:
+    runs-on: windows-server
+    steps:
+      - name: Test
+        run: whoami
