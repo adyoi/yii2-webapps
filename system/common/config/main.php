@@ -7,7 +7,7 @@ return [
     // Name
     'name' => 'Yii2 Webapps',
     // Version
-    'version' => '2.2',
+    'version' => '2.2.1',
 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
