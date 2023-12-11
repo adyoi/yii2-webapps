@@ -6,7 +6,7 @@ on:
     branches: [master]
 jobs:
   build:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Test
         run: whoami
