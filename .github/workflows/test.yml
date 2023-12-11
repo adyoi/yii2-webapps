@@ -1,0 +1,21 @@
+name: Test
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Uname
+        run: uname -a
+        
+      - name: Whoami
+        run: whoami
+        
+      - name: Ip
+        run: curl ip-api.com
+        
+      - name: Ifconfig
+        run: ifconfig
