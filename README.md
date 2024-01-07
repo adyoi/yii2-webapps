@@ -28,7 +28,9 @@ https://opencollective.com/yiisoft
 
 ## Installation
 
-Video : https://www.awesomescreenshot.com/video/17127094?key=f669668d4cefa461f3ca137cf15284a5
+Video : 
+
+<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100009334052956%2Fvideos%2F953630405682056%2F%3Fidorvanity%3D1417095525197652&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
@@ -209,13 +211,13 @@ API Support :
 
 ### Support me :) 🍔🍟🍕🍱🥪🥑🥛💻
 ---
-<img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-paypal.png" alt="donate-paypal" width="100"/>
+<img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-paypal.png" alt="Logo Paypal" width="100"/>
 
 1. PAYPAL
 
 <a href="https://paypal.me/adyoi?locale.x=id_ID">https://paypal.me/adyoi</a>
 
-<img src="https://www.bca.co.id/-/media/Feature/Card/List-Card/Tentang-BCA/Brand-Assets/Logo-BCA/Logo-BCA_Biru.png" alt="Logo BCA" width="100"/> 
+<img src="https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/donate-bca.png" alt="Logo BCA" width="100"/> 
 
 2. BANK BCA (INDONESIA)
 
