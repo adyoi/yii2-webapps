@@ -11,3 +11,6 @@ RewriteRule . index.php
 
 # Disallow Browser Indexing
 Options -Indexes
+
+# Error Log
+php_value error_log  ./error.log

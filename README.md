@@ -6,9 +6,9 @@ Yii2 Web Application is a Starter Project dedicated to the yii2 developer commun
 
 ### Link Demo :
 
-Frontend : https://technosociety.id/app/yii2-webapps
+Frontend : https://yii2-web-apps.000webhostapp.com/
 
-Backend : https://technosociety.id/app/yii2-webapps/backend
+Backend : https://yii2-web-apps.000webhostapp.com/backend
 
 ### This project was built with :
 
@@ -115,12 +115,10 @@ return [
 RewriteEngine on
 # link generate to http://localhost/webapps/backend
 RewriteBase /webapps/backend
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php
 
-# Disallow Browser Indexing
-Options -Indexes
+...
+...
+
 ```
 
 * Default Account 

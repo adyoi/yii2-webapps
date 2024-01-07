@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'filter' => ArrayHelper::map(\backend\models\User::find()->asArray()->all(), 'id', 'username'),
                                 'value' => function ($data) {
                                     $user = \backend\models\User::findOne(['id' => $data['id_user']]);
-                                    return $user['username'];
+                                    return $user ? $user['username'] : '';
                                 },
                             ],
                             'module',
