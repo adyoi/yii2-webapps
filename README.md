@@ -6,9 +6,9 @@ Yii2 Web Application is a Starter Project dedicated to the yii2 developer commun
 
 ### Link Demo :
 
-Frontend : https://yii2-web-apps.000webhostapp.com/
+Frontend : ~~https://yii2-web-apps.000webhostapp.com/~~
 
-Backend : https://yii2-web-apps.000webhostapp.com/backend
+Backend : ~~https://yii2-web-apps.000webhostapp.com/backend~~
 
 ### This project was built with :
 
@@ -26,9 +26,16 @@ https://opencollective.com/yiisoft
 
 ![alt text](https://raw.githubusercontent.com/adyoi/yii2-webapps/master/images/18.png)
 
+## Preparation
+
+1. Install Git<br>
+2. Install Composer<br>
+3. Install XAMPP (Windows)<br>
+4. Install HeidiSQL (Windows)
+
 ## Installation
 
-Video : https://www.facebook.com/100009334052956/videos/953630405682056/
+Video Tutorial : ~~https://www.facebook.com/100009334052956/videos/953630405682056/~~
 
 $ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
 $ cd webapps<br>
@@ -39,20 +46,22 @@ $ composer update
 
 ## Create Directory Assets
 ```php
- Default Directory Frontend /
- Default Directory Backend /backend
+ # Create directory assets Frontend
+ $ mkdir ./assets
 
- # Change Directory Backend
+ # Create directory assets Backend
+ $ mkdir ./backend/assets
+
+ # Optional change directory Backend
  $ sudo ./chbackend.sh
 
 ```
-$ sudo ./mkassets.sh
 
 ## Configuration
 
-* import webapps.sql
+* Import webapps.sql with HeidiSQL
 
-* /system/common/config/main-local.php
+* Update file /system/common/config/main-local.php
 ```php
 <?php
 return [
@@ -85,7 +94,13 @@ return [
 ];
 ```
 
-* /system/common/config/param-local.php
+* Running yii migrate
+```php
+$ chmod +x ./yii<br>
+$ ./yii migrate<br>
+```
+
+* Update file /system/common/config/param-local.php
 ```php
 <?php
 return [
@@ -95,7 +110,7 @@ return [
 ];
 ```
 
-* /system/common/config/main.php
+* Update file /system/common/config/main.php
 ```php
 <?php
 return [
@@ -110,7 +125,7 @@ return [
 ];
 ```
 
-* /backend/.htaccess
+* Update file /backend/.htaccess
 ```php
 RewriteEngine on
 # link generate to http://localhost/webapps/backend
@@ -121,7 +136,7 @@ RewriteBase /webapps/backend
 
 ```
 
-* Default Account 
+* Default Login Account
 ```php
 // User Access
 username : root
@@ -139,7 +154,7 @@ username : user
 password : user
 ```
 
-* Browser
+* Running on Browser
 ```php
 Frontend : http://localhost/webapps/
 Backend  : http://localhost/webapps/backend
