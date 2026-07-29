@@ -37,12 +37,14 @@ https://opencollective.com/yiisoft
 
 Video Tutorial : ~~https://www.facebook.com/100009334052956/videos/953630405682056/~~
 
-$ git clone https://github.com/adyoi/yii2-webapps.git webapps<br>
-$ cd webapps<br>
-$ cd system<br>
-$ chmod +x ./init<br>
-$ ./init<br>
+```php
+$ git clone https://github.com/adyoi/yii2-webapps.git webapps
+$ cd webapps
+$ cd system
+$ chmod +x ./init
+$ ./init
 $ composer update
+```
 
 ## Create Directory Assets
 ```php
@@ -96,8 +98,8 @@ return [
 
 * Running yii migrate
 ```php
-$ chmod +x ./yii<br>
-$ ./yii migrate<br>
+$ chmod +x ./yii
+$ ./yii migrate
 ```
 
 * Update file /system/common/config/param-local.php
