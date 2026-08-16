@@ -12,15 +12,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'view' => [
-            'theme' => [
-                'basePath' => '@app/themes/basic',
-                'baseUrl' => '@web/themes/basic',
-                'pathMap' => [
-                    '@app/views' => '@app/themes/basic',
-                ],
-            ],
-        ],
         'request' => [
             'csrfParam' => '_csrf-frontend-webapps',
         ],
@@ -54,9 +45,6 @@ return [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-
-                // RestApi
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api', 'pluralize'=>false],
             ],
         ],
     ],

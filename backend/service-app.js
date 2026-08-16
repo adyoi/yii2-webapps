@@ -1,6 +1,6 @@
 /* Only register a service worker if it's supported */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('http://localhost/webapps/backend/service-worker.js');
+  navigator.serviceWorker.register('/service-worker.js');
 }
 
 /**

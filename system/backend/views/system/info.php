@@ -71,11 +71,11 @@ $this->registerJsFile('@web/dist/js/dataTables.bootstrap4.min.js', ['depends' =>
 		                        <tbody>
 		                            <tr>
 		                                <td>Name</td>
-		                                <td><?= $_SERVER['SERVER_NAME'] ?></td>
+		                                <td><?= isset($_SERVER['SERVER_NAME']) ? Html::encode($_SERVER['SERVER_NAME']) : '-' ?></td>
 		                            </tr>
 		                            <tr>
 		                                <td>Signature</td>
-		                                <td><?= $_SERVER['SERVER_SIGNATURE'] ?></td>
+		                                <td><?= isset($_SERVER['SERVER_SIGNATURE']) ? Html::encode($_SERVER['SERVER_SIGNATURE']) : php_sapi_name() ?></td>
 		                            </tr>
 		                            <tr>
 		                                <td>OS</td>

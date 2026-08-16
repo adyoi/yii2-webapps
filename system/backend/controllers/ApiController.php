@@ -58,23 +58,19 @@ class ApiController extends ActiveController
 				//'options', // uncomment for authorization
             ],
             'authMethods' => [
-                HttpBasicAuth::className(),
+                [
+                    'class' => HttpBasicAuth::className(),
+                    'auth' => function ($username, $password) {
+                        $user = \common\models\User::find()->where(['username' => $username])->one();
+                        if ($user !== null && $user->validatePassword($password)) {
+                            return $user;
+                        }
+                        return null;
+                    },
+                ],
                 HttpBearerAuth::className(),
                 QueryParamAuth::className(),
             ],
-        ];
-
-        /* --- With Basic Authorization --- */
-
-        $behaviors['basicAuth'] = [
-            'class' => HttpBasicAuth::className(),
-            'auth' => function ($username, $password) {
-                $user = \common\models\User::find()->where(['username' => $username])->one();
-                    if ($user->validatePassword($password)) {
-                        return $user;
-                }
-                return null;
-            },
         ];
 
         return $behaviors;
@@ -88,7 +84,7 @@ class ApiController extends ActiveController
 
         /* ---------------------- START APP LOG API ---------------------- */
         $app_loga             = new \backend\models\AppLoga();
-        $app_loga->id_user    = Yii::$app->user->identity->id;
+        $app_loga->id_user    = Yii::$app->user->getIsGuest() ? 0 : Yii::$app->user->identity->id;
         $app_loga->name       = 'API_IP';                                     // Change Name API
         $app_loga->update     = json_encode($callback);                       // Summary Callback
         $app_loga->ip_address = Yii::$app->getRequest()->getUserIP();

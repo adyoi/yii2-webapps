@@ -103,17 +103,9 @@ class UserController extends Controller
         $model->created_at = time();
         $model->updated_at = time();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        $image = UploadedFile::getInstance($model, 'image');
 
-            $image = UploadedFile::getInstance($model, 'image');
-
-            if ($image)
-            {
-                $file = Yii::$app->params['upload'] . 'user/' . $model->username . '.' . $image->extension;
-                $path = Yii::getAlias('@webroot') . $file;
-                $image->saveAs($path);
-                $model->image = $file;
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $this->saveUserImage($model, $image)) {
 
             $model->auth_key = Yii::$app->security->generateRandomString();
             $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
@@ -192,21 +184,14 @@ class UserController extends Controller
         $model->created_at = $model->created_at;
         $model->updated_at = time();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        $image = UploadedFile::getInstance($model, 'image');
 
-            $image = UploadedFile::getInstance($model, 'image');
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $this->saveUserImage($model, $image)) {
 
-            if ($image)
+            if ($image === null)
             {
-                $file = Yii::$app->params['upload'] . 'user/' . $model->username . '.' . $image->extension;
-                $path = Yii::getAlias('@webroot') . $file;
-                $image->saveAs($path);
-                $model->image = $file;
-            }
-            else
-            {
-                $path = $this->findModel($id);
-                $model->image = $path->image;
+                $existing = $this->findModel($id);
+                $model->image = $existing->image;
             }
 
             $model->auth_key = Yii::$app->security->generateRandomString();
@@ -298,6 +283,35 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    protected function saveUserImage($model, $image)
+    {
+        if ($image === null)
+        {
+            return true;
+        }
+
+        $extension = strtolower($image->extension);
+
+        if (!in_array($extension, ['png', 'jpg', 'jpeg', 'gif'], true))
+        {
+            $model->addError('image', 'Only files with these extensions are allowed: png, jpg, jpeg, gif.');
+            return false;
+        }
+
+        $safe_name = preg_replace('/[^a-zA-Z0-9_-]/', '', $model->username);
+        $file = Yii::$app->params['upload'] . 'user/' . $safe_name . '.' . $extension;
+        $path = Yii::getAlias('@webroot') . $file;
+
+        if (!$image->saveAs($path))
+        {
+            $model->addError('image', 'Failed to upload the image file.');
+            return false;
+        }
+
+        $model->image = $file;
+        return true;
     }
 
     /**
